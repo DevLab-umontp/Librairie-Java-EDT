@@ -1,5 +1,10 @@
-[![](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
+![GitHub Actions](https://github.com/DevLab-umontp/API-JAVA-EDT/workflows/Java%20CI%20with%20Maven/badge.svg)
+[![Gitmoji.dev](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
 # ![](ressources/devicon.png) API Java : EDT IUT Montpellier
+
+### IUT Montpellier-Sète – Département Informatique
+* **Colaborateurs:** [étudiants du département informatique](https://iut-montpellier-sete.edu.umontpellier.fr/dut-informatique/)
+
 
 ## Utiliser l'API Java EDT IUT Montpellier :
 

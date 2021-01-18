@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class Cours implements Comparable<Integer>{
+public class Cours implements Comparable<Integer> {
     private final LocalDate date;
     private final String prof;
     private final LocalTime heureDebut;
@@ -12,6 +12,16 @@ public class Cours implements Comparable<Integer>{
     private final String lieu;
     private final int duree;
     private final Groupe groupe;
+
+    public static Groupe getGroupeFromDesc(String desc) {
+        Groupe res = null;
+        for (Groupe g : Groupe.values()) {
+            if (desc.contains(g.name())) {
+                res = g;
+            }
+        }
+        return res;
+    }
 
     @Override
     public boolean equals(Object o) {

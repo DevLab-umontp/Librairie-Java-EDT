@@ -49,8 +49,8 @@ public enum Groupe {
         return groupeParent != null;
     }
 
-    public boolean contient(Groupe autreGroupe) {
-        return autreGroupe == this || (possedeGroupeParent() && groupeParent.contient(autreGroupe));
+    public boolean estContenuDans(Groupe autreGroupe) {
+        return autreGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(autreGroupe));
     }
 
 }

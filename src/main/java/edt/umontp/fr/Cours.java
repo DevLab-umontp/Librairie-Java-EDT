@@ -75,9 +75,7 @@ public class Cours implements Comparable<Integer> {
         while (m.find()) {
             matches.add(m.group(0));
         }
-
-
-        return res.toArray(new String[0]);
+        return matches.toArray(new String[matches.size()]);
     }
 
 

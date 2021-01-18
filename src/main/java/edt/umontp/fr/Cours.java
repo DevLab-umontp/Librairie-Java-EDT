@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class Cours implements Comparable<int>{
+public class Cours implements Comparable<Integer>{
     private final LocalDate date;
     private final String prof;
     private final LocalTime heureDebut;
@@ -38,7 +38,7 @@ public class Cours implements Comparable<int>{
     }
 
     @Override
-    public int compareTo(int o) {
+    public int compareTo(Integer o) {
         return 0;
     }
 }

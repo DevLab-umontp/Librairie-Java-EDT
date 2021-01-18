@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class Planning implements Iterable {
+public class Planning implements Iterable, Planifiable {
     private ArrayList<Cours> cours;
 
     public Planning(ArrayList<Cours> cours) {
@@ -32,16 +32,19 @@ public class Planning implements Iterable {
     }
 
     //TODO a coder
+    @Override
     public Planning getPlanningOf(LocalDate date) {
         return null;
     }
 
     //TODO a coder
+    @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
         return null;
     }
 
-    //TODO a coder;
+    //TODO a coder
+    @Override
     public Planning getPlanningOf(Groupe groupe) {
         return null;
     }

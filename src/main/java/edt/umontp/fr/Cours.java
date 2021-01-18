@@ -12,7 +12,7 @@ import net.fortuna.ical4j.model.Property;
 
 public class Cours implements Comparable<Integer> {
     private LocalDate date;
-    private String prof;
+    private String[] prof;
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private String lieu;
@@ -20,8 +20,8 @@ public class Cours implements Comparable<Integer> {
     private Groupe groupe;
     private String intitule;
 
-    public Cours(LocalDate date, String prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
-            Groupe groupe, String intitule) {
+    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
+                 Groupe groupe, String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;

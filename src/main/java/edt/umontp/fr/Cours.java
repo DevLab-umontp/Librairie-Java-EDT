@@ -12,6 +12,19 @@ public class Cours implements Comparable<Integer> {
     private final String lieu;
     private final int duree;
     private final Groupe groupe;
+    private final String intitule;
+
+    public Cours(LocalDate date, String prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
+                 Groupe groupe, String intitule) {
+        this.date = date;
+        this.prof = prof;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.lieu = lieu;
+        this.duree = duree;
+        this.groupe = groupe;
+        this.intitule = intitule;
+    }
 
     public static Groupe getGroupeFromDesc(String desc) {
         Groupe res = null;
@@ -28,23 +41,12 @@ public class Cours implements Comparable<Integer> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cours cours = (Cours) o;
-        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof) && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu) && groupe == cours.groupe;
+        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof) && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu) && groupe == cours.groupe && intitule.equals(cours.intitule);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, prof, heureDebut, heureFin, lieu, duree, groupe);
-    }
-
-    public Cours(LocalDate date, String prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
-                 Groupe groupe) {
-        this.date = date;
-        this.prof = prof;
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
-        this.lieu = lieu;
-        this.duree = duree;
-        this.groupe = groupe;
+        return Objects.hash(date, prof, heureDebut, heureFin, lieu, duree, groupe, intitule);
     }
 
     @Override

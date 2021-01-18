@@ -1,6 +1,7 @@
 package edt.umontp.fr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,7 +18,7 @@ class PlanningTest {
                         LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1");
         private Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
                         LocalTime.of(15, 30), "K133", Groupe.S3, "Compta2");
-        private Cours cours3 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+        private Cours cours3 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(13, 30),
                         LocalTime.of(14, 30), "K133", Groupe.S2, "Compta3");
         private Cours cours4 = new Cours(LocalDate.of(2021, 1, 22), new String[] { "prof" }, LocalTime.of(11, 30),
                         LocalTime.of(12, 30), "K133", Groupe.S1, "Compta4");
@@ -38,8 +39,14 @@ class PlanningTest {
         }
 
         @Test
-        void test_getPlanningOf_groupe(){
+        void test_getPlanningOf_groupe() {
                 assertEquals(cours2, planning.getPlanningOf(Groupe.S3).iterator().next());
+        }
+
+        @Test
+        void test_getPlanningOf_date_and_groupe() {
+                assertNotEquals(cours2, planning.getPlanningOf(cours2.getDate()).iterator().next());
+                assertEquals(cours2, planning.getPlanningOf(cours2.getDate(), cours2.getGroupe()).iterator().next());
         }
 
 }

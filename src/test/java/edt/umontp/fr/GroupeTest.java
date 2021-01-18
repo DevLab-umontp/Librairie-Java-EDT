@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class GroupeTest {
 
     @Test
-    void Test_getIntitule() {
+    void test_getIntitule() {
     }
 
     @Test

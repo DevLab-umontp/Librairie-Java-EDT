@@ -14,7 +14,7 @@ import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
 
-public class Cours implements Comparable<Integer> {
+public class Cours implements Comparable<Cours> {
     private LocalDate date;
     private String[] prof;
     private LocalTime heureDebut;
@@ -24,8 +24,8 @@ public class Cours implements Comparable<Integer> {
     private Groupe groupe;
     private String intitule;
 
-    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
-            Groupe groupe, String intitule) {
+    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe groupe,
+            String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;
@@ -91,7 +91,64 @@ public class Cours implements Comparable<Integer> {
     }
 
     @Override
-    public int compareTo(Integer o) {
-        return 0;
+    public int compareTo(Cours o) {
+        int compareDate = date.compareTo(o.date);
+        return compareDate != 0 ? compareDate : heureDebut.compareTo(o.heureDebut);
+    }
+
+    /**
+     * @return the date
+     */
+    public LocalDate getDate() {
+        return date;
+    }
+
+    /**
+     * @return the prof
+     */
+    public String[] getProf() {
+        return prof;
+    }
+
+    /**
+     * @return the heureDebut
+     */
+    public LocalTime getHeureDebut() {
+        return heureDebut;
+    }
+
+    /**
+     * @return the heureFin
+     */
+    public LocalTime getHeureFin() {
+        return heureFin;
+    }
+
+    /**
+     * @return the lieu
+     */
+    public String getLieu() {
+        return lieu;
+    }
+
+    /**
+     * @return the duree
+     */
+    public int getDuree() {
+        return duree;
+    }
+
+    /**
+     * @return the groupe
+     */
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    /**
+     * @return the intitule
+     */
+    public String getIntitule() {
+        return intitule;
     }
 }

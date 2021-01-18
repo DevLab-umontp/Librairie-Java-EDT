@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class Cours {
+public class Cours implements Comparable<int>{
     private final LocalDate date;
     private final String prof;
     private final LocalTime heureDebut;
@@ -35,5 +35,10 @@ public class Cours {
         this.lieu = lieu;
         this.duree = duree;
         this.groupe = groupe;
+    }
+
+    @Override
+    public int compareTo(int o) {
+        return 0;
     }
 }

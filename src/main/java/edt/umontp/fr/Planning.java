@@ -21,7 +21,6 @@ public class Planning implements Iterable<Cours>, Planifiable {
         this.cours = new TreeSet(cours);
     }
 
-    //TODO a coder
     @Override
     public Iterator<Cours> iterator() {
         return cours.iterator();
@@ -32,13 +31,11 @@ public class Planning implements Iterable<Cours>, Planifiable {
         cours.forEach(action);
     }
 
-    //TODO a coder
     @Override
     public Spliterator<Cours> spliterator() {
         return cours.spliterator();
     }
 
-    //TODO a coder
     @Override
     public Planning getPlanningOf(LocalDate date) {
         ArrayList<Cours> result = new ArrayList<>();
@@ -58,26 +55,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return null;
     }
 
-    //TODO a coder
     @Override
     public Planning getPlanningOf(Groupe groupe) {
-        return null;
+        return new Planning(cours.stream().filter(x -> x.getGroupe() == groupe).collect(Collectors.toList()));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

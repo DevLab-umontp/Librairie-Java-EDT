@@ -3,8 +3,7 @@ package edt.umontp.fr;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Component;
@@ -66,25 +65,25 @@ public class Cours implements Comparable<Integer> {
         return res;
     }
 
-    public static String[] getProfFromDdesc(String desc){
+    public static String[] getProfFromDesc(String desc) {
+        ArrayList<String> res = new ArrayList<String>();
         Scanner scanner = new Scanner(desc);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            
+            if (line.equals(line.toUpperCase(Locale.ROOT)) && line.contains("   ")) {
+                res.add(line);
+            }
         }
         scanner.close();
+        return res.toArray(new String[0]);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Cours cours = (Cours) o;
-        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof)
-                && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu)
-                && groupe == cours.groupe && intitule.equals(cours.intitule);
+        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof) && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu) && groupe == cours.groupe && intitule.equals(cours.intitule);
     }
 
     @Override

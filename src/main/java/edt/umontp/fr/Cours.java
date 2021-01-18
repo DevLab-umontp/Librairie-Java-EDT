@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -53,7 +54,7 @@ public class Cours implements Comparable<Cours> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
+
         date = LocalDate.ofInstant(dateDebut.toInstant(), ZONE_ID);
         heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), ZONE_ID);
         heureFin = LocalTime.ofInstant(dateFin.toInstant(), ZONE_ID);
@@ -72,23 +73,6 @@ public class Cours implements Comparable<Cours> {
             matches.add(m.group(0));
         }
         return matches.toArray(new String[matches.size()]);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Cours cours = (Cours) o;
-        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof)
-                && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu)
-                && groupe == cours.groupe && intitule.equals(cours.intitule);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(date, prof, heureDebut, heureFin, lieu, duree, groupe, intitule);
     }
 
     @Override
@@ -151,5 +135,75 @@ public class Cours implements Comparable<Cours> {
      */
     public String getIntitule() {
         return intitule;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + duree;
+        result = prime * result + ((groupe == null) ? 0 : groupe.hashCode());
+        result = prime * result + ((heureDebut == null) ? 0 : heureDebut.hashCode());
+        result = prime * result + ((heureFin == null) ? 0 : heureFin.hashCode());
+        result = prime * result + ((intitule == null) ? 0 : intitule.hashCode());
+        result = prime * result + ((lieu == null) ? 0 : lieu.hashCode());
+        result = prime * result + Arrays.hashCode(prof);
+        return result;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Cours other = (Cours) obj;
+        if (date == null) {
+            if (other.date != null)
+                return false;
+        } else if (!date.equals(other.date))
+            return false;
+        if (duree != other.duree)
+            return false;
+        if (groupe != other.groupe)
+            return false;
+        if (heureDebut == null) {
+            if (other.heureDebut != null)
+                return false;
+        } else if (!heureDebut.equals(other.heureDebut))
+            return false;
+        if (heureFin == null) {
+            if (other.heureFin != null)
+                return false;
+        } else if (!heureFin.equals(other.heureFin))
+            return false;
+        if (intitule == null) {
+            if (other.intitule != null)
+                return false;
+        } else if (!intitule.equals(other.intitule))
+            return false;
+        if (lieu == null) {
+            if (other.lieu != null)
+                return false;
+        } else if (!lieu.equals(other.lieu))
+            return false;
+        if (!Arrays.equals(prof, other.prof))
+            return false;
+        return true;
     }
 }

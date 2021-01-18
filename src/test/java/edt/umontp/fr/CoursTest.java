@@ -151,13 +151,25 @@ class CoursTest {
                                 LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
                         0), //
                 Arguments.of(
-                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(12, 30),
                                 LocalTime.of(13, 30), "K133", Groupe.S1, "Compta1"),
                         new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
                                 LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
                         -1), //
                 Arguments.of(
-                        new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(13, 30),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 29),
+                                LocalTime.of(13, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        -1), //
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 31),
+                                LocalTime.of(13, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        1), //
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
                                 LocalTime.of(15, 30), "K133", Groupe.S1, "Compta1"),
                         new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
                                 LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),

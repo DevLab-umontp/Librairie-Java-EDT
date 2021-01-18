@@ -63,10 +63,11 @@ public class EmploiDuTemps {
         File fichierIcs = getFichierIcsDepuisLienIcal();
         Calendar calendar = convertieFichierIcsEnCalendar(fichierIcs);
         ArrayList<Cours> coursList = new ArrayList<>();
-        for (Object vEvent : calendar.getComponents(Component.VEVENT)) {
-            coursList.add(new Cours((Component) vEvent));
-        }
-        planningEmploisDutemps = new Planning(coursList);
+        // TODO en attente de finalisation du constructeur de Cours
+        // for (Object vEvent : calendar.getComponents(Component.VEVENT)) {
+        //     coursList.add(new Cours((Component) vEvent));
+        // }
+        // planningEmploisDutemps = new Planning(coursList);
     }
 
 }

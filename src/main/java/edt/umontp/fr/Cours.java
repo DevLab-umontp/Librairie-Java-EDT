@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
+import java.util.Scanner;
 
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Component;
@@ -63,6 +64,15 @@ public class Cours implements Comparable<Integer> {
             }
         }
         return res;
+    }
+
+    public static String[] getProfFromDdesc(String desc){
+        Scanner scanner = new Scanner(desc);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            
+        }
+        scanner.close();
     }
 
     @Override

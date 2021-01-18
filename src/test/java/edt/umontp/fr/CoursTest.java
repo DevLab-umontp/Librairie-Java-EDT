@@ -19,4 +19,9 @@ class CoursTest {
                 "VICTOR\nROSENFELD   MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
         assertEquals(Groupe.A1, Cours.getGroupeFromDesc(desc));
     }
+
+    @Test
+    void Test_getProfFromDdesc_Desc_NomsDesProfs() {
+        assertTrue(true);
+    }
 }

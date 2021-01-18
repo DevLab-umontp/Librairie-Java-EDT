@@ -3,9 +3,15 @@ package edt.umontp.fr;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.data.ParserException;
@@ -33,8 +39,12 @@ public class EmploiDuTemps {
     private File getFichierIcsDepuisLienIcal()  {
         File fichierIcs = null;
         try {
-            fichierIcs =  new File(new URI(LIEN_ICAL));
-        } catch (URISyntaxException e) {
+            fichierIcs = File.createTempFile("temp", null);
+            URL url = new URL(LIEN_ICAL);
+            InputStream in = url.openStream();
+            Files.copy(in, Paths.get(fichierIcs.getName()));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return fichierIcs;

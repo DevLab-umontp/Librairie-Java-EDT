@@ -6,14 +6,19 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.SortedSet;
 import java.util.Spliterator;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
+import edu.emory.mathcs.backport.java.util.Collections;
+import edu.emory.mathcs.backport.java.util.TreeSet;
 
 public class Planning implements Iterable<Cours>, Planifiable {
-    private Queue<Cours> cours;
+    private SortedSet<Cours> cours;
 
     public Planning(Collection<Cours> cours) {
-        this.cours = new LinkedList<>(cours);
+        this.cours = new TreeSet(cours);
     }
 
     //TODO a coder
@@ -36,10 +41,18 @@ public class Planning implements Iterable<Cours>, Planifiable {
     //TODO a coder
     @Override
     public Planning getPlanningOf(LocalDate date) {
-        return null;
+        ArrayList<Cours> result = new ArrayList<>();
+        LocalDate lastDate = ((Cours) Collections.max(cours)).getDate();
+        if (!lastDate.isBefore(date)) {
+            Queue<Cours> coursTrie = new LinkedList<>(cours);
+            while (coursTrie.peek().getDate().isBefore(date))
+                coursTrie.poll();
+            while (!coursTrie.isEmpty() && coursTrie.peek().getDate().isEqual(date))
+                result.add(coursTrie.poll());
+        }
+        return new Planning(result);
     }
 
-    //TODO a coder
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
         return null;

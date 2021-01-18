@@ -21,7 +21,7 @@ public class EmploiDuTemps {
     private final String LIEN_ICAL = "https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal.jsp?data=58c99062bab31d256bee14356aca3f2423c0f022cb9660eba051b2653be722c431b66c493702208e664667048bc04373dc5c094f7d1a811b903031bde802c7f59b21846d3c6254443d7b6e956d3145c6e0d5bac87b70fdd185b8b86771d71211a02411e8351020815cfb0dcc54c667187353dbcfc377b44753a4f433d4e51f753c2b0fc0eafdcbc1cbb6ef4e715ebea9d495758b595b12cb294e70e715876fbaa3c654023c76f43cd51442775ff171e0a5f21b50c55a5b52d94df3e7977af823a1e78ee86c6497b1cf8732d52143eeffacc27449fc13ec1f0b04d23e09712df15579474e1aa0cd65f50f33a1dd766301,1";
     private final EmploiDuTemps singleton = null;
 
-    private Calendar convertieFichierIcsEnCalendar(File fichierIcs){
+    private Calendar convertieFichierIcsEnCalendar(File fichierIcs) {
         Calendar calendar = null;
         try (FileInputStream fileICS = new FileInputStream(fichierIcs)) {
             CalendarBuilder builder = new CalendarBuilder();
@@ -36,10 +36,13 @@ public class EmploiDuTemps {
         return calendar;
     }
 
-    private File getFichierIcsDepuisLienIcal()  {
-        File fichierIcs = null;
+    private File getFichierIcsDepuisLienIcal() {
+        File fichierIcs = new File("fichier.ics");
+        if (fichierIcs.isFile()) {
+            fichierIcs.delete();
+        }
         try {
-            fichierIcs = File.createTempFile("temp", null);
+            // fichierIcs = File.createTempFile("temp", ".ics");
             URL url = new URL(LIEN_ICAL);
             InputStream in = url.openStream();
             Files.copy(in, Paths.get(fichierIcs.getName()));

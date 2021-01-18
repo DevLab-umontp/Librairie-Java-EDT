@@ -21,5 +21,5 @@ class CoursTest {
     @Test
     void Test_getProfFromDdesc_Desc_NomsDesProfs() {
         assertTrue(true);
-    }a
+    }
 }

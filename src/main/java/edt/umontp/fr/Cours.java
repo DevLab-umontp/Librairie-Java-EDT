@@ -25,7 +25,7 @@ public class Cours implements Comparable<Integer> {
     private String intitule;
 
     public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
-                 Groupe groupe, String intitule) {
+            Groupe groupe, String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;
@@ -57,19 +57,9 @@ public class Cours implements Comparable<Integer> {
         lieu = location.getValue();
         intitule = summary.getValue();
         prof = getProfFromDesc(description.getValue());
-        groupe = getGroupeFromDesc(description.getValue());
+        groupe = Groupe.getGroupeDepuisTexte(description.getValue());
         Duration duration = Duration.between(heureDebut, heureFin);
         duree = (int) duration.toMinutes();
-    }
-
-    public static Groupe getGroupeFromDesc(String desc) {
-        Groupe res = null;
-        for (Groupe g : Groupe.values()) {
-            if (desc.contains(g.name())) {
-                res = g;
-            }
-        }
-        return res;
     }
 
     public static String[] getProfFromDesc(String desc) {
@@ -83,13 +73,16 @@ public class Cours implements Comparable<Integer> {
         return matches.toArray(new String[matches.size()]);
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Cours cours = (Cours) o;
-        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof) && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu) && groupe == cours.groupe && intitule.equals(cours.intitule);
+        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof)
+                && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu)
+                && groupe == cours.groupe && intitule.equals(cours.intitule);
     }
 
     @Override

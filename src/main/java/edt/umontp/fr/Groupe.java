@@ -1,6 +1,10 @@
 package edt.umontp.fr;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public enum Groupe {
+    NULL("sans groupe"), // Gérer les exceptions
     A1("A1"), // première année dep info
     S1("S1", A1), //
     S2("S2", A1), //
@@ -17,6 +21,15 @@ public enum Groupe {
     G2("G2", A2), //
     G3("G3", A2), //
     G4("G4", A2);
+
+    private static final String REGEX;
+    static {
+        Groupe[] groupes = values();
+        String[] strings = new String[groupes.length];
+        for (int i = 0; i < strings.length; i++)
+            strings[i] = groupes[i].getIntitule();
+        REGEX = String.format("(%s)", String.join("|", strings));
+    }
 
     private String intitule;
     private Groupe groupeParent;
@@ -43,6 +56,14 @@ public enum Groupe {
      */
     public String getIntitule() {
         return intitule;
+    }
+
+    public static Groupe getGroupeDepuisTexte(String texte) {
+        final Matcher m = Pattern.compile(REGEX).matcher(texte);
+        if (m.find())
+            return valueOf(m.group(0));
+        else
+            return Groupe.NULL;
     }
 
     private boolean possedeGroupeParent() {

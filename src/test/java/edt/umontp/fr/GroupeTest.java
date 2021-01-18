@@ -15,7 +15,7 @@ class GroupeTest {
 
     @Test
     void test_getIntitule() {
-        assertEquals("A1",Groupe.A1.getIntitule());
+        assertEquals("A1", Groupe.A1.getIntitule());
     }
 
     @ParameterizedTest(name = "Le groupe {0} doit retourner {2} lorsqu'il verifie s'il est contenu dans {1}")
@@ -34,10 +34,28 @@ class GroupeTest {
     }
 
     @Test
-    void values() {
+    void valueOf() {
+        assertEquals(Groupe.A1, Groupe.valueOf("A1"));
     }
 
     @Test
-    void valueOf() {
+    void test_getGroupeDepuisTexte_A1Seul_A1() {
+        String desc = "\n\nA1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET VICTOR\nROSENFELD MATTHIEU\nA "
+                + "valider\n(Exporté le:18 / 01 / 2 021 10:51)\n";
+        assertEquals(Groupe.A1, Groupe.getGroupeDepuisTexte(desc));
+    }
+
+    @Test
+    void test_getGroupeDepuisTexte_A1NonSeul_A1() {
+        String desc = "\n\nA1-Semestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   "
+                + "MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
+        assertEquals(Groupe.A1, Groupe.getGroupeDepuisTexte(desc));
+    }
+
+    @Test
+    void test_getGroupeDepuisTexte_aucunGroupe_GroupeNULL() {
+        String desc = "\n\nSemestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   "
+                + "MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
+        assertEquals(Groupe.NULL, Groupe.getGroupeDepuisTexte(desc));
     }
 }

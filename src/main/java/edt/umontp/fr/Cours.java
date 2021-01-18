@@ -1,8 +1,10 @@
 package edt.umontp.fr;
 
 import java.text.ParseException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,7 +56,10 @@ public class Cours implements Comparable<Integer> {
         heureFin = LocalTime.ofInstant(dateFin.toInstant(), dateFin.getTimeZone().toZoneId());
         lieu = location.getValue();
         intitule = summary.getValue();
-        // TODO spliter la description pour initialiser les autres attributs
+        prof = getProfFromDesc(description.getValue());
+        groupe = getGroupeFromDesc(description.getValue());
+        Duration duration = Duration.between(heureDebut, heureFin);
+        duree = (int) duration.toMinutes();
     }
 
     public static Groupe getGroupeFromDesc(String desc) {

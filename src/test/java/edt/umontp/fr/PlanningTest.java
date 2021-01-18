@@ -34,7 +34,12 @@ public class PlanningTest {
 
         @Test
         void test_getPlanningOf_date() {
-                assertTrue(cours4.compareTo(planning.getPlanningOf(cours4.getDate()).iterator().next()) == 0);
+                assertEquals(cours4, planning.getPlanningOf(cours4.getDate()).iterator().next());
+        }
+
+        @Test
+        void test_getPlanningOf_groupe(){
+                assertEquals(cours2, planning.getPlanningOf(Groupe.S3).iterator().next());
         }
 
 }

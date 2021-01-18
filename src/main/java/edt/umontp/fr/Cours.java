@@ -69,7 +69,7 @@ public class Cours implements Comparable<Integer> {
 
     public static String[] getProfFromDesc(String desc) {
         ArrayList<String> res = new ArrayList<String>();
-        String regex = "(?<=\n)[- A-Z]*   [- A-Z]*(?=\n)";
+        String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
         Matcher m = Pattern.compile(regex).matcher(desc);
         final List<String> matches = new ArrayList<>();
         while (m.find()) {

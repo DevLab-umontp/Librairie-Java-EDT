@@ -19,10 +19,9 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return null;
     }
 
-    //TODO a coder
     @Override
     public void forEach(Consumer action) {
-
+        //TODO a coder
     }
 
     //TODO a coder

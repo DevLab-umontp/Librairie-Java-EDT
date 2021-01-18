@@ -1,21 +1,27 @@
 package edt.umontp.fr;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.DateTime;
+import net.fortuna.ical4j.model.Property;
+
 public class Cours implements Comparable<Integer> {
-    private final LocalDate date;
-    private final String prof;
-    private final LocalTime heureDebut;
-    private final LocalTime heureFin;
-    private final String lieu;
-    private final int duree;
-    private final Groupe groupe;
-    private final String intitule;
+    private LocalDate date;
+    private String prof;
+    private LocalTime heureDebut;
+    private LocalTime heureFin;
+    private String lieu;
+    private int duree;
+    private Groupe groupe;
+    private String intitule;
 
     public Cours(LocalDate date, String prof, LocalTime heureDebut, LocalTime heureFin, String lieu, int duree,
-                 Groupe groupe, String intitule) {
+            Groupe groupe, String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;
@@ -26,12 +32,49 @@ public class Cours implements Comparable<Integer> {
         this.intitule = intitule;
     }
 
+    public Cours(Component vEvent) {
+        Property summary = vEvent.getProperty(Property.SUMMARY);
+        Property description = vEvent.getProperty(Property.DESCRIPTION);
+        Property dtStart = vEvent.getProperty(Property.DTSTART);
+        Property dtEnd = vEvent.getProperty(Property.DTEND);
+        Property location = vEvent.getProperty(Property.LOCATION);
+
+        DateTime dateDebut = null;
+        DateTime dateFin = null;
+        try {
+            dateDebut = new DateTime(dtStart.getValue());
+            dateFin = new DateTime(dtEnd.getValue());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        date = LocalDate.ofInstant(dateDebut.toInstant(), dateDebut.getTimeZone().toZoneId());
+        heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), dateDebut.getTimeZone().toZoneId());
+        heureFin = LocalTime.ofInstant(dateFin.toInstant(), dateFin.getTimeZone().toZoneId());
+        lieu = location.getValue();
+        intitule = summary.getValue();
+        // TODO spliter la description pour initialiser les autres attributs
+    }
+
+    public static Groupe getGroupeFromDesc(String desc) {
+        Groupe res = null;
+        for (Groupe g : Groupe.values()) {
+            if (desc.contains(g.name())) {
+                res = g;
+            }
+        }
+        return res;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Cours cours = (Cours) o;
-        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof) && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu) && groupe == cours.groupe && intitule.equals(cours.intitule);
+        return duree == cours.duree && date.equals(cours.date) && prof.equals(cours.prof)
+                && heureDebut.equals(cours.heureDebut) && heureFin.equals(cours.heureFin) && lieu.equals(cours.lieu)
+                && groupe == cours.groupe && intitule.equals(cours.intitule);
     }
 
     @Override

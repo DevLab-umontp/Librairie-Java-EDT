@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Component;
@@ -67,16 +69,17 @@ public class Cours implements Comparable<Integer> {
 
     public static String[] getProfFromDesc(String desc) {
         ArrayList<String> res = new ArrayList<String>();
-        Scanner scanner = new Scanner(desc);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            if (line.equals(line.toUpperCase(Locale.ROOT)) && line.contains("   ")) {
-                res.add(line);
-            }
+        String regex = "(?<=\n)[- A-Z]*   [- A-Z]*(?=\n)";
+        Matcher m = Pattern.compile(regex).matcher(desc);
+        final List<String> matches = new ArrayList<>();
+        while (m.find()) {
+            matches.add(m.group(0));
         }
-        scanner.close();
+
+
         return res.toArray(new String[0]);
     }
+
 
     @Override
     public boolean equals(Object o) {

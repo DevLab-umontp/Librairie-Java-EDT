@@ -7,10 +7,14 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
@@ -101,5 +105,34 @@ class CoursTest {
         String desc = "\n\nA2-Semestre-3\nBELMECHERI   NASSIM\nHAETTEL   THOMAS\nLA   XUAN HOANG\nCHIROUZE   ANNE\nA valider\n(Exporté le:18/01/2021 10:51)\n";
         String[] expected = { "BELMECHERI   NASSIM", "HAETTEL   THOMAS", "LA   XUAN HOANG", "CHIROUZE   ANNE" };
         assertEquals(Arrays.toString(expected), Arrays.toString(Cours.getProfFromDesc(desc)));
+    }
+
+    @ParameterizedTest(name = "Lorsque l'on compare le cours {0} au cours {1} les résultat doit être {2} ")
+    @MethodSource("genererArgumentsPourtestCompareTo_avecDate")
+    void testCompareTo_avecDate(Cours cours1, Cours cours2, int excepted) {
+
+        assertEquals(excepted, cours1.compareTo(cours2));
+    }
+
+    private static Stream<Arguments> genererArgumentsPourtestCompareTo_avecDate() {
+        return Stream.of(//
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        0), //
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 19), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        -1), //
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        1));
     }
 }

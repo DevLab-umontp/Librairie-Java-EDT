@@ -55,6 +55,16 @@ public class Cours implements Comparable<Integer> {
         // TODO spliter la description pour initialiser les autres attributs
     }
 
+    public static Groupe getGroupeFromDesc(String desc) {
+        Groupe res = null;
+        for (Groupe g : Groupe.values()) {
+            if (desc.contains(g.name())) {
+                res = g;
+            }
+        }
+        return res;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

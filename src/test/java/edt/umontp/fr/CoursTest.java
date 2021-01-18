@@ -135,4 +135,32 @@ class CoursTest {
                                 LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
                         1));
     }
+
+    @ParameterizedTest(name = "Lorsque l'on compare le cours {0} au cours {1} les résultat doit être {2} ")
+    @MethodSource("genererArgumentsPourtestCompareTo_avecHeure")
+    void testCompareTo_avecHeure(Cours cours1, Cours cours2, int excepted) {
+        assertEquals(excepted, cours1.compareTo(cours2));
+    }
+
+    private static Stream<Arguments> genererArgumentsPourtestCompareTo_avecHeure() {
+        return Stream.of(//
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        0), //
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(13, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        -1), //
+                Arguments.of(
+                        new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(15, 30), "K133", Groupe.S1, "Compta1"),
+                        new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
+                                LocalTime.of(14, 30), "K133", Groupe.S1, "Compta1"),
+                        1));
+    }
 }

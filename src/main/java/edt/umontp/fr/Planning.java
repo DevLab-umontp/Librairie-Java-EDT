@@ -2,32 +2,35 @@ package edt.umontp.fr;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class Planning implements Iterable<Cours>, Planifiable {
-    private ArrayList<Cours> cours;
+    private Queue<Cours> cours;
 
-    public Planning(ArrayList<Cours> cours) {
-        this.cours = cours;
+    public Planning(Collection<Cours> cours) {
+        this.cours = new LinkedList<>(cours);
     }
 
     //TODO a coder
     @Override
     public Iterator<Cours> iterator() {
-        return null;
+        return cours.iterator();
     }
 
     @Override
     public void forEach(Consumer action) {
-        //TODO a coder
+        cours.forEach(action);
     }
 
     //TODO a coder
     @Override
     public Spliterator<Cours> spliterator() {
-        return null;
+        return cours.spliterator();
     }
 
     //TODO a coder

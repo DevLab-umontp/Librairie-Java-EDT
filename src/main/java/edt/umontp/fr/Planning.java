@@ -52,7 +52,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
 
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
-        return null;
+        return getPlanningOf(date).getPlanningOf(groupe);
     }
 
     @Override

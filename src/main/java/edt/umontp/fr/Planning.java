@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class Planning implements Iterable, Planifiable {
+public class Planning implements Iterable<Cours>, Planifiable {
     private ArrayList<Cours> cours;
 
     public Planning(ArrayList<Cours> cours) {
@@ -15,7 +15,7 @@ public class Planning implements Iterable, Planifiable {
 
     //TODO a coder
     @Override
-    public Iterator iterator() {
+    public Iterator<Cours> iterator() {
         return null;
     }
 
@@ -27,7 +27,7 @@ public class Planning implements Iterable, Planifiable {
 
     //TODO a coder
     @Override
-    public Spliterator spliterator() {
+    public Spliterator<Cours> spliterator() {
         return null;
     }
 

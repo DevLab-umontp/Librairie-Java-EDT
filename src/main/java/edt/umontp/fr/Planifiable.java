@@ -3,7 +3,7 @@ package edt.umontp.fr;
 import java.time.LocalDate;
 import java.util.Date;
 
-public interface Planifiable {
+interface Planifiable {
     public Planning getPlanningOf(LocalDate date);
 
     public Planning getPlanningOf(LocalDate date, Groupe groupe);

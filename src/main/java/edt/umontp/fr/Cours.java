@@ -4,17 +4,19 @@ import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Period;
-import java.util.*;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
 
 public class Cours implements Comparable<Cours> {
+    private final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
     private LocalDate date;
     private String[] prof;
     private LocalTime heureDebut;
@@ -51,19 +53,18 @@ public class Cours implements Comparable<Cours> {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        date = LocalDate.ofInstant(dateDebut.toInstant(), dateDebut.getTimeZone().toZoneId());
-        heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), dateDebut.getTimeZone().toZoneId());
-        heureFin = LocalTime.ofInstant(dateFin.toInstant(), dateFin.getTimeZone().toZoneId());
+        
+        date = LocalDate.ofInstant(dateDebut.toInstant(), ZONE_ID);
+        heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), ZONE_ID);
+        heureFin = LocalTime.ofInstant(dateFin.toInstant(), ZONE_ID);
         lieu = location.getValue();
         intitule = summary.getValue();
         prof = getProfFromDesc(description.getValue());
         groupe = Groupe.getGroupeDepuisTexte(description.getValue());
-        Duration duration = Duration.between(heureDebut, heureFin);
-        duree = (int) duration.toMinutes();
+        duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
     public static String[] getProfFromDesc(String desc) {
-        ArrayList<String> res = new ArrayList<String>();
         String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
         Matcher m = Pattern.compile(regex).matcher(desc);
         final List<String> matches = new ArrayList<>();

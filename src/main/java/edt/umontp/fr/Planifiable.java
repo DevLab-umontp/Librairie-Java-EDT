@@ -1,7 +1,6 @@
 package edt.umontp.fr;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 interface Planifiable {
     public Planning getPlanningOf(LocalDate date);

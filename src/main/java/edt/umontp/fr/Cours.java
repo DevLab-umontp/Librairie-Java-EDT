@@ -34,9 +34,9 @@ public class Cours implements Comparable<Cours> {
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.lieu = lieu;
-        this.duree = duree;
         this.groupe = groupe;
         this.intitule = intitule;
+        duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
     public Cours(Component vEvent) {

@@ -25,7 +25,6 @@ class EmploiDuTempsProxyTest {
     @Test
     void test_getPlanningOf_date_plusRapide() {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
-        emploiDuTempsProxy.actualiser();
 
         long tempsExecution1 = rapiditeGetPlanningOfDate();
         long tempsExecution2 = rapiditeGetPlanningOfDate();
@@ -52,7 +51,6 @@ class EmploiDuTempsProxyTest {
     @Test
     void test_getPlanningOf_Groupe_plusRapide() {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
-        emploiDuTempsProxy.actualiser();
 
         long tempsExecution1 = rapiditeGetPlanningOfGroupe();
         long tempsExecution2 = rapiditeGetPlanningOfGroupe();
@@ -77,9 +75,7 @@ class EmploiDuTempsProxyTest {
 
     @Test
     void test_getPlanningOf_DateGroupe_plusRapide() {
-
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
-        emploiDuTempsProxy.actualiser();
 
         long tempsExecution1 = rapiditeGetPlanningOfDateGroupe();
         long tempsExecution2 = rapiditeGetPlanningOfDateGroupe();
@@ -105,9 +101,10 @@ class EmploiDuTempsProxyTest {
     @Test
     void test_getPlanningOf_DateGroupe_plusRapideInteligent() {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
-        emploiDuTempsProxy.actualiser();
 
-        long tempsExecution1 = rapiditeGetPlanningOfDate();
+        long tempsExecution1 = rapiditeGetPlanningOfDateGroupe();
+        emploiDuTempsProxy.actualiser();
+        rapiditeGetPlanningOfDate();
         long tempsExecution2 = rapiditeGetPlanningOfDateGroupe();
 
         assertTrue(tempsExecution1 > tempsExecution2);

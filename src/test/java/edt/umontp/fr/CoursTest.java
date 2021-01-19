@@ -2,6 +2,8 @@ package edt.umontp.fr;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -183,5 +185,23 @@ class CoursTest {
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 Groupe.S1, "Compta1"),
                                                 1));
+        }
+
+        @Test
+        void test_equals() {
+                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", Groupe.S4, "Compta4");
+                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", Groupe.S3, "Compta4");
+                assertFalse(cours1.equals(cours2));
+        }
+
+        @Test
+        void test_hashcode() {
+                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", Groupe.S4, "Compta4");
+                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", Groupe.S3, "Compta4");
+                assertNotEquals(cours1.hashCode(), cours2.hashCode());
         }
 }

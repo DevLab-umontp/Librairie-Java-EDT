@@ -1,6 +1,7 @@
 package edt.umontp.fr;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -52,6 +53,12 @@ class PlanningTest {
                 Planning planningA1 = planning.getPlanningOf(Groupe.A1);
                 for (Cours cours : planningA1)
                         assertTrue(coursEnsemble.contains(cours));
+        }
+
+        @Test
+        void test_getPlanningOf_groupe_groupeComposeVide() {
+                Planning planningA2 = planning.getPlanningOf(Groupe.A2);
+                assertFalse(planningA2.iterator().hasNext());
         }
 
         @Test

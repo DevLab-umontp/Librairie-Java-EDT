@@ -65,7 +65,7 @@ class PlanningTest {
         @Test
         void test_getPlanningOf_date_and_groupe() {
                 assertNotEquals(cours2, planning.getPlanningOf(cours2.getDate()).iterator().next());
-                assertEquals(cours2, planning.getPlanningOf(cours2.getDate(), cours2.getGroupe()[0]).iterator().next());
+                assertEquals(cours2, planning.getPlanningOf(cours2.getDate(), cours2.getGroupes()[0]).iterator().next());
         }
 
         @Test

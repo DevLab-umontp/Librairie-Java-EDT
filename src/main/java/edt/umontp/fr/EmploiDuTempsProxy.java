@@ -39,7 +39,7 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
         MultiKey<LocalDate, Groupe> multiKey = new MultiKey<>(date, groupe);
-        return cacheDateGroupe.computeIfAbsent(multiKey, k -> emploiDuTemps.getPlanningOf(k.key1, k.key2));
+        return cacheDateGroupe.computeIfAbsent(multiKey, k -> getPlanningOf(k.key1).getPlanningOf(k.key2));
     }
 
     @Override
@@ -52,6 +52,7 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         cacheDate = new HashMap<>();
         cacheGroupe = new EnumMap<>(Groupe.class);
         cacheDateGroupe = new HashMap<>();
+        emploiDuTemps.actualiser();
     }
 
     class MultiKey<K1, K2> {

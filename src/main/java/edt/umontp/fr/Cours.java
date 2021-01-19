@@ -194,8 +194,9 @@ public class Cours implements Comparable<Cours> {
 
     @Override
     public String toString() {
-        return intitule.toUpperCase(Locale.ROOT) + " :\n" + date + "\n" + heureDebut + "-" + heureFin + "\n"
-                + Arrays.toString(prof) + "\n" + lieu + "\n" + Arrays.toString(groupes);
+        return intitule.toUpperCase(Locale.ROOT) + " :\n Date : " + date + "\n Commence à " + heureDebut + " jusqu'à "
+                + heureFin + "\n Enseignant :" + Arrays.toString(prof) + " \n Localisation : " + lieu + " \n Groupe : "
+                + Arrays.toString(groupes);
     }
 
     /*

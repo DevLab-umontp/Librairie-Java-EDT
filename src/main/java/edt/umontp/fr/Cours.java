@@ -24,10 +24,10 @@ public class Cours implements Comparable<Cours> {
     private LocalTime heureFin;
     private String lieu;
     private int duree;
-    private Groupe groupe;
+    private Groupe[] groupe;
     private String intitule;
 
-    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe groupe,
+    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe[] groupe,
             String intitule) {
         this.date = date;
         this.prof = prof;

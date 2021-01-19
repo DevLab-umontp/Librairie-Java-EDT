@@ -77,4 +77,10 @@ public enum Groupe {
         return autreGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(autreGroupe));
     }
 
+    static boolean unGroupeDeGroupesEstContenuDans(Groupe[] groupes, Groupe autreGroupe) {
+        for (Groupe groupe : groupes)
+            if (groupe.estContenuDans(autreGroupe))
+                return true;
+        return false;
+    }
 }

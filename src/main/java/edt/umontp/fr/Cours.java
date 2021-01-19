@@ -140,7 +140,7 @@ public class Cours implements Comparable<Cours> {
     /**
      * @return the groupe
      */
-    public Groupe[] getGroupe() {
+    public Groupe[] getGroupes() {
         return groupes;
     }
 

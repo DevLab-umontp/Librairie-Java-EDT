@@ -15,6 +15,13 @@ import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
 
+/**
+ * Cours est la classe qui gère les cours d'un planning
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ * @see Comparable
+ */
 public class Cours implements Comparable<Cours> {
     private final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
     private LocalDate date;

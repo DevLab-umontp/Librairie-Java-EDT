@@ -16,6 +16,13 @@ import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
 
+/**
+ * EmploisDuTemps est la classe qui permet de gérer un emploi du temps
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ * @see InterfaceEmploiDuTemps
+ */
 public class EmploiDuTemps implements InterfaceEmploiDuTemps {
     private final String LIEN_ICAL =
             "https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal" + ".jsp?data" +

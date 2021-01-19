@@ -3,6 +3,13 @@ package edt.umontp.fr;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Groupe est une enumeration qui permet de recenser les différents groupes d'enseignements pour lesquelles l'API est
+ * proposée
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ */
 public enum Groupe {
     NULL("sans groupe"), // Gérer les exceptions
     A1("A1"), // première année dep info

@@ -6,6 +6,13 @@ import java.util.HashMap;
 
 // FIXME à tester !
 
+/**
+ * EmploiDuTempsProxy est un classe qui permet de proposer un proxy pour l'emploi du temps
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ * @see InterfaceEmploiDuTemps
+ */
 public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private static EmploiDuTempsProxy singleton = null;
     private EmploiDuTemps emploiDuTemps;
@@ -65,17 +72,13 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (o == null || getClass() != o.getClass())
-                return false;
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
 
             MultiKey key = (MultiKey) o;
 
-            if (key1 != null ? !key1.equals(key.key1) : key.key1 != null)
-                return false;
-            if (key2 != null ? !key2.equals(key.key2) : key.key2 != null)
-                return false;
+            if (key1 != null ? !key1.equals(key.key1) : key.key1 != null) return false;
+            if (key2 != null ? !key2.equals(key.key2) : key.key2 != null) return false;
 
             return true;
         }

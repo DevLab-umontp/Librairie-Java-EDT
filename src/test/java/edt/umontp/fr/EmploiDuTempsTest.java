@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("deprecation")
 class EmploiDuTempsTest {
 
     @Test

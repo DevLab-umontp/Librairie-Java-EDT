@@ -52,6 +52,7 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         cacheDate = new HashMap<>();
         cacheGroupe = new EnumMap<>(Groupe.class);
         cacheDateGroupe = new HashMap<>();
+        emploiDuTemps.actualiser();
     }
 
     class MultiKey<K1, K2> {

@@ -204,4 +204,26 @@ class CoursTest {
                                 LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta4");
                 assertNotEquals(cours1.hashCode(), cours2.hashCode());
         }
+
+        @Test
+        void test_getGroupes_plusieursGroupe_retournTousLesGroupes() {
+                Component component;
+                DateTime startTime, endTime;
+                try {
+                        startTime = new DateTime("20171127T150000");
+                        endTime = new DateTime("20171127T160000");
+                } catch (ParseException pe) {
+                        // yyyymmddTHHmmss is the correct format, but to make the compiler happy...
+                        startTime = new DateTime();
+                        endTime = startTime;
+                }
+                component = new VEvent(startTime, endTime, "intitule");
+                component.getProperties().add(new Description(
+                                "\n\nA2-Semestre-3 A1\nBELMECHERI   NASSIM\nHAETTEL   THOMAS\nLA   XUAN HOANG\nCHIROUZE   ANNE\nA valider\n(Exporté le:18/01/2021 10:51)\n"));
+                component.getProperties().add(new Location("K133"));
+
+                Cours cours = new Cours(component);
+
+                assertEquals(2, cours.getGroupes().length);
+        }
 }

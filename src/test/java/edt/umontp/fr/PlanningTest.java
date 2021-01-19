@@ -76,4 +76,6 @@ class PlanningTest {
                 assertEquals(coursEnsemble.size(), planning.getCours().size());
         }
 
+        // TODO faire un test plus cas où il y a plusiseurs groupe
+
 }

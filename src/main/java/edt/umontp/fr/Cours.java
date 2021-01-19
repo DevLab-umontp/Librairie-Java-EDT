@@ -28,7 +28,7 @@ public class Cours implements Comparable<Cours> {
     private String intitule;
 
     public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe groupe,
-                 String intitule) {
+            String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;
@@ -77,8 +77,19 @@ public class Cours implements Comparable<Cours> {
 
     @Override
     public int compareTo(Cours o) {
-        int compareDate = date.compareTo(o.date);
-        return compareDate != 0 ? compareDate : heureDebut.compareTo(o.heureDebut);
+        int result = date.compareTo(o.date);
+        if (result != 0)
+            return result;
+        result = heureDebut.compareTo(o.heureDebut);
+        if (result != 0)
+            return result;
+        result = Integer.compare(duree, o.duree);
+        if (result != 0)
+            return result;
+        result = groupe.getIntitule().compareTo(o.groupe.getIntitule());
+        if (result != 0)
+            return result;
+        return intitule.compareTo(o.intitule);
     }
 
     /**
@@ -137,9 +148,17 @@ public class Cours implements Comparable<Cours> {
         return intitule;
     }
 
+    // TODO Améliorer la performance utiliser
+
+    @Override
+    public String toString() {
+        return intitule.toUpperCase(Locale.ROOT) + " :\n" + date + "\n" + heureDebut + "-" + heureFin + "\n"
+                + Arrays.toString(prof) + "\n" + lieu + "\n" + groupe;
+    }
+
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see java.lang.Object#hashCode()
      */
 
@@ -148,53 +167,45 @@ public class Cours implements Comparable<Cours> {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((date == null) ? 0 : date.hashCode());
-        result = prime * result + duree;
         result = prime * result + ((groupe == null) ? 0 : groupe.hashCode());
         result = prime * result + ((heureDebut == null) ? 0 : heureDebut.hashCode());
-        result = prime * result + ((heureFin == null) ? 0 : heureFin.hashCode());
-        result = prime * result + ((intitule == null) ? 0 : intitule.hashCode());
         result = prime * result + ((lieu == null) ? 0 : lieu.hashCode());
-        result = prime * result + Arrays.hashCode(prof);
         return result;
-        // TODO Améliorer la performance utiliser 
-    }
-
-    @Override
-    public String toString() {
-        return intitule.toUpperCase(Locale.ROOT) + " :\n" + date + "\n" + heureDebut + "-" + heureFin + "\n" +
-                Arrays.toString(prof) + "\n" + lieu + "\n" + groupe;
     }
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
         Cours other = (Cours) obj;
         if (date == null) {
-            if (other.date != null) return false;
-        } else if (!date.equals(other.date)) return false;
-        if (duree != other.duree) return false;
-        if (groupe != other.groupe) return false;
+            if (other.date != null)
+                return false;
+        } else if (!date.equals(other.date))
+            return false;
+        if (groupe != other.groupe)
+            return false;
         if (heureDebut == null) {
-            if (other.heureDebut != null) return false;
-        } else if (!heureDebut.equals(other.heureDebut)) return false;
-        if (heureFin == null) {
-            if (other.heureFin != null) return false;
-        } else if (!heureFin.equals(other.heureFin)) return false;
-        if (intitule == null) {
-            if (other.intitule != null) return false;
-        } else if (!intitule.equals(other.intitule)) return false;
+            if (other.heureDebut != null)
+                return false;
+        } else if (!heureDebut.equals(other.heureDebut))
+            return false;
         if (lieu == null) {
-            if (other.lieu != null) return false;
-        } else if (!lieu.equals(other.lieu)) return false;
-        if (!Arrays.equals(prof, other.prof)) return false;
+            if (other.lieu != null)
+                return false;
+        } else if (!lieu.equals(other.lieu))
+            return false;
         return true;
     }
+
 }

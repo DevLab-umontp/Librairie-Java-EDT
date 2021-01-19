@@ -74,7 +74,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
     /**
      * @return the cours
      */
-    SortedSet<Cours> getCours() {
+    Collection<Cours> getCours() {
         return cours;
     }
 }

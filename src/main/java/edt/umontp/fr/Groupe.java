@@ -58,7 +58,7 @@ public enum Groupe {
         return intitule;
     }
 
-    public static Groupe getGroupeDepuisTexte(String texte) {
+    public static Groupe[] getGroupeDepuisTexte(String texte) {
         final Matcher m = Pattern.compile(REGEX).matcher(texte);
         if (m.find())
             return valueOf(m.group(0));

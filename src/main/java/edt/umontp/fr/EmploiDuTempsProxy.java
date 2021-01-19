@@ -4,6 +4,14 @@ import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.HashMap;
 
+/**
+ * EmploiDuTempsProxy est un classe qui permet de proposer un proxy pour
+ * l'emploi du temps
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ * @see InterfaceEmploiDuTemps
+ */
 public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private static EmploiDuTempsProxy singleton = null;
     private EmploiDuTemps emploiDuTemps;
@@ -53,6 +61,9 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         emploiDuTemps.actualiser();
     }
 
+    /**
+     * Cette classe représente une combinaison de clefs
+     */
     private class MultiKey<K1, K2> {
         private K1 key1;
         private K2 key2;

@@ -16,6 +16,13 @@ import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
 
+/**
+ * Cours est la classe qui gère les cours d'un planning
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ * @see Comparable
+ */
 public class Cours implements Comparable<Cours> {
     private final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
     private LocalDate date;
@@ -39,6 +46,12 @@ public class Cours implements Comparable<Cours> {
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
+    /**
+     * Permet de créer un objet cours a partir d'un VEVENT
+     *
+     * @param vEvent event d'un objet Calendar
+     * @since 1.0
+     */
     public Cours(Component vEvent) {
         Property summary = vEvent.getProperty(Property.SUMMARY);
         Property description = vEvent.getProperty(Property.DESCRIPTION);
@@ -65,6 +78,14 @@ public class Cours implements Comparable<Cours> {
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
+    /**
+     * Permet d'obtenir le(s) professeur(s) d'un VENVENT a partir de la description
+     * de ce dernier
+     *
+     * @param desc description du VENVENT
+     * @return le(s) professeur(s) du present dans la description
+     * @since 1.0
+     */
     public static String[] getProfFromDesc(String desc) {
         String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
         Matcher m = Pattern.compile(regex).matcher(desc);
@@ -161,7 +182,7 @@ public class Cours implements Comparable<Cours> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
 
@@ -179,7 +200,7 @@ public class Cours implements Comparable<Cours> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
 

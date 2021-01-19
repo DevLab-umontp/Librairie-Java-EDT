@@ -2,11 +2,39 @@ package edt.umontp.fr;
 
 import java.time.LocalDate;
 
+/**
+ * Planifiable est une interface proposant des méthodes pour gérer un emploi du temps
+ *
+ * @author emerick-biron, MathieuSoysal
+ * @version 1.0
+ */
 interface Planifiable {
+    /**
+     * Permet d'obtenir le planning correspondant a une date
+     *
+     * @param date date pour laquelle on veut obtenir le planning
+     * @return planning corresspndant
+     * @since 1.0
+     */
     public Planning getPlanningOf(LocalDate date);
 
+    /**
+     * Permet d'obtenir le planning correspondant a une date et un groupe
+     *
+     * @param date   date dont on veut obtenir le planning
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     */
     public Planning getPlanningOf(LocalDate date, Groupe groupe);
 
+    /**
+     * Permet d'obtenir le planning correspondant a un groupe
+     *
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     */
     public Planning getPlanningOf(Groupe groupe);
 
 }

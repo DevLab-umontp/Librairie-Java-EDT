@@ -34,6 +34,15 @@ public class Planning implements Iterable<Cours>, Planifiable {
     }
 
     @Override
+    public String toString() {
+        String res = "EDT :\n\n";
+        for (Cours c : cours) {
+            res += c.toString() + "\n\n";
+        }
+        return res;
+    }
+
+    @Override
     public Planning getPlanningOf(LocalDate date) {
         ArrayList<Cours> result = new ArrayList<>();
         LocalDate lastDate = cours.last().getDate();

@@ -8,7 +8,7 @@ class EmploiDuTempsTest {
 
     @Test
     void test_actualiser_verifierRetourneAucuneErreur() {
-        EmploiDuTemps emploiDuTemps = new EmploiDuTemps();
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertAll(() -> emploiDuTemps.actualiser());
     }
 }

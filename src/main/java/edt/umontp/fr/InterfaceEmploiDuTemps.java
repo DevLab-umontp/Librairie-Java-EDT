@@ -8,5 +8,9 @@ package edt.umontp.fr;
  * @see Planifiable
  */
 interface InterfaceEmploiDuTemps extends Planifiable {
+
+    /**
+     * Permet d'actualiser l'emploi du temps
+     */
     public void actualiser();
 }

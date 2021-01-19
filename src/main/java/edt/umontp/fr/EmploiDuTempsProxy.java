@@ -61,6 +61,9 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         cacheDateGroupe = new HashMap<>();
     }
 
+    /**
+     * Cette classe représente une combinaison de clefs
+     */
     class MultiKey<K1, K2> {
         private K1 key1;
         private K2 key2;

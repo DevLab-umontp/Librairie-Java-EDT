@@ -46,9 +46,9 @@ public class Cours implements Comparable<Cours> {
     }
 
     /**
-     * Permet de creer un objet Cours a partir d'un VEVENT
+     * Permet de créer un objet cours a partir d'un VEVENT
      *
-     * @param vEvent
+     * @param vEvent event d'un objet Calendar
      * @since 1.0
      */
     public Cours(Component vEvent) {

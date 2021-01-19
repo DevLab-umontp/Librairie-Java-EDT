@@ -60,13 +60,6 @@ public enum Groupe {
     }
 
     /**
-     * @return the intitule
-     */
-    public String getIntitule() {
-        return intitule;
-    }
-
-    /**
      * Permet d'obtenir le(s) groupe(s) d'enseignement a partir d'un texte (dans le cadre de cette API a partir de la
      * description d'un VEVENT)
      *
@@ -80,10 +73,29 @@ public enum Groupe {
         else return Groupe.NULL;
     }
 
+    /**
+     * @return the intitule
+     */
+    public String getIntitule() {
+        return intitule;
+    }
+
+    /**
+     * Permet de savoir si ce groupe appartient a un autre groupe
+     *
+     * @return {@code boolean}
+     * @since 1.0
+     */
     private boolean possedeGroupeParent() {
         return groupeParent != null;
     }
 
+    /**
+     * Permet de savoir si ce groupe est contenu dans un autre groupe
+     *
+     * @return {@code boolean}
+     * @since 1.0
+     */
     public boolean estContenuDans(Groupe autreGroupe) {
         return autreGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(autreGroupe));
     }

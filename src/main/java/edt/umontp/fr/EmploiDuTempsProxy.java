@@ -4,10 +4,9 @@ import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.HashMap;
 
-// FIXME à tester !
-
 /**
- * EmploiDuTempsProxy est un classe qui permet de proposer un proxy pour l'emploi du temps
+ * EmploiDuTempsProxy est un classe qui permet de proposer un proxy pour
+ * l'emploi du temps
  *
  * @author emerick-biron, MathieuSoysal
  * @version 1.0
@@ -46,7 +45,7 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
         MultiKey<LocalDate, Groupe> multiKey = new MultiKey<>(date, groupe);
-        return cacheDateGroupe.computeIfAbsent(multiKey, k -> emploiDuTemps.getPlanningOf(k.key1, k.key2));
+        return cacheDateGroupe.computeIfAbsent(multiKey, k -> getPlanningOf(k.key1).getPlanningOf(k.key2));
     }
 
     @Override
@@ -59,12 +58,13 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         cacheDate = new HashMap<>();
         cacheGroupe = new EnumMap<>(Groupe.class);
         cacheDateGroupe = new HashMap<>();
+        emploiDuTemps.actualiser();
     }
 
     /**
      * Cette classe représente une combinaison de clefs
      */
-    class MultiKey<K1, K2> {
+    private class MultiKey<K1, K2> {
         private K1 key1;
         private K2 key2;
 
@@ -75,13 +75,17 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
 
             MultiKey key = (MultiKey) o;
 
-            if (key1 != null ? !key1.equals(key.key1) : key.key1 != null) return false;
-            if (key2 != null ? !key2.equals(key.key2) : key.key2 != null) return false;
+            if (key1 != null ? !key1.equals(key.key1) : key.key1 != null)
+                return false;
+            if (key2 != null ? !key2.equals(key.key2) : key.key2 != null)
+                return false;
 
             return true;
         }

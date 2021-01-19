@@ -40,20 +40,26 @@ class GroupeTest {
     void test_getGroupeDepuisTexte_A1Seul_A1() {
         String desc = "\n\nA1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET VICTOR\nROSENFELD MATTHIEU\nA "
                 + "valider\n(Exporté le:18 / 01 / 2 021 10:51)\n";
-        assertEquals(Groupe.A1, Groupe.getGroupeDepuisTexte(desc));
+        assertEquals(Groupe.A1, Groupe.getGroupeDepuisTexte(desc)[0]);
     }
 
     @Test
     void test_getGroupeDepuisTexte_A1NonSeul_A1() {
         String desc = "\n\nA1-Semestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   "
                 + "MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
-        assertEquals(Groupe.A1, Groupe.getGroupeDepuisTexte(desc));
+        assertEquals(Groupe.A1, Groupe.getGroupeDepuisTexte(desc)[0]);
     }
 
     @Test
     void test_getGroupeDepuisTexte_aucunGroupe_GroupeNULL() {
-        String desc = "\n\nSemestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   "
-                + "MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
-        assertEquals(Groupe.NULL, Groupe.getGroupeDepuisTexte(desc));
+        String desc = "\n\nSemestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
+        assertEquals(0, Groupe.getGroupeDepuisTexte(desc).length);
     }
+
+    @Test
+    void test_getGroupeDepuisTexte_plusieursGroupe_retournPlusieursGroupe() {
+        String desc = "\n\nA1 & A2 Semestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
+        assertEquals(2, Groupe.getGroupeDepuisTexte(desc).length);
+    }
+
 }

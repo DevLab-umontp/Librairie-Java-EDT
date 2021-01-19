@@ -1,17 +1,18 @@
 package edt.umontp.fr;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Groupe est une enumeration qui permet de recenser les différents groupes d'enseignements pour lesquelles l'API est
- * proposée
+ * Groupe est une enumeration qui permet de recenser les différents groupes
+ * d'enseignements pour lesquelles l'API est proposée
  *
  * @author emerick-biron, MathieuSoysal
  * @version 1.0
  */
 public enum Groupe {
-    NULL("sans groupe"), // Gérer les exceptions
     A1("A1"), // première année dep info
     S1("S1", A1), //
     S2("S2", A1), //
@@ -60,17 +61,19 @@ public enum Groupe {
     }
 
     /**
-     * Permet d'obtenir le(s) groupe(s) d'enseignement a partir d'un texte (dans le cadre de cette API a partir de la
-     * description d'un VEVENT)
+     * Permet d'obtenir le(s) groupe(s) d'enseignement a partir d'un texte (dans le
+     * cadre de cette API a partir de la description d'un VEVENT)
      *
      * @param texte texte source (ici description)
      * @return groupe(s) correspondant
      * @since 1.0
      */
-    public static Groupe getGroupeDepuisTexte(String texte) {
+    public static Groupe[] getGroupeDepuisTexte(String texte) {
         final Matcher m = Pattern.compile(REGEX).matcher(texte);
-        if (m.find()) return valueOf(m.group(0));
-        else return Groupe.NULL;
+        Collection<Groupe> result = new ArrayList<>();
+        while (m.find())
+            result.add(valueOf(m.group(0)));
+        return result.toArray(Groupe[]::new);
     }
 
     /**
@@ -100,4 +103,10 @@ public enum Groupe {
         return autreGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(autreGroupe));
     }
 
+    static boolean unGroupeDeGroupesEstContenuDans(Groupe[] groupes, Groupe autreGroupe) {
+        for (Groupe groupe : groupes)
+            if (groupe.estContenuDans(autreGroupe))
+                return true;
+        return false;
+    }
 }

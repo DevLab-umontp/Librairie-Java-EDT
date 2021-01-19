@@ -4,14 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.SortedSet;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import edu.emory.mathcs.backport.java.util.Collections;
 import edu.emory.mathcs.backport.java.util.TreeSet;
 
 /**
@@ -51,13 +48,28 @@ public class Planning implements Iterable<Cours>, Planifiable {
     }
 
     @Override
+    public String toString() {
+        String res = "EDT :\n\n";
+        for (Cours c : cours) {
+            res += c.toString() + "\n\n";
+        }
+        return res;
+    }
+
+    @Override
     public Planning getPlanningOf(LocalDate date) {
         ArrayList<Cours> result = new ArrayList<>();
-        LocalDate lastDate = ((Cours) Collections.max(cours)).getDate();
+        LocalDate lastDate = cours.last().getDate();
         if (!lastDate.isBefore(date)) {
-            Queue<Cours> coursTrie = new LinkedList<>(cours);
-            while (coursTrie.peek().getDate().isBefore(date)) coursTrie.poll();
-            while (!coursTrie.isEmpty() && coursTrie.peek().getDate().isEqual(date)) result.add(coursTrie.poll());
+            for (Cours c : cours) {
+                int compare = c.getDate().compareTo(date);
+                if (compare < 0)
+                    continue;
+                if (compare == 0)
+                    result.add(c);
+                else
+                    return new Planning(result);
+            }
         }
         return new Planning(result);
     }
@@ -69,6 +81,14 @@ public class Planning implements Iterable<Cours>, Planifiable {
 
     @Override
     public Planning getPlanningOf(Groupe groupe) {
-        return new Planning(cours.stream().filter(x -> x.getGroupe() == groupe).collect(Collectors.toList()));
+        return new Planning(cours.stream().filter(x -> Groupe.unGroupeDeGroupesEstContenuDans(x.getGroupes(), groupe))
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * @return the cours
+     */
+    Collection<Cours> getCours() {
+        return cours;
     }
 }

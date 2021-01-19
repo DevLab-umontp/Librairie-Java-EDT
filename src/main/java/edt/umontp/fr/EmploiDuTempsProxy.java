@@ -14,11 +14,13 @@ import java.util.HashMap;
  */
 public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private static EmploiDuTempsProxy singleton = null;
+    @SuppressWarnings("deprecation")
     private EmploiDuTemps emploiDuTemps;
     private EnumMap<Groupe, Planning> cacheGroupe;
     private HashMap<LocalDate, Planning> cacheDate;
     private HashMap<MultiKey<LocalDate, Groupe>, Planning> cacheDateGroupe;
 
+    @SuppressWarnings("deprecation")
     private EmploiDuTempsProxy() {
         emploiDuTemps = EmploiDuTemps.getInstance();
         actualiser();
@@ -53,6 +55,7 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         return cacheGroupe.computeIfAbsent(groupe, k -> emploiDuTemps.getPlanningOf(k));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void actualiser() {
         cacheDate = new HashMap<>();

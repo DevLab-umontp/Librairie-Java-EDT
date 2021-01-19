@@ -17,17 +17,30 @@ import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
 
 /**
- * EmploisDuTemps est la classe qui permet de gérer un emploi du temps
- *
- * @author emerick-biron, MathieuSoysal
- * @version 1.0
+ * <b>EmploisDuTemps est la classe représentant tout l'emploi du temps
+ * l'unviersité.</b>
+ * <p>
+ * De plus, l'EmploiDuTemps est un singleton, il ne peut y avoir donc qu'une
+ * instance de celle-ci.
+ * </p>
+ * 
+ * @deprecated Pour l'utilisation de celle-ci il est préférable de passer par
+ *             son proxy : {@link EmploiDuTempsProxy} afin d'avoir une meilleure
+ *             optimisation.
+ * 
  * @see InterfaceEmploiDuTemps
+ * @see EmploiDuTempsProxy
+ * 
+ * @author emerick-biron
+ * @author MathieuSoysal
+ * @version 1.0.0
  */
+@Deprecated(forRemoval = false)
 public class EmploiDuTemps implements InterfaceEmploiDuTemps {
     private static EmploiDuTemps singleton = null;
-    private final String LIEN_ICAL =
-            "https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal" + ".jsp?data" +
-                    "=58c99062bab31d256bee14356aca3f2423c0f022cb9660eba051b2653be722c431b66c493702208e664667048bc04373dc5c094f7d1a811b903031bde802c7f59b21846d3c6254443d7b6e956d3145c6e0d5bac87b70fdd185b8b86771d71211a02411e8351020815cfb0dcc54c667187353dbcfc377b44753a4f433d4e51f753c2b0fc0eafdcbc1cbb6ef4e715ebea9d495758b595b12cb294e70e715876fbaa3c654023c76f43cd51442775ff171e0a5f21b50c55a5b52d94df3e7977af823a1e78ee86c6497b1cf8732d52143eeffacc27449fc13ec1f0b04d23e09712df15579474e1aa0cd65f50f33a1dd766301,1";
+    private final String LIEN_ICAL = "https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal"
+            + ".jsp?data"
+            + "=58c99062bab31d256bee14356aca3f2423c0f022cb9660eba051b2653be722c431b66c493702208e664667048bc04373dc5c094f7d1a811b903031bde802c7f59b21846d3c6254443d7b6e956d3145c6e0d5bac87b70fdd185b8b86771d71211a02411e8351020815cfb0dcc54c667187353dbcfc377b44753a4f433d4e51f753c2b0fc0eafdcbc1cbb6ef4e715ebea9d495758b595b12cb294e70e715876fbaa3c654023c76f43cd51442775ff171e0a5f21b50c55a5b52d94df3e7977af823a1e78ee86c6497b1cf8732d52143eeffacc27449fc13ec1f0b04d23e09712df15579474e1aa0cd65f50f33a1dd766301,1";
     private Planning planningEmploisDuTemps;
 
     /**
@@ -39,6 +52,17 @@ public class EmploiDuTemps implements InterfaceEmploiDuTemps {
         actualiser();
     }
 
+    /**
+     * Retourne l'instance de {@link EmploiDuTemps}.
+     * 
+     * @return {@code EmploiDuTemps}
+     * 
+     * @deprecated Pour des raisons d'optimisation il est préférable de passer pour
+     *             le proxy : {@link EmploiDuTempsProxy}
+     * 
+     * @see EmploiDuTempsProxy
+     */
+    @Deprecated
     public static EmploiDuTemps getInstance() {
         EmploiDuTemps localInstance = singleton;
         if (localInstance == null) {
@@ -53,7 +77,7 @@ public class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir un objet calendar a parti d'un fichier ics
+     * Permet d'obtenir un objet {@link Calendar} a parti d'un fichier ics
      *
      * @param fichierIcs fichier ics source
      * @return objet calendar corespondant
@@ -75,7 +99,8 @@ public class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir un fichier ics correspondant a un lien iCal (ici lien iCal = {@link #LIEN_ICAL}
+     * Permet d'obtenir un fichier ics correspondant a un lien iCal (ici lien iCal =
+     * {@link #LIEN_ICAL}
      *
      * @return fichier ics correspondant
      * @since 1.0

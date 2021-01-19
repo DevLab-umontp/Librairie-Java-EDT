@@ -17,11 +17,24 @@ import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.Property;
 
 /**
- * Cours est la classe qui gère les cours d'un planning
- *
- * @author emerick-biron, MathieuSoysal
- * @version 1.0
+ * <b>Cours est la classe représentant un cours au sein du planning.</b>
+ * <p>
+ * Un objet Cours est caractérisé par les informations suivantes :
+ * <ul>
+ * <li>Une date.</li>
+ * <li>D'une liste de professeurs.</li>
+ * <li>D'une heure de début.</li>
+ * <li>D'une heure de fin.</li>
+ * <li>D'une durée.</li>
+ * <li>D'une liste de {@link Groupe}.</li>
+ * <li>D'un intitule.</li>
+ * </ul>
+ * 
  * @see Comparable
+ * 
+ * @author emerick-biron
+ * @author MathieuSoysal
+ * @version 1.0.0
  */
 public class Cours implements Comparable<Cours> {
     private final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
@@ -47,12 +60,17 @@ public class Cours implements Comparable<Cours> {
     }
 
     /**
-     * Permet de créer un objet cours a partir d'un VEVENT
-     *
-     * @param vEvent event d'un objet Calendar
-     * @since 1.0
+     * Constructeur Cours.
+     * <p>
+     * Le constructeur est chargé de trouver toutes attributs de class {@link Cours}
+     * au sein du {@link Component}.
+     * </p>
+     * 
+     * @param vEvent l'évenement du calendrier qui représente un cours
+     * 
+     * @see Component
      */
-    public Cours(Component vEvent) {
+    Cours(Component vEvent) {
         Property summary = vEvent.getProperty(Property.SUMMARY);
         Property description = vEvent.getProperty(Property.DESCRIPTION);
         Property dtStart = vEvent.getProperty(Property.DTSTART);
@@ -83,10 +101,10 @@ public class Cours implements Comparable<Cours> {
      * de ce dernier
      *
      * @param desc description du VENVENT
-     * @return le(s) professeur(s) du present dans la description
+     * @return {@code String[]} le(s) professeur(s) du present dans la description
      * @since 1.0
      */
-    public static String[] getProfFromDesc(String desc) {
+    static String[] getProfFromDesc(String desc) {
         String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
         Matcher m = Pattern.compile(regex).matcher(desc);
         final List<String> matches = new ArrayList<>();
@@ -117,62 +135,62 @@ public class Cours implements Comparable<Cours> {
     }
 
     /**
-     * @return the date
+     * @return {@code LocalDate} la date de début du cours
      */
     public LocalDate getDate() {
         return date;
     }
 
     /**
-     * @return the prof
+     * @return {@code String[]} les professeurs organisant le cours
      */
     public String[] getProf() {
         return prof;
     }
 
     /**
-     * @return the heureDebut
+     * @return {@code LocalTime} l'heure de début du cours
      */
     public LocalTime getHeureDebut() {
         return heureDebut;
     }
 
     /**
-     * @return the heureFin
+     * @return {@code LocalTime} l'heure de fin du cours
      */
     public LocalTime getHeureFin() {
         return heureFin;
     }
 
     /**
-     * @return the lieu
+     * @return {@code String} le lieu
      */
     public String getLieu() {
         return lieu;
     }
 
     /**
-     * @return the duree
+     * @return {@code int} la durée du cours
      */
     public int getDuree() {
         return duree;
     }
 
     /**
-     * @return the groupe
+     * @return {@code Groupe[]} les groupes assignés au cours
+     * 
+     * @see Groupe
      */
     public Groupe[] getGroupes() {
         return groupes;
     }
 
     /**
-     * @return the intitule
+     * @return {@code String} l'intitulé du cours
      */
     public String getIntitule() {
         return intitule;
     }
-
-    // TODO Améliorer la performance utiliser
 
     @Override
     public String toString() {

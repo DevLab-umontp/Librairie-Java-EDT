@@ -5,7 +5,8 @@ import java.time.LocalDate;
 /**
  * Planifiable est une interface proposant des méthodes pour gérer un emploi du temps
  *
- * @author emerick-biron, MathieuSoysal
+ * @author emerick-biron
+ * @author MathieuSoysal
  * @version 1.0
  */
 interface Planifiable {

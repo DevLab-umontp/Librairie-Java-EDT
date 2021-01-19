@@ -37,15 +37,22 @@ public class Planning implements Iterable<Cours>, Planifiable {
     }
 
     @Override
+    public String toString() {
+        String res = "EDT :\n\n";
+        for (Cours c : cours) {
+            res += c.toString() + "\n\n";
+        }
+        return res;
+    }
+
+    @Override
     public Planning getPlanningOf(LocalDate date) {
         ArrayList<Cours> result = new ArrayList<>();
         LocalDate lastDate = ((Cours) Collections.max(cours)).getDate();
         if (!lastDate.isBefore(date)) {
             Queue<Cours> coursTrie = new LinkedList<>(cours);
-            while (coursTrie.peek().getDate().isBefore(date))
-                coursTrie.poll();
-            while (!coursTrie.isEmpty() && coursTrie.peek().getDate().isEqual(date))
-                result.add(coursTrie.poll());
+            while (coursTrie.peek().getDate().isBefore(date)) coursTrie.poll();
+            while (!coursTrie.isEmpty() && coursTrie.peek().getDate().isEqual(date)) result.add(coursTrie.poll());
         }
         return new Planning(result);
     }

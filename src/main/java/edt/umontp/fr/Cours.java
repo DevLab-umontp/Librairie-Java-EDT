@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +28,7 @@ public class Cours implements Comparable<Cours> {
     private String intitule;
 
     public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe groupe,
-            String intitule) {
+                 String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;
@@ -138,7 +139,7 @@ public class Cours implements Comparable<Cours> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
 
@@ -157,52 +158,42 @@ public class Cours implements Comparable<Cours> {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return intitule.toUpperCase(Locale.ROOT) + " :\n" + date + "\n" + heureDebut + "-" + heureFin + "\n" +
+                Arrays.toString(prof) + "\n" + lieu + "\n" + groupe;
+    }
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         Cours other = (Cours) obj;
         if (date == null) {
-            if (other.date != null)
-                return false;
-        } else if (!date.equals(other.date))
-            return false;
-        if (duree != other.duree)
-            return false;
-        if (groupe != other.groupe)
-            return false;
+            if (other.date != null) return false;
+        } else if (!date.equals(other.date)) return false;
+        if (duree != other.duree) return false;
+        if (groupe != other.groupe) return false;
         if (heureDebut == null) {
-            if (other.heureDebut != null)
-                return false;
-        } else if (!heureDebut.equals(other.heureDebut))
-            return false;
+            if (other.heureDebut != null) return false;
+        } else if (!heureDebut.equals(other.heureDebut)) return false;
         if (heureFin == null) {
-            if (other.heureFin != null)
-                return false;
-        } else if (!heureFin.equals(other.heureFin))
-            return false;
+            if (other.heureFin != null) return false;
+        } else if (!heureFin.equals(other.heureFin)) return false;
         if (intitule == null) {
-            if (other.intitule != null)
-                return false;
-        } else if (!intitule.equals(other.intitule))
-            return false;
+            if (other.intitule != null) return false;
+        } else if (!intitule.equals(other.intitule)) return false;
         if (lieu == null) {
-            if (other.lieu != null)
-                return false;
-        } else if (!lieu.equals(other.lieu))
-            return false;
-        if (!Arrays.equals(prof, other.prof))
-            return false;
+            if (other.lieu != null) return false;
+        } else if (!lieu.equals(other.lieu)) return false;
+        if (!Arrays.equals(prof, other.prof)) return false;
         return true;
     }
 }

@@ -52,8 +52,14 @@ class GroupeTest {
 
     @Test
     void test_getGroupeDepuisTexte_aucunGroupe_GroupeNULL() {
-        String desc = "\n\nSemestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   "
-                + "MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
+        String desc = "\n\nSemestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
         assertEquals(0, Groupe.getGroupeDepuisTexte(desc).length);
     }
+
+    @Test
+    void test_getGroupeDepuisTexte_plusieursGroupe_retournPlusieursGroupe() {
+        String desc = "\n\nA1 & A2 Semestre-1\nGOUAICH   ABDELKADER\nLAGUILLAUMIE   FABIEN\nPOUPET   VICTOR\nROSENFELD   MATTHIEU\nA valider\n(Exporté le:18/01/2 021 10:51)\n";
+        assertEquals(2, Groupe.getGroupeDepuisTexte(desc).length);
+    }
+
 }

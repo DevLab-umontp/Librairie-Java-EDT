@@ -6,7 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum Groupe {
-    NULL("sans groupe"), // Gérer les exceptions TODO à voir si toujours util
     A1("A1"), // première année dep info
     S1("S1", A1), //
     S2("S2", A1), //

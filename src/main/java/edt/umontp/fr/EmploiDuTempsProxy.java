@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.HashMap;
 
-// FIXME à tester !
-
 public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private static EmploiDuTempsProxy singleton = null;
     private EmploiDuTemps emploiDuTemps;

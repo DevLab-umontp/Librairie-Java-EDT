@@ -61,4 +61,11 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return new Planning(
                 cours.stream().filter(x -> x.getGroupe().estContenuDans(groupe)).collect(Collectors.toList()));
     }
+
+    /**
+     * @return the cours
+     */
+    SortedSet<Cours> getCours() {
+        return cours;
+    }
 }

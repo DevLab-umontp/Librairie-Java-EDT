@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,6 +66,14 @@ class PlanningTest {
         void test_getPlanningOf_date_and_groupe() {
                 assertNotEquals(cours2, planning.getPlanningOf(cours2.getDate()).iterator().next());
                 assertEquals(cours2, planning.getPlanningOf(cours2.getDate(), cours2.getGroupe()).iterator().next());
+        }
+
+        @Test
+        void test_constructeur_Planning_casPlusieursCoursCommenceEnMemeTemps_neDoitSupprimerAucunCours() {
+                coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", Groupe.S4, "Compta4"));
+                planning = new Planning(coursEnsemble);
+                assertEquals(coursEnsemble.size(), planning.getCours().size());
         }
 
 }

@@ -155,6 +155,7 @@ public class Cours implements Comparable<Cours> {
         result = prime * result + ((lieu == null) ? 0 : lieu.hashCode());
         result = prime * result + Arrays.hashCode(prof);
         return result;
+        // TODO Améliorer la performance utiliser 
     }
 
     /*

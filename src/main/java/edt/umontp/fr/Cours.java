@@ -27,7 +27,7 @@ public class Cours implements Comparable<Cours> {
     private String intitule;
 
     public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe groupe,
-            String intitule) {
+                 String intitule) {
         this.date = date;
         this.prof = prof;
         this.heureDebut = heureDebut;
@@ -38,6 +38,12 @@ public class Cours implements Comparable<Cours> {
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
+    /**
+     * Permet de creer un objet Cours a partir d'un VEVENT
+     *
+     * @param vEvent
+     * @since 1.0
+     */
     public Cours(Component vEvent) {
         Property summary = vEvent.getProperty(Property.SUMMARY);
         Property description = vEvent.getProperty(Property.DESCRIPTION);
@@ -64,6 +70,13 @@ public class Cours implements Comparable<Cours> {
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
+    /**
+     * Permet d'obtenir le(s) professeur(s) d'un VENVENT a partir de la description de ce dernier
+     *
+     * @param desc description du VENVENT
+     * @return le(s) professeur(s) du present dans la description
+     * @since 1.0
+     */
     public static String[] getProfFromDesc(String desc) {
         String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
         Matcher m = Pattern.compile(regex).matcher(desc);
@@ -138,7 +151,7 @@ public class Cours implements Comparable<Cours> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
 
@@ -159,50 +172,34 @@ public class Cours implements Comparable<Cours> {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         Cours other = (Cours) obj;
         if (date == null) {
-            if (other.date != null)
-                return false;
-        } else if (!date.equals(other.date))
-            return false;
-        if (duree != other.duree)
-            return false;
-        if (groupe != other.groupe)
-            return false;
+            if (other.date != null) return false;
+        } else if (!date.equals(other.date)) return false;
+        if (duree != other.duree) return false;
+        if (groupe != other.groupe) return false;
         if (heureDebut == null) {
-            if (other.heureDebut != null)
-                return false;
-        } else if (!heureDebut.equals(other.heureDebut))
-            return false;
+            if (other.heureDebut != null) return false;
+        } else if (!heureDebut.equals(other.heureDebut)) return false;
         if (heureFin == null) {
-            if (other.heureFin != null)
-                return false;
-        } else if (!heureFin.equals(other.heureFin))
-            return false;
+            if (other.heureFin != null) return false;
+        } else if (!heureFin.equals(other.heureFin)) return false;
         if (intitule == null) {
-            if (other.intitule != null)
-                return false;
-        } else if (!intitule.equals(other.intitule))
-            return false;
+            if (other.intitule != null) return false;
+        } else if (!intitule.equals(other.intitule)) return false;
         if (lieu == null) {
-            if (other.lieu != null)
-                return false;
-        } else if (!lieu.equals(other.lieu))
-            return false;
-        if (!Arrays.equals(prof, other.prof))
-            return false;
+            if (other.lieu != null) return false;
+        } else if (!lieu.equals(other.lieu)) return false;
+        if (!Arrays.equals(prof, other.prof)) return false;
         return true;
     }
 }

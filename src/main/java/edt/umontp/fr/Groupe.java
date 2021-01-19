@@ -23,6 +23,7 @@ public enum Groupe {
     G4("G4", A2);
 
     private static final String REGEX;
+
     static {
         Groupe[] groupes = values();
         String[] strings = new String[groupes.length];
@@ -58,12 +59,18 @@ public enum Groupe {
         return intitule;
     }
 
+    /**
+     * Permet d'obtenir le(s) groupe(s) d'enseignement a partir d'un texte (dans le cadre de cette API a partir de la
+     * description d'un VEVENT)
+     *
+     * @param texte texte source (ici description)
+     * @return groupe(s) correspondant
+     * @since 1.0
+     */
     public static Groupe getGroupeDepuisTexte(String texte) {
         final Matcher m = Pattern.compile(REGEX).matcher(texte);
-        if (m.find())
-            return valueOf(m.group(0));
-        else
-            return Groupe.NULL;
+        if (m.find()) return valueOf(m.group(0));
+        else return Groupe.NULL;
     }
 
     private boolean possedeGroupeParent() {

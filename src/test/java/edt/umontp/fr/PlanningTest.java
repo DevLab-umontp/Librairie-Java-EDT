@@ -5,13 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.DateTime;
+import net.fortuna.ical4j.model.component.VEvent;
+import net.fortuna.ical4j.model.property.Description;
+import net.fortuna.ical4j.model.property.Location;
 
 class PlanningTest {
 
@@ -20,13 +26,13 @@ class PlanningTest {
         private ArrayList<Cours> coursEnsemble;
 
         private Cours cours1 = new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" }, LocalTime.of(13, 30),
-                        LocalTime.of(14, 30), "K133", new Groupe[]{Groupe.S1}, "Compta1");
+                        LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1");
         private Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                        LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S3}, "Compta2");
+                        LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta2");
         private Cours cours3 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(13, 30),
-                        LocalTime.of(14, 30), "K133", new Groupe[]{Groupe.S2}, "Compta3");
+                        LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S2 }, "Compta3");
         private Cours cours4 = new Cours(LocalDate.of(2021, 1, 22), new String[] { "prof" }, LocalTime.of(11, 30),
-                        LocalTime.of(12, 30), "K133", new Groupe[]{Groupe.S1}, "Compta4");
+                        LocalTime.of(12, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta4");
 
         @BeforeEach
         void initPlanning() {
@@ -65,17 +71,41 @@ class PlanningTest {
         @Test
         void test_getPlanningOf_date_and_groupe() {
                 assertNotEquals(cours2, planning.getPlanningOf(cours2.getDate()).iterator().next());
-                assertEquals(cours2, planning.getPlanningOf(cours2.getDate(), cours2.getGroupes()[0]).iterator().next());
+                assertEquals(cours2,
+                                planning.getPlanningOf(cours2.getDate(), cours2.getGroupes()[0]).iterator().next());
         }
 
         @Test
         void test_constructeur_Planning_casPlusieursCoursCommenceEnMemeTemps_neDoitSupprimerAucunCours() {
                 coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S4}, "Compta4"));
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 }, "Compta4"));
                 planning = new Planning(coursEnsemble);
                 assertEquals(coursEnsemble.size(), planning.getCours().size());
         }
 
-        // TODO faire un test plus cas où il y a plusiseurs groupe
+        @Test
+        void test_getPlanningOf_groupe_doitRetournerPlusieursGroupe() {
+                Component component;
+                DateTime startTime, endTime;
+                try {
+                        startTime = new DateTime("20171127T150000");
+                        endTime = new DateTime("20171127T160000");
+                } catch (ParseException pe) {
+                        // yyyymmddTHHmmss is the correct format, but to make the compiler happy...
+                        startTime = new DateTime();
+                        endTime = startTime;
+                }
+                component = new VEvent(startTime, endTime, "intitule");
+                component.getProperties().add(new Description(
+                                "\n\nA2-Semestre-3 A1\nBELMECHERI   NASSIM\nHAETTEL   THOMAS\nLA   XUAN HOANG\nCHIROUZE   ANNE\nA valider\n(Exporté le:18/01/2021 10:51)\n"));
+                component.getProperties().add(new Location("K133"));
+                Cours cours = new Cours(component);
+                ArrayList<Cours> coursList = new ArrayList<>();
+                coursList.add(cours);
+                Planning planning = new Planning(coursList);
+
+                assertTrue(planning.getPlanningOf(Groupe.A1).iterator().hasNext());
+                assertTrue(planning.getPlanningOf(Groupe.A2).iterator().hasNext());
+        }
 
 }

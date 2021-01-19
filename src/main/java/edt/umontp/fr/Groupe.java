@@ -1,10 +1,13 @@
 package edt.umontp.fr;
 
+import java.security.acl.Group;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum Groupe {
-    NULL("sans groupe"), // Gérer les exceptions
+    NULL("sans groupe"), // Gérer les exceptions TODO à voir si toujours util
     A1("A1"), // première année dep info
     S1("S1", A1), //
     S2("S2", A1), //
@@ -60,10 +63,10 @@ public enum Groupe {
 
     public static Groupe[] getGroupeDepuisTexte(String texte) {
         final Matcher m = Pattern.compile(REGEX).matcher(texte);
-        if (m.find())
-            return valueOf(m.group(0));
-        else
-            return Groupe.NULL;
+        Collection<Groupe> result = new ArrayList<>();
+        while (m.find())
+            result.add(valueOf(m.group(0)));
+        return result.toArray(Groupe[]::new);
     }
 
     private boolean possedeGroupeParent() {

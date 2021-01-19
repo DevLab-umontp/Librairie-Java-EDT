@@ -79,7 +79,7 @@ class CoursTest {
                 @Test
                 void test_constructeur_VEvent_groupe_Bon() {
                         Cours cours = new Cours(component);
-                        assertEquals(Groupe.A2, cours.getGroupe()[0]);
+                        assertEquals(Groupe.A2, cours.getGroupes()[0]);
                 }
 
                 @Test
@@ -120,25 +120,25 @@ class CoursTest {
         private static Stream<Arguments> genererArgumentsPourtestCompareTo_avecDate() {
                 return Stream.of(//
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                                new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 0), //
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 19), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 -1), //
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 1));
         }
 
@@ -151,57 +151,57 @@ class CoursTest {
         private static Stream<Arguments> genererArgumentsPourtestCompareTo_avecHeure() {
                 return Stream.of(//
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 0), //
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(12, 30), LocalTime.of(13, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(12, 30), LocalTime.of(13, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 -1), //
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 29), LocalTime.of(13, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(13, 29), LocalTime.of(13, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 -1), //
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 31), LocalTime.of(13, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(13, 31), LocalTime.of(13, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 1), //
                                 Arguments.of(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" },
-                                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S1},
-                                                "Compta1"),
+                                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133",
+                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                        new Groupe[]{Groupe.S1}, "Compta1"),
+                                                                new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 1));
         }
 
         @Test
         void test_equals() {
                 Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S4}, "Compta4");
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 }, "Compta4");
                 Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S3}, "Compta4");
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta4");
                 assertFalse(cours1.equals(cours2));
         }
 
         @Test
         void test_hashcode() {
                 Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S4}, "Compta4");
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 }, "Compta4");
                 Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[]{Groupe.S3}, "Compta4");
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta4");
                 assertNotEquals(cours1.hashCode(), cours2.hashCode());
         }
 }

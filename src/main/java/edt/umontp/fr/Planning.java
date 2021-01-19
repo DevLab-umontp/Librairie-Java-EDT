@@ -57,6 +57,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
 
     @Override
     public Planning getPlanningOf(Groupe groupe) {
-        return new Planning(cours.stream().filter(x -> x.getGroupe() == groupe).collect(Collectors.toList()));
+        return new Planning(
+                cours.stream().filter(x -> x.getGroupe().estContenuDans(groupe)).collect(Collectors.toList()));
     }
 }

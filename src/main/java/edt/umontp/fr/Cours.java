@@ -24,7 +24,7 @@ public class Cours implements Comparable<Cours> {
     private LocalTime heureFin;
     private String lieu;
     private int duree;
-    private Groupe[] groupe;
+    private Groupe[] groupes;
     private String intitule;
 
     public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe[] groupe,
@@ -34,7 +34,7 @@ public class Cours implements Comparable<Cours> {
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.lieu = lieu;
-        this.groupe = groupe;
+        this.groupes = groupe;
         this.intitule = intitule;
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
@@ -61,7 +61,7 @@ public class Cours implements Comparable<Cours> {
         lieu = location.getValue();
         intitule = summary.getValue();
         prof = getProfFromDesc(description.getValue());
-        groupe = Groupe.getGroupeDepuisTexte(description.getValue());
+        groupes = Groupe.getGroupeDepuisTexte(description.getValue());
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
@@ -86,9 +86,12 @@ public class Cours implements Comparable<Cours> {
         result = Integer.compare(duree, o.duree);
         if (result != 0)
             return result;
-        result = groupe.getIntitule().compareTo(o.groupe.getIntitule());
-        if (result != 0)
-            return result;
+        for (Groupe groupe : groupes)
+            for (Groupe autreGroupe : o.groupes) {
+                result = groupe.getIntitule().compareTo(autreGroupe.getIntitule());
+                if (result != 0)
+                    return result;
+            }
         return intitule.compareTo(o.intitule);
     }
 
@@ -138,7 +141,7 @@ public class Cours implements Comparable<Cours> {
      * @return the groupe
      */
     public Groupe[] getGroupe() {
-        return groupe;
+        return groupes;
     }
 
     /**
@@ -153,7 +156,7 @@ public class Cours implements Comparable<Cours> {
     @Override
     public String toString() {
         return intitule.toUpperCase(Locale.ROOT) + " :\n" + date + "\n" + heureDebut + "-" + heureFin + "\n"
-                + Arrays.toString(prof) + "\n" + lieu + "\n" + groupe;
+                + Arrays.toString(prof) + "\n" + lieu + "\n" + groupes;
     }
 
     /*
@@ -167,7 +170,8 @@ public class Cours implements Comparable<Cours> {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((date == null) ? 0 : date.hashCode());
-        result = prime * result + ((groupe == null) ? 0 : groupe.hashCode());
+        for (Groupe groupe : groupes)
+            result = prime * result + ((groupe == null) ? 0 : groupe.hashCode());
         result = prime * result + ((heureDebut == null) ? 0 : heureDebut.hashCode());
         result = prime * result + ((lieu == null) ? 0 : lieu.hashCode());
         return result;
@@ -193,8 +197,10 @@ public class Cours implements Comparable<Cours> {
                 return false;
         } else if (!date.equals(other.date))
             return false;
-        if (groupe != other.groupe)
-            return false;
+        for (Groupe groupe : groupes)
+            for (Groupe oGroupe : other.groupes)
+                if (groupe != oGroupe)
+                    return false;
         if (heureDebut == null) {
             if (other.heureDebut != null)
                 return false;

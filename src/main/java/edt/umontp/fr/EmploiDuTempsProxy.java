@@ -55,7 +55,7 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         emploiDuTemps.actualiser();
     }
 
-    class MultiKey<K1, K2> {
+    private class MultiKey<K1, K2> {
         private K1 key1;
         private K2 key2;
 

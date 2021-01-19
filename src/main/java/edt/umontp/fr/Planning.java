@@ -12,12 +12,19 @@ import java.util.stream.Collectors;
 import edu.emory.mathcs.backport.java.util.TreeSet;
 
 /**
- * Planning est un classe permettant de gérer un planning
- *
- * @author emerick-biron, MathieuSoysal
- * @version 1.0
- * @see Planifiable
+ * <b>Planning est la classe représentant un planning de {@link Cours} de
+ * l'empois du temps de l'université.</b>
+ * <p>
+ * Une instance de Planning est caractérisé par une liste de {@link Cours}
+ * </p>
+ * 
  * @see Iterable
+ * @see Planifiable
+ * @see Cours
+ * 
+ * @author emerick-biron
+ * @author MathieuSoysal
+ * @version 1.0.0
  */
 public class Planning implements Iterable<Cours>, Planifiable {
     private SortedSet<Cours> cours;
@@ -27,6 +34,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
      *
      * @param cours collection de cours
      * @since 1.0
+     * 
+     * @see Cours
      */
     public Planning(Collection<Cours> cours) {
         this.cours = new TreeSet(cours);

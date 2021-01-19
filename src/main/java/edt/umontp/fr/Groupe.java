@@ -6,30 +6,186 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Groupe est une enumeration qui permet de recenser les différents groupes
- * d'enseignements pour lesquelles l'API est proposée
- *
- * @author emerick-biron, MathieuSoysal
- * @version 1.0
+ * <b>Groupe est une enumeration qui permet de recenser les différents groupes
+ * d'enseignements de l'université</b>
+ * <p>
+ * Une instance de groupe est caractérisé par les informations suivantes :
+ * <ul>
+ * <li>Un intitulé.</li>
+ * <li>Un groupe parent.</li>
+ * </ul>
+ * <p>
+ * De plus, un {@link Groupe} ne pas être instancié, il faut donc utiliser
+ * l'enumération.
+ * </p>
+ * 
+ * @see SDZLevel
+ * 
+ * @author emerick-biron
+ * @author MathieuSoysal
+ * @version 1.0.0
  */
 public enum Groupe {
-    A1("A1"), // première année dep info
-    S1("S1", A1), //
-    S2("S2", A1), //
-    S3("S3", A1), //
-    S4("S4", A1), //
-    S5("S5", A1), //
-    S6("S6", A1), //
-    A2("A2"), // deuxième année dep info
-    Q1("Q1", A2), //
-    Q2("Q2", A2), //
-    Q3("Q3", A2), //
-    Q4("Q4", A2), //
-    G1("G1", A2), //
-    G2("G2", A2), //
-    G3("G3", A2), //
+    /**
+     * {@code A1} est l'objet représentant les classes de première année du
+     * département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    A1("A1"),
+
+    /**
+     * {@code S1} est l'objet représentant le premier groupe des étudiants de
+     * première année du département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    S1("S1", A1),
+    /**
+     * {@code S2} est l'objet représentant le deuxième groupe des étudiants de
+     * première année du département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    S2("S2", A1),
+    /**
+     * {@code S3} est l'objet représentant le troisième groupe des étudiants de
+     * première année du département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    S3("S3", A1),
+    /**
+     * {@code S4} est l'objet représentant le quatrième groupe des étudiants de
+     * première année du département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    S4("S4", A1),
+    /**
+     * {@code S5} est l'objet représentant le cinquième groupe des étudiants de
+     * première année du département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    S5("S5", A1),
+    /**
+     * {@code S6} est l'objet représentant le sixième groupe des étudiants de
+     * première année du département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    S6("S6", A1),
+    /**
+     * {@code A2} est l'objet représentant les classes de deuxième année du
+     * département informatique de l'IUT de Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    A2("A2"),
+    /**
+     * {@code Q1} est l'objet représentant le premier groupe des étudiants de
+     * deuxième année de troisième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    Q1("Q1", A2),
+    /**
+     * {@code Q2} est l'objet représentant le deuxième groupe des étudiants de
+     * deuxième année de troisième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    Q2("Q2", A2),
+    /**
+     * {@code Q3} est l'objet représentant le troisième groupe des étudiants de
+     * deuxième année de troisième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    Q3("Q3", A2),
+    /**
+     * {@code Q4} est l'objet représentant le quatrième groupe des étudiants de
+     * deuxième année de troisième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    Q4("Q4", A2),
+    /**
+     * {@code G1} est l'objet représentant le premier groupe des étudiants de
+     * deuxième année de quatrième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    G1("G1", A2),
+    /**
+     * {@code G2} est l'objet représentant le deuxième groupe des étudiants de
+     * deuxième année de quatrième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    G2("G2", A2),
+    /**
+     * {@code G3} est l'objet représentant le troisième groupe des étudiants de
+     * deuxième année de quatrième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
+    G3("G3", A2),
+    /**
+     * {@code G4} est l'objet représentant le quatrième groupe des étudiants de
+     * deuxième année de quatrième semestre du département informatique de l'IUT de
+     * Montpellier.
+     * 
+     * Cet objet n'est pas modifiable.
+     * 
+     * @see Groupe
+     */
     G4("G4", A2);
 
+    /**
+     * Ce regex permet de trouver quelles groupe ont étés référencé au sein d'un
+     * texte.
+     * 
+     * @see Groupe#getGroupeDepuisTexte(String)
+     */
     private static final String REGEX;
 
     static {
@@ -40,11 +196,31 @@ public enum Groupe {
         REGEX = String.format("(%s)", String.join("|", strings));
     }
 
+    /**
+     * Intitule du groupe, l'intitule est utilisé pour retrouver quelles sont les
+     * groupes qui ont étés référencé au sein d'un texte.
+     * 
+     * @see Groupe#REGEX
+     */
     private String intitule;
+
+    /**
+     * Cet attribut permet de représenter le groupe englobant le groupe actuel
+     * (this)
+     * 
+     * Par exemple : Le groupe parent de {@code S1} est {@code A1} car {@code A1}
+     * contient {@code S1}
+     * 
+     * @see Groupe#S1
+     * @see Groupe#A1
+     * @see Groupe#estContenuDans(Groupe)
+     */
     private Groupe groupeParent;
 
     /**
      * @param intitule
+     * 
+     * @see Groupe#intitule
      */
     private Groupe(String intitule) {
         this.intitule = intitule;
@@ -54,6 +230,9 @@ public enum Groupe {
     /**
      * @param intitule
      * @param groupeParent
+     * 
+     * @see Groupe#intitule
+     * @see Groupe#groupeParent
      */
     private Groupe(String intitule, Groupe groupeParent) {
         this.intitule = intitule;
@@ -65,7 +244,7 @@ public enum Groupe {
      * cadre de cette API a partir de la description d'un VEVENT)
      *
      * @param texte texte source (ici description)
-     * @return groupe(s) correspondant
+     * @return {@code Groupe[]} groupe(s) correspondant
      * @since 1.0
      */
     public static Groupe[] getGroupeDepuisTexte(String texte) {
@@ -77,7 +256,9 @@ public enum Groupe {
     }
 
     /**
-     * @return the intitule
+     * @return {@code String}l'intitule du groupe
+     * 
+     * @see Groupe#intitule
      */
     public String getIntitule() {
         return intitule;
@@ -88,21 +269,37 @@ public enum Groupe {
      *
      * @return {@code boolean}
      * @since 1.0
+     * 
+     * @see Groupe#groupeParent
      */
     private boolean possedeGroupeParent() {
         return groupeParent != null;
     }
 
     /**
-     * Permet de savoir si ce groupe est contenu dans un autre groupe
+     * Permet de savoir si ce groupe est contenu dans {@code autreGroupe}
      *
+     * @param autreGroupe {@link Groupe} auquel on vérifie s'il contient le groupe
+     *                    actuel (this)
+     * 
      * @return {@code boolean}
      * @since 1.0
+     * 
+     * @see Groupe#groupeParent
+     * @see Groupe#possedeGroupeParent()
      */
     public boolean estContenuDans(Groupe autreGroupe) {
         return autreGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(autreGroupe));
     }
 
+    /**
+     * Retourn vrai si l'un des groupe de {@code groupes} est contenu dans le groupe
+     * {@code autreGroupe}
+     * 
+     * @return {@code boolean}
+     * 
+     * @see Groupe#estContenuDans(Groupe)
+     */
     static boolean unGroupeDeGroupesEstContenuDans(Groupe[] groupes, Groupe autreGroupe) {
         for (Groupe groupe : groupes)
             if (groupe.estContenuDans(autreGroupe))

@@ -79,7 +79,7 @@ class CoursTest {
                 @Test
                 void test_constructeur_VEvent_groupe_Bon() {
                         Cours cours = new Cours(component);
-                        assertEquals(Groupe.A2, cours.getGroupe());
+                        assertEquals(Groupe.A2, cours.getGroupe()[0]);
                 }
 
                 @Test

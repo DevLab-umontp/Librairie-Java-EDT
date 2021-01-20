@@ -6,10 +6,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.Spliterator;
+import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import edu.emory.mathcs.backport.java.util.TreeSet;
 
 /**
  * <b>Planning est la classe représentant un planning de {@link Cours} de

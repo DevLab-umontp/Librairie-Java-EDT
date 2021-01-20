@@ -61,13 +61,13 @@ class CoursTest {
                 @Test
                 void test_constructeur_VEvent_heureDebut_Bon() {
                         Cours cours = new Cours(component);
-                        assertEquals(15, cours.getHeureDebut().getHour());
+                        assertEquals(LocalTime.of(15, 00), cours.getHeureDebut());
                 }
 
                 @Test
                 void test_constructeur_VEvent_heureFin_Bon() {
                         Cours cours = new Cours(component);
-                        assertEquals(16, cours.getHeureFin().getHour());
+                        assertEquals(LocalTime.of(16, 00), cours.getHeureFin());
                 }
 
                 @Test

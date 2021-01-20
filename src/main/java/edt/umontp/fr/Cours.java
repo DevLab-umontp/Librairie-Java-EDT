@@ -85,9 +85,9 @@ public class Cours implements Comparable<Cours> {
             e.printStackTrace();
         }
 
-        date = LocalDate.ofInstant(dateDebut.toInstant(), EmploiDuTemps.ZONE_ID);
-        heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), EmploiDuTemps.ZONE_ID);
-        heureFin = LocalTime.ofInstant(dateFin.toInstant(), EmploiDuTemps.ZONE_ID);
+        date = LocalDate.of(dateDebut.getYear() + 1900, dateDebut.getMonth() + 1, dateDebut.getDate());
+        heureDebut = LocalTime.of(dateDebut.getHours(), dateDebut.getMinutes());
+        heureFin = LocalTime.of(dateFin.getHours(), dateFin.getMinutes());
         lieu = location.getValue();
         intitule = summary.getValue();
         prof = getProfFromDesc(description.getValue());

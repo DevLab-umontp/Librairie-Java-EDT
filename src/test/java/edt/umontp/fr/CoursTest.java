@@ -59,17 +59,15 @@ class CoursTest {
                 }
 
                 @Test
-                @SuppressWarnings("deprecation")
                 void test_constructeur_VEvent_heureDebut_Bon() {
                         Cours cours = new Cours(component);
-                        assertEquals(LocalTime.now(EmploiDuTemps.ZONE_ID).of(15, 00), cours.getHeureDebut());
+                        assertEquals(15, cours.getHeureDebut().getHour());
                 }
 
                 @Test
-                @SuppressWarnings("deprecation")
                 void test_constructeur_VEvent_heureFin_Bon() {
                         Cours cours = new Cours(component);
-                        assertEquals(LocalTime.now(EmploiDuTemps.ZONE_ID).of(16, 00), cours.getHeureFin());
+                        assertEquals(16, cours.getHeureFin().getHour());
                 }
 
                 @Test

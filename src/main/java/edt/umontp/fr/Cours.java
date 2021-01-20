@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +36,6 @@ import net.fortuna.ical4j.model.Property;
  * @version 1.0.0
  */
 public class Cours implements Comparable<Cours> {
-    private final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
     private LocalDate date;
     private String[] prof;
     private LocalTime heureDebut;
@@ -70,6 +68,7 @@ public class Cours implements Comparable<Cours> {
      * 
      * @see Component
      */
+    @SuppressWarnings("deprecation")
     Cours(Component vEvent) {
         Property summary = vEvent.getProperty(Property.SUMMARY);
         Property description = vEvent.getProperty(Property.DESCRIPTION);
@@ -86,9 +85,9 @@ public class Cours implements Comparable<Cours> {
             e.printStackTrace();
         }
 
-        date = LocalDate.ofInstant(dateDebut.toInstant(), ZONE_ID);
-        heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), ZONE_ID);
-        heureFin = LocalTime.ofInstant(dateFin.toInstant(), ZONE_ID);
+        date = LocalDate.ofInstant(dateDebut.toInstant(), EmploiDuTemps.ZONE_ID);
+        heureDebut = LocalTime.ofInstant(dateDebut.toInstant(), EmploiDuTemps.ZONE_ID);
+        heureFin = LocalTime.ofInstant(dateFin.toInstant(), EmploiDuTemps.ZONE_ID);
         lieu = location.getValue();
         intitule = summary.getValue();
         prof = getProfFromDesc(description.getValue());

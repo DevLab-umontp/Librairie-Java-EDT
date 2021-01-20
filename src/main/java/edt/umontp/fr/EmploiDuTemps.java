@@ -9,6 +9,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 import net.fortuna.ical4j.data.CalendarBuilder;
@@ -37,6 +38,7 @@ import net.fortuna.ical4j.model.Component;
  */
 @Deprecated(forRemoval = false)
 public class EmploiDuTemps implements InterfaceEmploiDuTemps {
+    static final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
     private static EmploiDuTemps singleton = null;
     private final String LIEN_ICAL = "https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal"
             + ".jsp?data"

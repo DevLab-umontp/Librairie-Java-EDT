@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
  * l'enumération.
  * </p>
  * 
- * @see SDZLevel
  * 
  * @author emerick-biron
  * @author MathieuSoysal

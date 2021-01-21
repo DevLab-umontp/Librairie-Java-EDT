@@ -51,15 +51,22 @@ class PlanningTest {
 
         @Test
         void test_getPlanningOf_groupe_simpleGroupe() {
-                Planning planningA1 = planning.getPlanningOf(Groupe.S3);
-                assertEquals(cours2, planningA1.iterator().next());
+                Planning planningS3 = planning.getPlanningOf(Groupe.S3);
+                assertEquals(cours2, planningS3.iterator().next());
         }
-
+        
         @Test
         void test_getPlanningOf_groupe_groupeCompose() {
                 Planning planningA1 = planning.getPlanningOf(Groupe.A1);
-                for (Cours cours : planningA1)
-                        assertTrue(coursEnsemble.contains(cours));
+                assertEquals(0, planningA1.getCours().size());
+        }
+
+        @Test
+        void test_getPlanningOf_sousGroupeDeA1_doitRetournerLeCoursA1() {
+                coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.A1 }, "Compta4"));
+                planning = new Planning(coursEnsemble);
+                assertEquals(1, planning.getPlanningOf(Groupe.S4).getCours().size());
         }
 
         @Test

@@ -119,8 +119,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
      */
     @Override
     public Planning getPlanningOf(Groupe groupe) {
-        return new Planning(cours.stream().filter(x -> Groupe.unGroupeDeGroupesEstContenuDans(x.getGroupes(), groupe))
-                .collect(Collectors.toList()));
+        return new Planning(
+                cours.stream().filter(c -> groupe.estContenuDans(c.getGroupes())).collect(Collectors.toList()));
     }
 
     /**

@@ -287,8 +287,11 @@ public enum Groupe {
      * @see Groupe#groupeParent
      * @see Groupe#possedeGroupeParent()
      */
-    public boolean estContenuDans(Groupe autreGroupe) {
-        return autreGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(autreGroupe));
+    public boolean estContenuDans(Groupe... autreGroupes) {
+        for (Groupe aGroupe : autreGroupes)
+            if (aGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(aGroupe)))
+                return true;
+        return false;
     }
 
     /**

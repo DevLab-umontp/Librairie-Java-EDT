@@ -37,7 +37,7 @@ import net.fortuna.ical4j.model.Component;
  * @version 1.0.0
  */
 @Deprecated(forRemoval = false)
-public class EmploiDuTemps implements InterfaceEmploiDuTemps {
+public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     static final ZoneId ZONE_ID = ZoneId.of("Europe/Paris");
     private static EmploiDuTemps singleton = null;
     private final String LIEN_ICAL = "https://proseconsult.umontpellier.fr/jsp/custom/modules/plannings/direct_cal"

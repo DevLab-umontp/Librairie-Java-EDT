@@ -56,6 +56,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      * 
      * @see Planning
      */
+    @SuppressWarnings("deprecation")
     @Override
     public Planning getPlanningOf(LocalDate date) {
         return cacheDate.computeIfAbsent(date, k -> emploiDuTemps.getPlanningOf(k));
@@ -88,6 +89,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      * @see Groupe
      * @see Planning
      */
+    @SuppressWarnings("deprecation")
     @Override
     public Planning getPlanningOf(Groupe groupe) {
         return cacheGroupe.computeIfAbsent(groupe, k -> emploiDuTemps.getPlanningOf(k));
@@ -124,7 +126,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
             if (o == null || getClass() != o.getClass())
                 return false;
 
-            MultiKey key = (MultiKey) o;
+            MultiKey<K1, K2> key = (MultiKey) o;
 
             if (key1 != null ? !key1.equals(key.key1) : key.key1 != null)
                 return false;

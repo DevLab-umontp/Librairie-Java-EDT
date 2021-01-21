@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
 
+Test.java
+
 #VSCode
 .project
 .classpath
@@ -119,3 +121,5 @@ local.properties
 
 nbproject/private/
 build/
+
+fichier.ics

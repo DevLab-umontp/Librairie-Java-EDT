@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.2.0
  */
 public enum Groupe {
     /**
@@ -290,21 +290,6 @@ public enum Groupe {
     public boolean estContenuDans(Groupe... autreGroupes) {
         for (Groupe aGroupe : autreGroupes)
             if (aGroupe == this || (possedeGroupeParent() && groupeParent.estContenuDans(aGroupe)))
-                return true;
-        return false;
-    }
-
-    /**
-     * Retourn vrai si l'un des groupe de {@code groupes} est contenu dans le groupe
-     * {@code autreGroupe}
-     * 
-     * @return {@code boolean}
-     * 
-     * @see Groupe#estContenuDans(Groupe)
-     */
-    static boolean unGroupeDeGroupesEstContenuDans(Groupe[] groupes, Groupe autreGroupe) {
-        for (Groupe groupe : groupes)
-            if (groupe.estContenuDans(autreGroupe))
                 return true;
         return false;
     }

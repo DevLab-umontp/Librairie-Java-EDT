@@ -16,14 +16,13 @@ import java.util.stream.Collectors;
  * <p>
  * Une instance de Planning est caractérisé par une liste de {@link Cours}
  * </p>
- * 
- * @see Iterable
- * @see Planifiable
- * @see Cours
- * 
+ *
  * @author emerick-biron
  * @author MathieuSoysal
  * @version 1.0.0
+ * @see Iterable
+ * @see Planifiable
+ * @see Cours
  */
 public class Planning implements Iterable<Cours>, Planifiable {
     private SortedSet<Cours> cours;
@@ -32,9 +31,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * Permet de créer un objet Planning a partir d'une collection de cours
      *
      * @param cours collection de cours
-     * @since 1.0
-     * 
      * @see Cours
+     * @since 1.0
      */
     public Planning(Collection<Cours> cours) {
         this.cours = new TreeSet(cours);
@@ -58,8 +56,12 @@ public class Planning implements Iterable<Cours>, Planifiable {
     @Override
     public String toString() {
         String res = "EDT :\n\n";
-        for (Cours c : cours) {
-            res += c.toString() + "\n\n";
+        if (cours.isEmpty()) {
+            res += "Aucun cours";
+        } else {
+            for (Cours c : cours) {
+                res += c.toString() + "\n\n";
+            }
         }
         return res;
     }
@@ -69,9 +71,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
      *
      * @param date date pour laquelle on veut obtenir le planning
      * @return {@code Planning} correspondant
-     * @since 1.0
-     * 
      * @see Planning
+     * @since 1.0
      */
     @Override
     public Planning getPlanningOf(LocalDate date) {
@@ -80,12 +81,9 @@ public class Planning implements Iterable<Cours>, Planifiable {
         if (!lastDate.isBefore(date)) {
             for (Cours c : cours) {
                 int compare = c.getDate().compareTo(date);
-                if (compare < 0)
-                    continue;
-                if (compare == 0)
-                    result.add(c);
-                else
-                    return new Planning(result);
+                if (compare < 0) continue;
+                if (compare == 0) result.add(c);
+                else return new Planning(result);
             }
         }
         return new Planning(result);
@@ -97,10 +95,9 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @param date   date dont on veut obtenir le planning
      * @param groupe groupe dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.0
-     * 
      * @see Groupe
      * @see Planning
+     * @since 1.0
      */
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
@@ -112,10 +109,9 @@ public class Planning implements Iterable<Cours>, Planifiable {
      *
      * @param groupe groupe dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.0
-     * 
      * @see Groupe
      * @see Planning
+     * @since 1.0
      */
     @Override
     public Planning getPlanningOf(Groupe groupe) {

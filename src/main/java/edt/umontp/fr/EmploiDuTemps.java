@@ -25,9 +25,9 @@ import net.fortuna.ical4j.model.Component;
  * instance de celle-ci.
  * </p>
  * 
- * @deprecated Pour l'utilisation de celle-ci il est préférable de passer par
- *             son proxy : {@link EmploiDuTempsProxy} afin d'avoir une meilleure
- *             optimisation.
+ * @deprecated Pour l'utilisation de la class EmploiDuTemps, il est préférable
+ *             de passer par son proxy : {@link EmploiDuTempsProxy} afin d'avoir
+ *             de meilleurs temps de réponse.
  * 
  * @see InterfaceEmploiDuTemps
  * @see EmploiDuTempsProxy
@@ -133,16 +133,46 @@ public class EmploiDuTemps implements InterfaceEmploiDuTemps {
         planningEmploisDuTemps = new Planning(coursList);
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à une date
+     *
+     * @param date date pour laquelle on veut obtenir le planning
+     * @return {@code Planning} correspondant
+     * @since 1.0
+     * 
+     * @see Planning
+     */
     @Override
     public Planning getPlanningOf(LocalDate date) {
         return planningEmploisDuTemps.getPlanningOf(date);
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à une date et un groupe
+     *
+     * @param date   date dont on veut obtenir le planning
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     * 
+     * @see Groupe
+     * @see Planning
+     */
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
         return planningEmploisDuTemps.getPlanningOf(date, groupe);
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à un groupe
+     *
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     * 
+     * @see Groupe
+     * @see Planning
+     */
     @Override
     public Planning getPlanningOf(Groupe groupe) {
         return planningEmploisDuTemps.getPlanningOf(groupe);

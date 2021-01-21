@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 /**
  * <b>Groupe est une enumeration qui permet de recenser les différents groupes
- * d'enseignements de l'université</b>
+ * d'élèves de l'université</b>
  * <p>
  * Une instance de groupe est caractérisé par les informations suivantes :
  * <ul>
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * <li>Un groupe parent.</li>
  * </ul>
  * <p>
- * De plus, un {@link Groupe} ne pas être instancié, il faut donc utiliser
+ * De plus, un {@link Groupe} ne pas être instancié, il faut donc passer par
  * l'enumération.
  * </p>
  * 

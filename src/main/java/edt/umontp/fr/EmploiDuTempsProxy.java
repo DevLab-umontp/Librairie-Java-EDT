@@ -5,14 +5,18 @@ import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
- * EmploiDuTempsProxy est un classe qui permet de proposer un proxy pour
- * l'emploi du temps
- *
- * @author emerick-biron, MathieuSoysal
- * @version 1.0
+ * <b>EmploiDuTempsProxy est la classe représentant le proxy de la class
+ * {@link EmploiDuTemps}.</b>
+ * <p>
+ * L'instance d'EmploiDuTempsProxy est caractérisé par une liste de cache.
+ * 
+ * @author emerick-biron
+ * @author MathieuSoysal
+ * @version 1.0.0
+ * @see EmploiDuTemps
  * @see InterfaceEmploiDuTemps
  */
-public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
+public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private static EmploiDuTempsProxy singleton = null;
     @SuppressWarnings("deprecation")
     private EmploiDuTemps emploiDuTemps;
@@ -26,6 +30,10 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         actualiser();
     }
 
+    /**
+     * @return l'instance de {@link EmploiDuTempsProxy}.
+     * 
+     */
     public static EmploiDuTempsProxy getInstance() {
         EmploiDuTempsProxy localInstance = singleton;
         if (localInstance == null) {
@@ -39,22 +47,55 @@ public class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         return localInstance;
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à une date
+     *
+     * @param date date pour laquelle on veut obtenir le planning
+     * @return {@code Planning} correspondant
+     * @since 1.0
+     * 
+     * @see Planning
+     */
     @Override
     public Planning getPlanningOf(LocalDate date) {
         return cacheDate.computeIfAbsent(date, k -> emploiDuTemps.getPlanningOf(k));
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à une date et un groupe
+     *
+     * @param date   date dont on veut obtenir le planning
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     * 
+     * @see Groupe
+     * @see Planning
+     */
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
         MultiKey<LocalDate, Groupe> multiKey = new MultiKey<>(date, groupe);
         return cacheDateGroupe.computeIfAbsent(multiKey, k -> getPlanningOf(k.key1).getPlanningOf(k.key2));
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à un groupe
+     *
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     * 
+     * @see Groupe
+     * @see Planning
+     */
     @Override
     public Planning getPlanningOf(Groupe groupe) {
         return cacheGroupe.computeIfAbsent(groupe, k -> emploiDuTemps.getPlanningOf(k));
     }
 
+    /**
+     * Permet d'actualiser l'emploi du temps avec celui de l'ent.
+     */
     @SuppressWarnings("deprecation")
     @Override
     public void actualiser() {

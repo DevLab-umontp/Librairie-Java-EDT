@@ -1,4 +1,4 @@
-package edt.umontp.fr;
+package fr.umontp.edt;
 
 /**
  * InterfaceEmploisDuTemps est un interface proposant des méthodes pour un emploi du temps

@@ -1,4 +1,4 @@
-package edt.umontp.fr;
+package fr.umontp.edt;
 
 import java.text.ParseException;
 import java.time.Duration;

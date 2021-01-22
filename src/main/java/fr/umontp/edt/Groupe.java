@@ -1,4 +1,4 @@
-package edt.umontp.fr;
+package fr.umontp.edt;
 
 import java.util.ArrayList;
 import java.util.Collection;

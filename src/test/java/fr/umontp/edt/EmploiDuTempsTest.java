@@ -1,4 +1,4 @@
-package edt.umontp.fr;
+package fr.umontp.edt;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -4,13 +4,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.devlab-umontp</groupId>
-  <artifactId>api-java-edt</artifactId>
-  <version>1.0.1</version>
+  <artifactId>edt-iut-umontp</artifactId>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>api-java-edt</name>
+  <name>emploi du temps IUT Montpellier</name>
   <description>Package Java permettant de récupérer l'emploi du temps des cours de l'IUT de Montpellier.</description>
-  <url>https://github.com/</url>
+  <url>https://github.com/DevLab-umontp/API-JAVA-EDT</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +20,18 @@
     <sonar.organization>devlab-umontp</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
+
+  <profiles>
+    <profile>
+      <id>github-deploy</id>
+      <repositories>
+        <repository>
+          <id>github</id>
+          <url>http://jarsm2.dyndns.dk</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -47,11 +59,36 @@
     </dependency>
   </dependencies>
 
+  <developers>
+    <developer>
+      <name>Emerick BIRON</name>
+      <email>emerick.biron@gmail.com</email>
+      <organization>com.github.devlab-umontp</organization>
+      <organizationUrl>https://github.com/DevLab-umontp</organizationUrl>
+    </developer>
+    <developer>
+      <name>Mathieu SOYSAL</name>
+      <email>Mathieu.Soysal@outlook.fr</email>
+      <organization>com.github.devlab-umontp</organization>
+      <organizationUrl>https://github.com/DevLab-umontp</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/DevLab-umontp/API-JAVA-EDT.git</connection>
+    <developerConnection>scm:git:ssh://github.com:DevLab-umontp/API-JAVA-EDT.git</developerConnection>
+    <url>http://github.com/DevLab-umontp/API-JAVA-EDT</url>
+  </scm>
+
   <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
     <repository>
-      <id>github</id>
-      <name>GitHub DevLab-umontp Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/DevLab-umontp/API-JAVA-EDT</url>
+      <id>ossrh</id>
+      <name>Sonatype</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
 
@@ -72,15 +109,6 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-            <source>11</source>
-            <target>11</target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>2.22.0</version>
         </plugin>
@@ -92,6 +120,57 @@
             <source>11</source>
             <target>11</target>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>1.6.7</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.2.1</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9.1</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.5</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>

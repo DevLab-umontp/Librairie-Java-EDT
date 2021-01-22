@@ -16,24 +16,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
-    <sonar.sources>.</sonar.sources>
-    <sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
     <sonar.projectKey>DevLab-umontp_API-JAVA-EDT</sonar.projectKey>
     <sonar.organization>devlab-umontp</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
-
-  <profiles>
-    <profile>
-      <id>github-deploy</id>
-      <repositories>
-        <repository>
-          <id>github</id>
-          <url>http://jarsm2.dyndns.dk</url>
-        </repository>
-      </repositories>
-    </profile>
-  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -102,12 +88,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
-          <configuration>
-            <includes>
-              <source>.</source>
-              <include>src/main/java/**</include>
-            </includes>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -170,6 +150,25 @@
               <phase>verify</phase>
               <goals>
                 <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.6</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
               </goals>
             </execution>
           </executions>

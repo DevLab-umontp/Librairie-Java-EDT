@@ -278,7 +278,7 @@ public enum Groupe {
     /**
      * Permet de savoir si ce groupe est contenu dans {@code autreGroupe}
      *
-     * @param autreGroupe {@link Groupe} auquel on vérifie s'il contient le groupe
+     * @param autreGroupes Les {@link Groupe} auquel on vérifie s'ils contiennent le groupe
      *                    actuel (this)
      * 
      * @return {@code boolean}

@@ -20,7 +20,7 @@ Si vous avez Maven, utilisez le code suivant :
   <version> coming soon </version>
 </dependency>
 ```
-
+>*Voir un exemple de fichier [pom.xml]()*
 ### Gradle
 
 Si vous utilisez Gradle, ajoutez ce qui suit aux dépendances de votre fichier `build.gradle`:

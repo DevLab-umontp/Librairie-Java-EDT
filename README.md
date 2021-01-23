@@ -9,7 +9,7 @@
 * **Colaborateurs:** [étudiants du département informatique](https://iut-montpellier-sete.edu.umontpellier.fr/dut-informatique/)
 
 
-## Intégrer la Librairie Java EDT IUT Montpellier dans votre code :
+## Intégrer la Librairie Java EDT IUT Montpellier dans votre code
 
 ### Maven 
 
@@ -31,7 +31,7 @@ Si vous utilisez Gradle, ajoutez ce qui suit aux dépendances de votre fichier `
     implementation 'com.github.devlab-umontp:edt-iut-umontp:1.0.0'
 ```
 
-## Exemple de code d'utilisation de la Librairie Java
+## Exemple de code d'utilisation de la Librairie Java EDT IUT Montpellier
 
 ```java
 import fr.umontp.edt.*;

@@ -3,13 +3,16 @@
 ![GitHub Actions](https://github.com/DevLab-umontp/API-JAVA-EDT/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://mathieusoysal.github.io/stats/api-java-edt)
 [![Gitmoji.dev](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
+[![GitHub](https://img.shields.io/github/license/DevLab-umontp/API-JAVA-EDT)](https://github.com/DevLab-umontp/API-JAVA-EDT/blob/master/LICENSE)
 # ![](ressources/devicon.png) Librairie Java : EDT IUT Montpellier
 
 ### IUT Montpellier-Sète – Département Informatique
 * **Colaborateurs:** [étudiants du département informatique](https://iut-montpellier-sete.edu.umontpellier.fr/dut-informatique/)
 
+### Les projets utilisant la librairie 
+ - [Bot Discord EDT](https://github.com/DevLab-umontp/BOT-DISCORD-EDT) : Bot Discord facilitant l'accès à l'empoi du temps de l'IUT de Montpellier
 
-## Intégrer la Librairie Java EDT IUT Montpellier dans votre code
+## Comment intégrer la Librairie Java EDT IUT Montpellier dans votre code
 
 ### Maven 
 
@@ -63,3 +66,7 @@ class ExempleDeCode {
 ```
 ## Contribution
 Les suggestions et contributions sont toujours les bienvenues! Veuillez discuter des modifications plus importantes via un [issue](https://github.com/DevLab-umontp/Librarie-Java-EDT/issues) avant de soumettre une demande.
+
+## Licence
+
+Ce projet est publié sous la licence [Academic Free License 3.0](https://github.com/DevLab-umontp/Librarie-Java-EDT/blob/main/LICENSE)

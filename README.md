@@ -61,3 +61,5 @@ class ExempleDeCode {
     }
 }
 ```
+## Contribution
+Les suggestions et contributions sont toujours les bienvenues! Veuillez discuter des modifications plus importantes via un [issue](https://github.com/DevLab-umontp/Librarie-Java-EDT/issues) avant de soumettre une demande.

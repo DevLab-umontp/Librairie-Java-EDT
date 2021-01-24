@@ -13,7 +13,7 @@
 
 ### Maven 
 
-Si vous avez Maven, utilisez le code suivant :
+Si vous avez Maven, ajoutez ce qui suit aux dépendances de votre fichier `pom.xml` :
 
 ```xml
 <dependency>

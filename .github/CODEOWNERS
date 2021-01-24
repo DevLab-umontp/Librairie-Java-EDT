@@ -1,3 +1,7 @@
 @MathieuSoysal @emerick-biron
 
 *.java @MathieuSoysal @emerick-biron
+
+pom.xml @MathieuSoysal
+
+.github/** @MathieuSoysal

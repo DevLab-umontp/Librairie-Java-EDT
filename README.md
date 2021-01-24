@@ -38,6 +38,7 @@ import fr.umontp.edt.*;
 
 class ExempleDeCode {
     public static void main(String[] args) {
+
         // Récupérer l'instance d'EmploiDuTempsProxy
         EmploiDuTempsProxy emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
 
@@ -49,6 +50,14 @@ class ExempleDeCode {
 
         // Récupérer le planning d'aujourd'hui du groupe S2
         Planning planningDateGroupe = emploiDuTempsProxy.getPlanningOf(LocalDate.now(), Groupe.S2);
+        
+        // Parcourir les cours d'un planning
+        for (Cours cours : planningGroupe) {
+            System.out.println(cours.getIntitule());
+        }
+
+        // Actualiser votre emploi du temps local avec celui de l'ent
+        emploiDuTempsProxy.actualiser();
     }
 }
 ```

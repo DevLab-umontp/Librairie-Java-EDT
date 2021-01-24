@@ -39,7 +39,7 @@ import fr.umontp.edt.*;
 class ExempleDeCode {
     public static void main(String[] args) {
 
-        // Récupérer l'instance d'EmploiDuTempsProxy
+        // Récupérer l'emploi du temps de l'ent
         EmploiDuTempsProxy emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
 
         // Récupérer le planning d'aujourd'hui

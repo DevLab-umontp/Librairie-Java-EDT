@@ -44,8 +44,8 @@ class EmploiDuTempsProxyTest {
         emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(7));
         emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(8));
         emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(9));
-        emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(10));        emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(1));
-        emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(11));        emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(1));
+        emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(10));
+        emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(11));
         emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(12));
         emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(13));
         emploiDuTempsProxy.getPlanningOf(LocalDate.now().plusDays(14));

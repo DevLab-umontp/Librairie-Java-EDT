@@ -37,7 +37,7 @@ import net.fortuna.ical4j.model.Property;
  */
 public class Cours implements Comparable<Cours> {
     private LocalDate date;
-    private String[] prof;
+    private Professeur[] professeurs;
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private String lieu;
@@ -45,10 +45,10 @@ public class Cours implements Comparable<Cours> {
     private Groupe[] groupes;
     private String intitule;
 
-    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe[] groupe,
-            String intitule) {
+    public Cours(LocalDate date, Professeur[] professeurs, LocalTime heureDebut, LocalTime heureFin, String lieu,
+            Groupe[] groupe, String intitule) {
         this.date = date;
-        this.prof = prof;
+        this.professeurs = professeurs;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.lieu = lieu;
@@ -90,7 +90,7 @@ public class Cours implements Comparable<Cours> {
         heureFin = LocalTime.of(dateFin.getHours(), dateFin.getMinutes());
         lieu = location.getValue();
         intitule = summary.getValue();
-        prof = getProfFromDesc(description.getValue());
+        professeurs = RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description.getValue());
         groupes = Groupe.getGroupeDepuisTexte(description.getValue());
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
@@ -143,8 +143,8 @@ public class Cours implements Comparable<Cours> {
     /**
      * @return {@code String[]} les professeurs organisant le cours
      */
-    public String[] getProf() {
-        return prof;
+    public Professeur[] getProfesseurs() {
+        return professeurs;
     }
 
     /**
@@ -194,8 +194,8 @@ public class Cours implements Comparable<Cours> {
     @Override
     public String toString() {
         return intitule.toUpperCase(Locale.ROOT) + " :\n Date : " + date + "\n Commence à " + heureDebut + ", finit à "
-                + heureFin + "\n Enseignant :" + Arrays.toString(prof) + " \n Localisation : " + lieu + " \n Groupe : "
-                + Arrays.toString(groupes);
+                + heureFin + "\n Enseignant :" + Arrays.toString(professeurs) + " \n Localisation : " + lieu
+                + " \n Groupe : " + Arrays.toString(groupes);
     }
 
     /*

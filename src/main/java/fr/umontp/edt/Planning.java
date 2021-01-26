@@ -81,9 +81,12 @@ public class Planning implements Iterable<Cours>, Planifiable {
         if (!lastDate.isBefore(date)) {
             for (Cours c : cours) {
                 int compare = c.getDate().compareTo(date);
-                if (compare < 0) continue;
-                if (compare == 0) result.add(c);
-                else return new Planning(result);
+                if (compare < 0)
+                    continue;
+                if (compare == 0)
+                    result.add(c);
+                else
+                    return new Planning(result);
             }
         }
         return new Planning(result);

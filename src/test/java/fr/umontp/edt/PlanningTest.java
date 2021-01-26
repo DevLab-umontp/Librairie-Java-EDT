@@ -63,9 +63,9 @@ class PlanningTest {
 
         @Test
         void test_getPlanningOf_sousGroupeDeA1_doitRetournerLeCoursA1() {
-                coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
-                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.A1 },
-                                "Compta4"));
+                coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21),
+                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.A1 }, "Compta4"));
                 planning = new Planning(coursEnsemble);
                 assertEquals(1, planning.getPlanningOf(Groupe.S4).getCours().size());
         }
@@ -85,9 +85,9 @@ class PlanningTest {
 
         @Test
         void test_constructeur_Planning_casPlusieursCoursCommenceEnMemeTemps_neDoitSupprimerAucunCours() {
-                coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
-                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 },
-                                "Compta4"));
+                coursEnsemble.add(new Cours(LocalDate.of(2021, 1, 21),
+                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(14, 30),
+                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 }, "Compta4"));
                 planning = new Planning(coursEnsemble);
                 assertEquals(coursEnsemble.size(), planning.getCours().size());
         }

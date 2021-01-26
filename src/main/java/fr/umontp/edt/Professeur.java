@@ -19,11 +19,11 @@ public class Professeur {
      * Ce constructeur est essentiellement utilisé pour récupérer un professeur
      * depuis un evenement de l'enmploi du temps
      * 
-     * @param prenomNom {@code String} contenant le prenom et le nom du professeur
+     * @param nomPrenom {@code String} contenant le prenom et le nom du professeur
      */
-    Professeur(String prenomNom) {
-        String[] infosProf = prenomNom.split("   ");
-        init(infosProf[1], infosProf[0]);
+    Professeur(String nomPrenom) {
+        String[] infosProf = nomPrenom.split("   ");
+        init(infosProf[0], infosProf[1]);
     }
 
     private void init(String nom, String prenom) {

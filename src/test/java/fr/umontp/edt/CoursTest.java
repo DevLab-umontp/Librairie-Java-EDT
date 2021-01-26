@@ -1,8 +1,8 @@
 package fr.umontp.edt;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.text.ParseException;
@@ -84,10 +84,11 @@ class CoursTest {
 
                 @Test
                 void test_constructeur_VEvent_profs_Bon() {
-                        String[] expected = { "BELMECHERI   NASSIM", "HAETTEL   THOMAS", "LA   XUAN HOANG",
-                                        "CHIROUZE   ANNE" };
+                        Professeur[] expected = { new Professeur("BELMECHERI   NASSIM"),
+                                        new Professeur("HAETTEL   THOMAS"), new Professeur("LA   XUAN HOANG"),
+                                        new Professeur("CHIROUZE   ANNE") };
                         Cours cours = new Cours(component);
-                        assertEquals(Arrays.toString(expected), Arrays.toString(cours.getProf()));
+                        assertArrayEquals(expected, cours.getProfesseurs());
                 }
 
                 @Test
@@ -119,24 +120,27 @@ class CoursTest {
 
         private static Stream<Arguments> genererArgumentsPourtestCompareTo_avecDate() {
                 return Stream.of(//
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(13, 30),
+                                                LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 0), //
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 19), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 19),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(13, 30),
+                                                LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 -1), //
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 21),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(13, 30),
+                                                LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 1));
@@ -150,38 +154,43 @@ class CoursTest {
 
         private static Stream<Arguments> genererArgumentsPourtestCompareTo_avecHeure() {
                 return Stream.of(//
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(13, 30),
+                                                LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 0), //
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(12, 30), LocalTime.of(13, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(12, 30),
+                                                LocalTime.of(13, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 -1), //
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 29), LocalTime.of(13, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(13, 29),
+                                                LocalTime.of(13, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 -1), //
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
-                                                LocalTime.of(13, 31), LocalTime.of(13, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 20),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(13, 31),
+                                                LocalTime.of(13, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 1), //
-                                Arguments.of(new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" },
-                                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133",
-                                                new Groupe[] { Groupe.S1 }, "Compta1"),
-                                                new Cours(LocalDate.of(2021, 1, 20), new String[] { "prof" },
+                                Arguments.of(new Cours(LocalDate.of(2021, 1, 21),
+                                                new Professeur[] { new Professeur("prof   prof") }, LocalTime.of(14, 30),
+                                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1"),
+                                                new Cours(LocalDate.of(2021, 1, 20),
+                                                                new Professeur[] { new Professeur("prof   prof") },
                                                                 LocalTime.of(13, 30), LocalTime.of(14, 30), "K133",
                                                                 new Groupe[] { Groupe.S1 }, "Compta1"),
                                                 1));
@@ -189,19 +198,23 @@ class CoursTest {
 
         @Test
         void test_equals() {
-                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 }, "Compta4");
-                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta4");
-                assertFalse(cours1.equals(cours2));
+                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
+                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 },
+                                "Compta4");
+                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
+                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 },
+                                "Compta4");
+                assertNotEquals(cours1, cours2);
         }
 
         @Test
         void test_hashcode() {
-                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 }, "Compta4");
-                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new String[] { "prof" }, LocalTime.of(14, 30),
-                                LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta4");
+                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
+                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 },
+                                "Compta4");
+                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
+                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 },
+                                "Compta4");
                 assertNotEquals(cours1.hashCode(), cours2.hashCode());
         }
 

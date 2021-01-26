@@ -95,24 +95,6 @@ public class Cours implements Comparable<Cours> {
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
-    /**
-     * Permet d'obtenir le(s) professeur(s) d'un VENVENT a partir de la description
-     * de ce dernier
-     *
-     * @param desc description du VENVENT
-     * @return {@code String[]} le(s) professeur(s) du present dans la description
-     * @since 1.0
-     */
-    static String[] getProfFromDesc(String desc) {
-        String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
-        Matcher m = Pattern.compile(regex).matcher(desc);
-        final List<String> matches = new ArrayList<>();
-        while (m.find()) {
-            matches.add(m.group(0));
-        }
-        return matches.toArray(new String[matches.size()]);
-    }
-
     @Override
     public int compareTo(Cours o) {
         int result = date.compareTo(o.date);

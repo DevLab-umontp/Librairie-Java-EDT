@@ -33,7 +33,11 @@ public class Professeur {
     }
 
     static String formater(String nom, String prenom) {
-        return (nom.toLowerCase(Locale.FRANCE) + "   " + prenom.toUpperCase(Locale.FRANCE)).replaceAll("[^A-Z ]", " ");
+        return formater(nom + "   " + prenom);
+    }
+
+    static String formater(String nomPrenom) {
+        return nomPrenom.toUpperCase(Locale.FRANCE).replaceAll("[^A-Z ]", " ");
     }
 
     /**

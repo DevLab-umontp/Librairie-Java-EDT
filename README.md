@@ -1,3 +1,4 @@
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.devlab-umontp/edt-iut-umontp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.devlab-umontp%22%20AND%20a:%22edt-iut-umontp%22)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DevLab-umontp_API-JAVA-EDT&metric=alert_status)](https://sonarcloud.io/dashboard?id=DevLab-umontp_API-JAVA-EDT)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DevLab-umontp_API-JAVA-EDT&metric=coverage)](https://sonarcloud.io/dashboard?id=DevLab-umontp_API-JAVA-EDT)
 ![GitHub Actions](https://github.com/DevLab-umontp/API-JAVA-EDT/workflows/Java%20CI%20with%20Maven/badge.svg)

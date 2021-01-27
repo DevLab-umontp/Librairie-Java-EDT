@@ -169,4 +169,31 @@ class EmploiDuTempsProxyTest {
         return System.currentTimeMillis() - startTime;
     }
 
+    @Test
+    void test_getPlanningOf_Professeur_plusRapideInteligent() {
+        emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
+
+        long tempsExecution1 = rapiditeGetPlanningOfProfesseur();
+        emploiDuTempsProxy.actualiser();
+        rapiditeGetPlanningOfDate();
+        long tempsExecution2 = rapiditeGetPlanningOfProfesseurBrut();
+
+        assertTrue(tempsExecution1 > tempsExecution2);
+    }
+
+    private long rapiditeGetPlanningOfProfesseurBrut() {
+        long startTime = System.currentTimeMillis();
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Marie-Jeanne", "Alain"),
+                RepertoireProfesseur.get("Valicov", "Petru"), RepertoireProfesseur.get("Bougeret", "Marin"),
+                RepertoireProfesseur.get("Garcia", "Francis"), RepertoireProfesseur.get("Lazaar", "Nadjib"),
+                RepertoireProfesseur.get("lebreton", "romain"), RepertoireProfesseur.get("messaoui", "anita"),
+                RepertoireProfesseur.get("Gouaich", "Abdelkader"), RepertoireProfesseur.get("Chollet", "Antoine"),
+                RepertoireProfesseur.get("Ouherrou", "Nihal"), RepertoireProfesseur.get("Rosenfeld", "Matthieu"),
+                RepertoireProfesseur.get("Chirouze", "Anne"), RepertoireProfesseur.get("Weber", "Marie-Laure"),
+                RepertoireProfesseur.get("Palleja", "Nathalie"), RepertoireProfesseur.get("Molnar", "Miklos"),
+                RepertoireProfesseur.get("Delebarre", "Justine"), RepertoireProfesseur.get("Nabitz", "Sophie"),
+                RepertoireProfesseur.get("Poupet", "Victor"), RepertoireProfesseur.get("Coletta", "Rémi"));
+        return System.currentTimeMillis() - startTime;
+    }
+
 }

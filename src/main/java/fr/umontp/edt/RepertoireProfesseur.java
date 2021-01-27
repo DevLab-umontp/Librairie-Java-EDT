@@ -6,6 +6,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * <b>RepertoireProfesseur est la classe qui repertorie tous les professeurs de
+ * l'emploi du temps.</b>
+ * <p>
+ * 
+ * @see Professeur
+ * 
+ * @author MathieuSoysal
+ * @version 1.0.0
+ */
 public class RepertoireProfesseur {
     private static HashMap<String, Professeur> repertoire = new HashMap<>();
 
@@ -29,11 +39,16 @@ public class RepertoireProfesseur {
     }
 
     /**
-     * @param key
-     * @return
+     * Retourne le professeur correspondant aux variables nom et prénom donné en
+     * paramètre.
+     * 
+     * @param nom    du professeur devant être cherché
+     * @param prenom du professeur devant être cherché
+     * @return {@code Professeur} correspondant sinon retourne {@code null} si aucun
+     *         professeur ne correspond.
+     * 
      * @see java.util.HashMap#get(java.lang.Object)
      */
-
     public static Professeur get(String nom, String prenom) {
         return repertoire.get(Professeur.formater(nom, prenom));
     }

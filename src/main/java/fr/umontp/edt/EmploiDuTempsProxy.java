@@ -15,7 +15,7 @@ import java.util.IdentityHashMap;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.1.0
+ * @version 1.2.0
  * @see EmploiDuTemps
  * @see InterfaceEmploiDuTemps
  */
@@ -84,19 +84,21 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à un groupe
+     * Permet d'obtenir le planning correspondant à un groupe ou plusieurs groupe.
      *
-     * @param groupe groupe dont on veut obtenir le planning
+     * @param groupes groupes dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.0
-     * 
      * @see Groupe
      * @see Planning
+     * @since 1.2.0
      */
     @SuppressWarnings("deprecation")
     @Override
-    public Planning getPlanningOf(Groupe groupe) {
-        return cacheGroupe.computeIfAbsent(groupe, k -> emploiDuTemps.getPlanningOf(k));
+    public Planning getPlanningOf(Groupe... groupes) {
+        Collection<Cours> cours = new ArrayList<>();
+        for (Groupe groupe : groupes)
+            cours.addAll(cacheGroupe.computeIfAbsent(groupe, k -> emploiDuTemps.getPlanningOf(k)).getCours());
+        return new Planning(cours);
     }
 
     /**

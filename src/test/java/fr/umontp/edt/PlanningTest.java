@@ -164,4 +164,10 @@ class PlanningTest {
                                 .iterator().next());
         }
 
+        @Test
+        void test_getPlanningOf_PlanningFiltreur_parProfesseur() {
+                assertEquals(cours2, planning.getPlanningOf(PlanningFiltreur.filtrer().par(cours2.getProfesseurs()))
+                                .iterator().next());
+        }
+
 }

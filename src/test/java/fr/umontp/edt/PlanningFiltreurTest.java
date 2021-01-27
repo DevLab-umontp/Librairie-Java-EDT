@@ -30,4 +30,11 @@ class PlanningFiltreurTest {
         assertEquals(Groupe.S1, planningFiltreur.getGroupes()[0]);
     }
 
+    @Test
+    void test_PlanningFiltreur_par_plusieursGroupes() {
+        PlanningFiltreur planningFiltreur = PlanningFiltreur.filtrer().par(Groupe.S1, Groupe.S3, Groupe.S4);
+        Groupe[] excepted = { Groupe.S1, Groupe.S3, Groupe.S4 };
+        assertArrayEquals(excepted, planningFiltreur.getGroupes());
+    }
+
 }

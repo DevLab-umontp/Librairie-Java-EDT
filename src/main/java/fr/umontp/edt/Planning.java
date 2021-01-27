@@ -119,6 +119,13 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return result;
     }
 
+    public Planning getPlanningOf(PlanningFiltreur planningFiltreur) {
+        Planning result = new Planning(cours);
+        if (planningFiltreur.getDates() != null)
+            result = result.getPlanningOf(planningFiltreur.getDates());
+        return result;
+    }
+
     @Override
     public Iterator<Cours> iterator() {
         return cours.iterator();
@@ -178,9 +185,5 @@ public class Planning implements Iterable<Cours>, Planifiable {
         }
         return result;
     }
-
-	public Planning getPlanningOf(PlanningFiltreur par) {
-		return null;
-	}
 
 }

@@ -49,12 +49,6 @@ class PlanningTest {
         }
 
         @Test
-        void test_getPlanningOf_PlanningFiltreur() {
-                assertEquals(cours4, planning.getPlanningOf(PlanningFiltreur.filtrer().par(cours4.getDate())).iterator()
-                                .next());
-        }
-
-        @Test
         void test_getPlanningOf_date() {
                 assertEquals(cours4, planning.getPlanningOf(cours4.getDate()).iterator().next());
         }
@@ -156,6 +150,12 @@ class PlanningTest {
                 Planning planningAlice = planning.getPlanningOf(RepertoireProfesseur.get("LEBOUCHE", "Alice"),
                                 RepertoireProfesseur.get("BELMECHERI", "NASSIM"));
                 assertEquals(1, planningAlice.getCours().size());
+        }
+
+        @Test
+        void test_getPlanningOf_PlanningFiltreur() {
+                assertEquals(cours4, planning.getPlanningOf(PlanningFiltreur.filtrer().par(cours4.getDate())).iterator()
+                                .next());
         }
 
 }

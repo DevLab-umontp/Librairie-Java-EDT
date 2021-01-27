@@ -35,7 +35,11 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @since 1.0
      */
     public Planning(Collection<Cours> cours) {
-        this.cours = new TreeSet(cours);
+        this.cours = new TreeSet<>(cours);
+    }
+
+    private Planning() {
+        cours = new TreeSet<>();
     }
 
     /**
@@ -105,8 +109,11 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @see Planning
      */
     @Override
-    public Planning getPlanningOf(Professeur professeur) {
-        return new Planning(cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toList()));
+    public Planning getPlanningOf(Professeur... professeurs) {
+        Planning result = new Planning();
+        for (Professeur professeur : professeurs)
+            result.cours.addAll(this.cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toSet()));
+        return result;
     }
 
     @Override
@@ -143,9 +150,4 @@ public class Planning implements Iterable<Cours>, Planifiable {
     Collection<Cours> getCours() {
         return cours;
     }
-
-	public Planning getPlanningOf(Professeur professeur, Professeur professeur2) {
-		return null;
-	}
-
 }

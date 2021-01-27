@@ -57,6 +57,6 @@ interface Planifiable {
      * @see Groupe
      * @see Planning
      */
-    public Planning getPlanningOf(Professeur professeur);
+    public Planning getPlanningOf(Professeur... professeurs);
 
 }

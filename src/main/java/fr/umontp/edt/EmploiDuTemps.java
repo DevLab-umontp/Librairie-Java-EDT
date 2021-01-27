@@ -179,9 +179,10 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à un professeur
+     * Permet d'obtenir le planning correspondant à un professeur ou plusieurs
+     * professeurs
      *
-     * @param professeur professeur dont on veut obtenir le planning
+     * @param professeurs professeurs dont on veut obtenir le planning
      * @return planning correspondant
      * @since 1.1
      * 

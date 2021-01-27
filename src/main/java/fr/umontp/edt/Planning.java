@@ -99,11 +99,12 @@ public class Planning implements Iterable<Cours>, Planifiable {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à un professeur
+     * Permet d'obtenir le planning correspondant à un professeur ou plusieurs
+     * professeurs
      *
-     * @param professeur professeur dont on veut obtenir le planning
+     * @param professeurs professeurs dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.1
+     * @since 1.2
      * 
      * @see Groupe
      * @see Planning

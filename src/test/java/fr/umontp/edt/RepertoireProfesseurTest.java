@@ -32,6 +32,13 @@ class RepertoireProfesseurTest {
     }
 
     @Test
+    void test_getProfesseurDepuisDescription_testLaXuanHuang_doitTrouverLeBonProfesseur() {
+        String description = "\n\nA2-Semestre-3\nBELMECHERI   NASSIM\nHAETTEL   THOMAS\nLA   XUAN HOANG\nCHIROUZE   ANNE\nA valider\n(Exporté le:18/01/2021 10:51)\n";
+        RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description);
+        assertNotNull(RepertoireProfesseur.get("LA", "Xuan-Hoang"));
+    }
+
+    @Test
     void test_get_avecDescriptionContenantDesCaracteresSpeciaux() {
         String description = "\n\nA2-Semestre-3\nDUPÛIS   JEAN-JEAN\nA valider\n(Exporté le:18/01/2021 10:51)\n";
         RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description);

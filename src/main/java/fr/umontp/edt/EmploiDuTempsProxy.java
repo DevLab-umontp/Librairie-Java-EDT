@@ -1,6 +1,8 @@
 package fr.umontp.edt;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
@@ -109,8 +111,11 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      */
     @SuppressWarnings("deprecation")
     @Override
-    public Planning getPlanningOf(Professeur professeur) {
-        return cacheProfesseur.computeIfAbsent(professeur, k -> emploiDuTemps.getPlanningOf(k));
+    public Planning getPlanningOf(Professeur... professeurs) {
+        Collection<Cours> cours = new ArrayList<>();
+        for (Professeur professeur : professeurs)
+            cours.addAll(cacheProfesseur.computeIfAbsent(professeur, k -> emploiDuTemps.getPlanningOf(k)).getCours());
+        return new Planning(cours);
     }
 
     /**

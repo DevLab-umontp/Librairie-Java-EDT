@@ -44,6 +44,8 @@ public class PlanningFiltreur {
      * filtrage sont par défaut à {@code null}.
      * </p>
      * 
+     * @return {@code PlanningFiltreur} instancié
+     * 
      * @since 1.1.0
      * 
      * @see PlanningFiltreur#par(LocalDate...)
@@ -57,6 +59,8 @@ public class PlanningFiltreur {
      * 
      * @param dates qui doivent filtrer le planning
      * 
+     * @return {@code PlanningFiltreur} résultant
+     * 
      * @see LocalDate
      */
     public PlanningFiltreur par(LocalDate... dates) {
@@ -66,6 +70,8 @@ public class PlanningFiltreur {
 
     /**
      * Ajoute un filtrage par un ou plusieurs groupe.
+     * 
+     * @return {@code PlanningFiltreur} résultant
      * 
      * @param groupes qui doivent filtrer le planning
      * 
@@ -78,6 +84,8 @@ public class PlanningFiltreur {
 
     /**
      * Ajoute un filtrage par un ou plusieurs Professeur.
+     * 
+     * @return {@code PlanningFiltreur} résultant
      * 
      * @param professeurs qui doivent filtrer le planning
      * 

@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-public class PlanningFiltreurTest {
+class PlanningFiltreurTest {
 
     @Test
     void test_PlanningFiltreur_par_date() {
-        PlanningFiltreur planningFiltreur = PlanningFiltreur.par(LocalDate.now());
+        PlanningFiltreur planningFiltreur = PlanningFiltreur.filtrer().par(LocalDate.now());
 
         assertEquals(LocalDate.now(), planningFiltreur.getDates()[0]);
     }

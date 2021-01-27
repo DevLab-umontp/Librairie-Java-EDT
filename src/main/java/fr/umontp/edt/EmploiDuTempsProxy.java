@@ -15,7 +15,7 @@ import java.util.IdentityHashMap;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.2.0
+ * @version 1.3.0
  * @see EmploiDuTemps
  * @see InterfaceEmploiDuTemps
  */
@@ -56,14 +56,17 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      *
      * @param date date pour laquelle on veut obtenir le planning
      * @return {@code Planning} correspondant
-     * @since 1.0
+     * @since 1.3.0
      * 
      * @see Planning
      */
     @SuppressWarnings("deprecation")
     @Override
-    public Planning getPlanningOf(LocalDate date) {
-        return cacheDate.computeIfAbsent(date, k -> emploiDuTemps.getPlanningOf(k));
+    public Planning getPlanningOf(LocalDate... dates) {
+        Collection<Cours> cours = new ArrayList<>();
+        for (LocalDate date : dates)
+            cours.addAll(cacheDate.computeIfAbsent(date, k -> emploiDuTemps.getPlanningOf(k)).getCours());
+        return new Planning(cours);
     }
 
     /**

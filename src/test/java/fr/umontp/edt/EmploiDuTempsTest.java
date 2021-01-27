@@ -40,6 +40,13 @@ class EmploiDuTempsTest {
     }
 
     @Test
+    void test_getPlanningOf_plusieursProfesseurs_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain"),
+                RepertoireProfesseur.get("messaoui", "anita")));
+    }
+
+    @Test
     void test_getPlanningOf_professeur_verifierRetournePasDeListeVide() {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertTrue(emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain")).iterator().hasNext());

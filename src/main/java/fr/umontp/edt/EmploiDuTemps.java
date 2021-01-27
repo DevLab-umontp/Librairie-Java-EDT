@@ -189,7 +189,7 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
      * @see Planning
      */
     @Override
-    public Planning getPlanningOf(Professeur professeur) {
-        return planningEmploisDuTemps.getPlanningOf(professeur);
+    public Planning getPlanningOf(Professeur... professeurs) {
+        return planningEmploisDuTemps.getPlanningOf(professeurs);
     }
 }

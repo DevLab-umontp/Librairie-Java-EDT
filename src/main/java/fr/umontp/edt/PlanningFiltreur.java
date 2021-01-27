@@ -146,16 +146,30 @@ public class PlanningFiltreur {
         PlanningFiltreur other = (PlanningFiltreur) obj;
         if (!Arrays.equals(dates, other.dates))
             return false;
-        if (!Arrays.equals(groupes, other.groupes)) {
-            if (groupes.length == other.groupes.length) {
+        if (!memeGroupes(other.groupes))
+            return false;
+        if (!Arrays.equals(professeurs, other.professeurs)) {
+            if (professeurs.length == other.professeurs.length) {
+                List<Professeur> listProfesseurs = Arrays.asList(professeurs);
+                List<Professeur> listOtherProflistProfesseurs = Arrays.asList(other.professeurs);
+                if (!(listProfesseurs.containsAll(listOtherProflistProfesseurs) && listOtherProflistProfesseurs.containsAll(listProfesseurs)))
+                    return false;
+            } else
+                return false;
+        }
+        return true;
+    }
+
+    private boolean memeGroupes(Groupe[] oGroupes) {
+        if (!Arrays.equals(groupes, oGroupes)) {
+            if (groupes.length == oGroupes.length) {
                 List<Groupe> listGroupes = Arrays.asList(groupes);
-                List<Groupe> listOtherGroupes = Arrays.asList(other.groupes);
+                List<Groupe> listOtherGroupes = Arrays.asList(oGroupes);
                 if (!(listGroupes.containsAll(listOtherGroupes) && listOtherGroupes.containsAll(listGroupes)))
                     return false;
             } else
                 return false;
         }
-        return Arrays.equals(professeurs, other.professeurs);
+        return true;
     }
-
 }

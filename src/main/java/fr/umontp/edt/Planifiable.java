@@ -23,19 +23,6 @@ interface Planifiable {
     public Planning getPlanningOf(LocalDate... dates);
 
     /**
-     * Permet d'obtenir le planning correspondant à une date et un groupe
-     *
-     * @param date   date dont on veut obtenir le planning
-     * @param groupe groupe dont on veut obtenir le planning
-     * @return planning correspondant
-     * @since 1.0
-     * 
-     * @see Groupe
-     * @see Planning
-     */
-    public Planning getPlanningOf(LocalDate date, Groupe groupe);
-
-    /**
      * Permet d'obtenir le planning correspondant à un groupe ou plusieurs groupe.
      *
      * @param groupes groupes dont on veut obtenir le planning
@@ -57,5 +44,18 @@ interface Planifiable {
      * @see Planning
      */
     public Planning getPlanningOf(Professeur... professeurs);
+
+    /**
+     * Permet d'obtenir le planning correspondant à une date et un groupe
+     *
+     * @param date   date dont on veut obtenir le planning
+     * @param groupe groupe dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.0
+     * 
+     * @see Groupe
+     * @see Planning
+     */
+    public Planning getPlanningOf(LocalDate date, Groupe groupe);
 
 }

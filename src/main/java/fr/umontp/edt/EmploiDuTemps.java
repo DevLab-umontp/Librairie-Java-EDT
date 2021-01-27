@@ -143,8 +143,8 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
      * @see Planning
      */
     @Override
-    public Planning getPlanningOf(LocalDate date) {
-        return planningEmploisDuTemps.getPlanningOf(date);
+    public Planning getPlanningOf(LocalDate... dates) {
+        return planningEmploisDuTemps.getPlanningOf(dates);
     }
 
     /**

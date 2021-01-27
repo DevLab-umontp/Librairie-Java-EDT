@@ -123,6 +123,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
         Planning result = new Planning(cours);
         if (planningFiltreur.getDates() != null)
             result = result.getPlanningOf(planningFiltreur.getDates());
+        if (planningFiltreur.getGroupes() != null)
+            result = result.getPlanningOf(planningFiltreur.getGroupes());
         return result;
     }
 

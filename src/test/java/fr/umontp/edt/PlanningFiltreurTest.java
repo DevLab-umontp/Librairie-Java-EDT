@@ -68,4 +68,16 @@ class PlanningFiltreurTest {
         assertEquals(planningFiltreur1, planningFiltreur2);
     }
 
+    @Test
+    void test_Equals_contenueIdentiqueEtOrdreProfesseurDifferent() {
+        Professeur professeur1 = new Professeur("Dupuis   Jean");
+        Professeur professeur2 = new Professeur("Dupres   Michel");
+
+        PlanningFiltreur planningFiltreur1 = PlanningFiltreur.filtrer().par(professeur1, professeur2)
+                .par(LocalDate.now());
+        PlanningFiltreur planningFiltreur2 = PlanningFiltreur.filtrer().par(professeur2, professeur1)
+                .par(LocalDate.now());
+        assertEquals(planningFiltreur1, planningFiltreur2);
+    }
+
 }

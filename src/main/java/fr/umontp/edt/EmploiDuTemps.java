@@ -190,6 +190,6 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
      */
     @Override
     public Planning getPlanningOf(Professeur professeur) {
-        throw new Error("non implémenté");
+        return planningEmploisDuTemps.getPlanningOf(professeur);
     }
 }

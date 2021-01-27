@@ -32,4 +32,16 @@ class EmploiDuTempsTest {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertTrue(emploiDuTemps.getPlanningOf(Groupe.A1).iterator().hasNext());
     }
+
+    @Test
+    void test_getPlanningOf_professeur_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain")));
+    }
+
+    @Test
+    void test_getPlanningOf_professeur_verifierRetournePasDeListeVide() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertTrue(emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain")).iterator().hasNext());
+    }
 }

@@ -215,6 +215,17 @@ class CoursTest {
         }
 
         @Test
+        void test_compareTo() {
+                Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
+                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133",
+                                new Groupe[] { Groupe.S4, Groupe.S2 }, "Compta4");
+                Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
+                                LocalTime.of(14, 30), LocalTime.of(15, 30), "K133",
+                                new Groupe[] { Groupe.S4, Groupe.S2 }, "Compta4");
+                assertEquals(0, cours1.compareTo(cours2));
+        }
+
+        @Test
         void test_hashcode() {
                 Cours cours1 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
                                 LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S4 },

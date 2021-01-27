@@ -170,4 +170,24 @@ class PlanningTest {
                                 .iterator().next());
         }
 
+        @Test
+        void test_getPlanningOf_PlanningFiltreur_parDateEtGroupe() {
+                assertEquals(1, planning.getPlanningOf(
+                                PlanningFiltreur.filtrer().par(LocalDate.of(2021, 1, 21)).par(cours2.getGroupes()))
+                                .getCours().size());
+        }
+
+        @Test
+        void test_getPlanningOf_PlanningFiltreur_parDateEtProfesseur() {
+                assertEquals(1, planning.getPlanningOf(
+                                PlanningFiltreur.filtrer().par(LocalDate.of(2021, 1, 21)).par(cours2.getProfesseurs()))
+                                .getCours().size());
+        }
+
+        @Test
+        void test_getPlanningOf_PlanningFiltreur_parGroupeEtProfesseur() {
+                assertEquals(1, planning
+                                .getPlanningOf(PlanningFiltreur.filtrer().par(Groupe.S1).par(cours4.getProfesseurs()))
+                                .getCours().size());
+        }
 }

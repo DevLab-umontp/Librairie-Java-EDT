@@ -3,6 +3,7 @@ package fr.umontp.edt;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 
 /**
  * <b>EmploiDuTempsProxy est la classe représentant le proxy de la class
@@ -96,6 +97,22 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     }
 
     /**
+     * Permet d'obtenir le planning correspondant à un professeur
+     *
+     * @param professeur professeur dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.1
+     * 
+     * @see Groupe
+     * @see Planning
+     */
+    @SuppressWarnings("deprecation")
+    @Override
+    public Planning getPlanningOf(Professeur professeur) {
+        return null;
+    }
+
+    /**
      * Permet d'actualiser l'emploi du temps avec celui de l'ent.
      */
     @SuppressWarnings("deprecation")
@@ -148,4 +165,5 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
             return "[" + key1 + ", " + key2 + "]";
         }
     }
+
 }

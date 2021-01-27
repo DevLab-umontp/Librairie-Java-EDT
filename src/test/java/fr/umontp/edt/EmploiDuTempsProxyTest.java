@@ -133,4 +133,40 @@ class EmploiDuTempsProxyTest {
         assertTrue(tempsExecution1 > tempsExecution2);
     }
 
+    @Test
+    void test_getPlanningOf_Professeur_plusRapide() {
+        emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
+
+        long tempsExecution1 = rapiditeGetPlanningOfProfesseur();
+        emploiDuTempsProxy.actualiser();
+        rapiditeGetPlanningOfDate();
+        long tempsExecution2 = rapiditeGetPlanningOfProfesseur();
+
+        assertTrue(tempsExecution1 > tempsExecution2);
+    }
+
+    private long rapiditeGetPlanningOfProfesseur() {
+        long startTime = System.currentTimeMillis();
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Marie-Jeanne", "Alain"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Valicov", "Petru"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Bougeret", "Marin"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Garcia", "Francis"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Lazaar", "Nadjib"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("lebreton", "romain"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("messaoui", "anita"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Gouaich", "Abdelkader"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Chollet", "Antoine"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Ouherrou", "Nihal"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Rosenfeld", "Matthieu"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Chirouze", "Anne"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Weber", "Marie-Laure"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Palleja", "Nathalie"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Molnar", "Miklos"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Delebarre", "Justine"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Nabitz", "Sophie"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Poupet", "Victor"));
+        emploiDuTempsProxy.getPlanningOf(RepertoireProfesseur.get("Coletta", "Rémi"));
+        return System.currentTimeMillis() - startTime;
+    }
+
 }

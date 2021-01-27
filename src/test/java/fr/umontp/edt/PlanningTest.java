@@ -54,6 +54,11 @@ class PlanningTest {
         }
 
         @Test
+        void test_getPlanningOf_plusieursDate() {
+                assertEquals(2, planning.getPlanningOf(cours4.getDate(), cours1.getDate()).getCours().size());
+        }
+
+        @Test
         void test_getPlanningOf_groupe_simpleGroupe() {
                 Planning planningS3 = planning.getPlanningOf(Groupe.S3);
                 assertEquals(cours2, planningS3.iterator().next());

@@ -20,7 +20,7 @@ interface Planifiable {
      * 
      * @see Planning
      */
-    public Planning getPlanningOf(LocalDate date);
+    public Planning getPlanningOf(LocalDate... dates);
 
     /**
      * Permet d'obtenir le planning correspondant à une date et un groupe

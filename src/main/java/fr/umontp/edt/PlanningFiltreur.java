@@ -26,6 +26,7 @@ import java.time.LocalDate;
 public class PlanningFiltreur {
     private LocalDate[] dates;
     private Groupe[] groupes;
+    private Professeur[] professeurs;
 
     private PlanningFiltreur() {
         dates = null;
@@ -72,6 +73,18 @@ public class PlanningFiltreur {
     }
 
     /**
+     * Ajoute un filtrage par un ou plusieurs Professeur.
+     * 
+     * @param professeurs qui doivent filtrer le planning
+     * 
+     * @see Professeur
+     */
+    public PlanningFiltreur par(Professeur... professeurs) {
+        this.professeurs = professeurs;
+        return this;
+    }
+
+    /**
      * @return {@code LocalDate[]} tableau des dates
      * 
      * @see LocalDate
@@ -89,12 +102,13 @@ public class PlanningFiltreur {
         return groupes;
     }
 
-    public PlanningFiltreur par(Professeur professeur) {
-        return null;
-    }
-
-    public Object[] getProfesseurs() {
-        return null;
+    /**
+     * @return {@code LocalDate[]} tableau des professeurs
+     * 
+     * @see Professeur
+     */
+    public Professeur[] getProfesseurs() {
+        return professeurs;
     }
 
 }

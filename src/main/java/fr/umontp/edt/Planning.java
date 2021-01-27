@@ -144,4 +144,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return cours;
     }
 
+	public Planning getPlanningOf(Professeur professeur, Professeur professeur2) {
+		return null;
+	}
+
 }

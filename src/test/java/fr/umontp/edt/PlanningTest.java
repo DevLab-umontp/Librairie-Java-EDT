@@ -133,4 +133,12 @@ class PlanningTest {
                 assertTrue(planningAlice.iterator().hasNext());
         }
 
+        @Test
+        void test_getPlanningOf_plusieurProfesseurs_retournUnCours() {
+                Planning planning = createPlanningViaComponent();
+                Planning planningAlice = planning.getPlanningOf(RepertoireProfesseur.get("LEBOUCHE", "Alice"),
+                                RepertoireProfesseur.get("BELMECHERI", "NASSIM"));
+                assertEquals(1, planningAlice.getCours().size());
+        }
+
 }

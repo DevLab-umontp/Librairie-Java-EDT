@@ -153,9 +153,15 @@ class PlanningTest {
         }
 
         @Test
-        void test_getPlanningOf_PlanningFiltreur() {
+        void test_getPlanningOf_PlanningFiltreur_parDate() {
                 assertEquals(cours4, planning.getPlanningOf(PlanningFiltreur.filtrer().par(cours4.getDate())).iterator()
                                 .next());
+        }
+
+        @Test
+        void test_getPlanningOf_PlanningFiltreur_parGroupe() {
+                assertEquals(cours2, planning.getPlanningOf(PlanningFiltreur.filtrer().par(cours2.getGroupes()))
+                                .iterator().next());
         }
 
 }

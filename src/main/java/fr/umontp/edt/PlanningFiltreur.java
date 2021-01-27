@@ -24,9 +24,12 @@ import java.time.LocalDate;
  * @version 1.2.0
  */
 public class PlanningFiltreur {
-    private LocalDate[] dates = null;
+    private LocalDate[] dates;
+    private Groupe[] groupes;
 
     private PlanningFiltreur() {
+        dates = null;
+        groupes = null;
     }
 
     /**
@@ -44,8 +47,27 @@ public class PlanningFiltreur {
         return new PlanningFiltreur();
     }
 
+    /**
+     * Ajoute un filtrage par un ou plusieurs date.
+     * 
+     * @param dates qui doivent filtrer le planning
+     * 
+     * @see LocalDate
+     */
     public PlanningFiltreur par(LocalDate... dates) {
         this.dates = dates;
+        return this;
+    }
+
+    /**
+     * Ajoute un filtrage par un ou plusieurs groupe.
+     * 
+     * @param groupes qui doivent filtrer le planning
+     * 
+     * @see Groupe
+     */
+    public PlanningFiltreur par(Groupe... groupes) {
+        this.groupes = groupes;
         return this;
     }
 
@@ -58,12 +80,13 @@ public class PlanningFiltreur {
         return dates;
     }
 
-	public PlanningFiltreur par(Groupe s1) {
-		return null;
-	}
-
-	public Object[] getGroupes() {
-		return null;
-	}
+    /**
+     * @return {@code LocalDate[]} tableau des groupes
+     * 
+     * @see Groupe
+     */
+    public Groupe[] getGroupes() {
+        return groupes;
+    }
 
 }

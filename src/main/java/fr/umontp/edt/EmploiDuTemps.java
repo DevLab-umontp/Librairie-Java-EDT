@@ -34,7 +34,7 @@ import net.fortuna.ical4j.model.Component;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.2.0
  */
 @Deprecated(forRemoval = false)
 public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
@@ -191,5 +191,20 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     @Override
     public Planning getPlanningOf(Professeur... professeurs) {
         return planningEmploisDuTemps.getPlanningOf(professeurs);
+    }
+
+    /**
+     * Permet d'obtenir le planning correspondant au {@link PlanningFiltreur}
+     *
+     * @param planningFiltreur filtrant le planning
+     * @return planning correspondant au filtre
+     * @since 1.2.0
+     * 
+     * @see PlanningFiltreur
+     * @see Planning
+     */
+    @Override
+    public Planning getPlanningOf(PlanningFiltreur planningFiltreur) {
+        return planningEmploisDuTemps.getPlanningOf(planningFiltreur);
     }
 }

@@ -58,4 +58,12 @@ public class PlanningFiltreur {
         return dates;
     }
 
+	public PlanningFiltreur par(Groupe s1) {
+		return null;
+	}
+
+	public Object[] getGroupes() {
+		return null;
+	}
+
 }

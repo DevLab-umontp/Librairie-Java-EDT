@@ -24,4 +24,10 @@ class PlanningFiltreurTest {
         assertArrayEquals(excepted, planningFiltreur.getDates());
     }
 
+    @Test
+    void test_PlanningFiltreur_par_groupe() {
+        PlanningFiltreur planningFiltreur = PlanningFiltreur.filtrer().par(Groupe.S1);
+        assertEquals(Groupe.S1, planningFiltreur.getGroupes()[0]);
+    }
+
 }

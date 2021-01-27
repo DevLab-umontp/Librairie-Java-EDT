@@ -21,7 +21,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
  *
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.3.0
+ * @version 1.4.0
  * @see Iterable
  * @see Planifiable
  * @see Cours
@@ -119,6 +119,16 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return result;
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant au {@link PlanningFiltreur}
+     *
+     * @param planningFiltreur filtrant le planning
+     * @return planning correspondant au filtre
+     * @since 1.4.0
+     * 
+     * @see PlanningFiltreur
+     * @see Planning
+     */
     public Planning getPlanningOf(PlanningFiltreur planningFiltreur) {
         Planning result = new Planning(cours);
         if (planningFiltreur.getDates() != null)

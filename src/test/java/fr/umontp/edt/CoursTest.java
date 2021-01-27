@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -88,6 +89,12 @@ class CoursTest {
                                         new Professeur("CHIROUZE   ANNE") };
                         Cours cours = new Cours(component);
                         assertArrayEquals(expected, cours.getProfesseurs());
+                }
+
+                @Test
+                void test_constructeur_VEvent_methode_estEnseignePar_doitRetournerTrue() {
+                        Cours cours = new Cours(component);
+                        assertTrue(cours.estEnseignePar(RepertoireProfesseur.get("LA", "Xuan-Hoang")));
                 }
 
                 @Test

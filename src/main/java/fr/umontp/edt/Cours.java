@@ -29,7 +29,7 @@ import net.fortuna.ical4j.model.Property;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Cours implements Comparable<Cours> {
     private LocalDate date;
@@ -89,6 +89,20 @@ public class Cours implements Comparable<Cours> {
         professeurs = RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description.getValue());
         groupes = Groupe.getGroupeDepuisTexte(description.getValue());
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
+    }
+
+    /**
+     * Permet de vérfier si un professeur est assigné à ce cours.
+     * 
+     * @param professeur dont on veut vérier s'il est assigné au cour.
+     * @return {@code true} si le professeur est assigne à ce cours, sinon {@code false}.
+     * 
+     * @see Cours#professeurs
+     * 
+     * @since 1.1.0
+     */
+    public boolean estEnseignePar(Professeur professeur) {
+        return false;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.IdentityHashMap;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.1.0
  * @see EmploiDuTemps
  * @see InterfaceEmploiDuTemps
  */
@@ -22,6 +22,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     @SuppressWarnings("deprecation")
     private EmploiDuTemps emploiDuTemps;
     private EnumMap<Groupe, Planning> cacheGroupe;
+    private IdentityHashMap<Professeur, Planning> cacheProfesseur;
     private HashMap<LocalDate, Planning> cacheDate;
     private HashMap<MultiKey<LocalDate, Groupe>, Planning> cacheDateGroupe;
 
@@ -101,7 +102,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      *
      * @param professeur professeur dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.1
+     * @since 1.1.0
      * 
      * @see Groupe
      * @see Planning
@@ -109,7 +110,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     @SuppressWarnings("deprecation")
     @Override
     public Planning getPlanningOf(Professeur professeur) {
-        return null;
+        return cacheProfesseur.computeIfAbsent(professeur, k -> emploiDuTemps.getPlanningOf(k));
     }
 
     /**
@@ -119,6 +120,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     @Override
     public void actualiser() {
         cacheDate = new HashMap<>();
+        cacheProfesseur = new IdentityHashMap<>();
         cacheGroupe = new EnumMap<>(Groupe.class);
         cacheDateGroupe = new HashMap<>();
         emploiDuTemps.actualiser();

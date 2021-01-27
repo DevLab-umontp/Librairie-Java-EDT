@@ -25,14 +25,18 @@ class PlanningTest {
 
         private ArrayList<Cours> coursEnsemble;
 
-        private Cours cours1 = new Cours(LocalDate.of(2021, 1, 20), new Professeur[] { new Professeur("prof   prof") },
-                        LocalTime.of(13, 30), LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1");
-        private Cours cours2 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
-                        LocalTime.of(14, 30), LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta2");
-        private Cours cours3 = new Cours(LocalDate.of(2021, 1, 21), new Professeur[] { new Professeur("prof   prof") },
-                        LocalTime.of(13, 30), LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S2 }, "Compta3");
-        private Cours cours4 = new Cours(LocalDate.of(2021, 1, 22), new Professeur[] { new Professeur("prof   prof") },
-                        LocalTime.of(11, 30), LocalTime.of(12, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta4");
+        private Cours cours1 = new Cours(LocalDate.of(2021, 1, 20),
+                        new Professeur[] { new Professeur("Dupuis   Jean") }, LocalTime.of(13, 30),
+                        LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta1");
+        private Cours cours2 = new Cours(LocalDate.of(2021, 1, 21),
+                        new Professeur[] { new Professeur("Lemaire   Marie") }, LocalTime.of(14, 30),
+                        LocalTime.of(15, 30), "K133", new Groupe[] { Groupe.S3 }, "Compta2");
+        private Cours cours3 = new Cours(LocalDate.of(2021, 1, 21),
+                        new Professeur[] { new Professeur("Roule   Mathieu") }, LocalTime.of(13, 30),
+                        LocalTime.of(14, 30), "K133", new Groupe[] { Groupe.S2 }, "Compta3");
+        private Cours cours4 = new Cours(LocalDate.of(2021, 1, 22),
+                        new Professeur[] { new Professeur("Lebouche   Alice") }, LocalTime.of(11, 30),
+                        LocalTime.of(12, 30), "K133", new Groupe[] { Groupe.S1 }, "Compta4");
 
         @BeforeEach
         void initPlanning() {
@@ -93,7 +97,14 @@ class PlanningTest {
         }
 
         @Test
-        void test_getPlanningOf_groupe_doitRetournerPlusieursGroupe() {
+        void test_getPlanningOf_groupe_viaComponentCalendar_doitRetournerPlusieursGroupe() {
+                Planning planning = createPlanningViaComponent();
+
+                assertTrue(planning.getPlanningOf(Groupe.A1).iterator().hasNext());
+                assertTrue(planning.getPlanningOf(Groupe.A2).iterator().hasNext());
+        }
+
+        private Planning createPlanningViaComponent() {
                 Component component;
                 DateTime startTime, endTime;
                 try {
@@ -106,15 +117,20 @@ class PlanningTest {
                 }
                 component = new VEvent(startTime, endTime, "intitule");
                 component.getProperties().add(new Description(
-                                "\n\nA2-Semestre-3 A1\nBELMECHERI   NASSIM\nHAETTEL   THOMAS\nLA   XUAN HOANG\nCHIROUZE   ANNE\nA valider\n(Exporté le:18/01/2021 10:51)\n"));
+                                "\n\nA2-Semestre-3 A1\nBELMECHERI   NASSIM\nHAETTEL   THOMAS\nLebouche   Alice\nLA   XUAN HOANG\nCHIROUZE   ANNE\nA valider\n(Exporté le:18/01/2021 10:51)\n"));
                 component.getProperties().add(new Location("K133"));
                 Cours cours = new Cours(component);
                 ArrayList<Cours> coursList = new ArrayList<>();
                 coursList.add(cours);
                 Planning planning = new Planning(coursList);
+                return planning;
+        }
 
-                assertTrue(planning.getPlanningOf(Groupe.A1).iterator().hasNext());
-                assertTrue(planning.getPlanningOf(Groupe.A2).iterator().hasNext());
+        @Test
+        void test_getPlanningOf_professeur_retournUnCours() {
+                Planning planning = createPlanningViaComponent();
+                Planning planningAlice = planning.getPlanningOf(RepertoireProfesseur.get("LEBOUCHE", "Alice"));
+                assertTrue(planningAlice.iterator().hasNext());
         }
 
 }

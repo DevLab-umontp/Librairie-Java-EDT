@@ -128,4 +128,9 @@ public class Planning implements Iterable<Cours>, Planifiable {
     Collection<Cours> getCours() {
         return cours;
     }
+
+    @Override
+    public Planning getPlanningOf(Professeur professeur) {
+        return null;
+    }
 }

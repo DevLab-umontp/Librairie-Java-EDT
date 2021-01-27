@@ -125,6 +125,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
             result = result.getPlanningOf(planningFiltreur.getDates());
         if (planningFiltreur.getGroupes() != null)
             result = result.getPlanningOf(planningFiltreur.getGroupes());
+        if (planningFiltreur.getProfesseurs() != null)
+            result = result.getPlanningOf(planningFiltreur.getProfesseurs());
         return result;
     }
 

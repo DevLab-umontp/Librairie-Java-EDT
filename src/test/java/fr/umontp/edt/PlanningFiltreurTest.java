@@ -69,6 +69,13 @@ class PlanningFiltreurTest {
     }
 
     @Test
+    void test_HashCode_contenueIdentiqueEtOrdreGroupeDifferent() {
+        PlanningFiltreur planningFiltreur1 = PlanningFiltreur.filtrer().par(Groupe.A1, Groupe.S2).par(LocalDate.now());
+        PlanningFiltreur planningFiltreur2 = PlanningFiltreur.filtrer().par(Groupe.S2, Groupe.A1).par(LocalDate.now());
+        assertEquals(planningFiltreur1.hashCode(), planningFiltreur2.hashCode());
+    }
+
+    @Test
     void test_Equals_contenueIdentiqueEtOrdreProfesseurDifferent() {
         Professeur professeur1 = new Professeur("Dupuis   Jean");
         Professeur professeur2 = new Professeur("Dupres   Michel");

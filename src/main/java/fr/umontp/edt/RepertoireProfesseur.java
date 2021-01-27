@@ -18,7 +18,7 @@ public class RepertoireProfesseur {
      * @since 1.0
      */
     static Professeur[] getProfesseurDepuisDescriptionEtAjouterSiNonPresent(String description) {
-        String regex = "(?<=\\n)[^a-z]*   [^a-z]*(?=\\n)";
+        String regex = "(?<=\\n).*   .*(?=\\n)";
         Matcher m = Pattern.compile(regex).matcher(description);
         final List<Professeur> matches = new ArrayList<>();
         while (m.find()) {

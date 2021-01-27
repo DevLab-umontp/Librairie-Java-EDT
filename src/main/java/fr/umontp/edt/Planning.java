@@ -10,6 +10,8 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
+
 /**
  * <b>Planning est la classe représentant un planning de {@link Cours} de
  * l'empois du temps de l'université.</b>
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
  *
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.2.0
+ * @version 1.3.0
  * @see Iterable
  * @see Planifiable
  * @see Cours
@@ -48,21 +50,24 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @param date date pour laquelle on veut obtenir le planning
      * @return {@code Planning} correspondant
      * @see Planning
-     * @since 1.0
+     * @since 1.3.0
      */
     @Override
     public Planning getPlanningOf(LocalDate... dates) {
+        SortedSet<LocalDate> sortedDates = new TreeSet<LocalDate>(Arrays.asList(dates));
         ArrayList<Cours> result = new ArrayList<>();
         LocalDate lastDate = cours.last().getDate();
-        if (!lastDate.isBefore(date)) {
-            for (Cours c : cours) {
-                int compare = c.getDate().compareTo(date);
-                if (compare < 0)
-                    continue;
-                if (compare == 0)
-                    result.add(c);
-                else
-                    return new Planning(result);
+        if (!lastDate.isBefore(sortedDates.first())) {
+            Iterator<Cours> iteratorCours = cours.iterator();
+            for (LocalDate date : sortedDates) {
+                if (!lastDate.isBefore(date) && iteratorCours.hasNext()) {
+                    Cours c;
+                    do {
+                        c = iteratorCours.next();
+                        if (c.getDate().isEqual(date))
+                            result.add(c);
+                    } while (iteratorCours.hasNext() && !c.getDate().isAfter(date));
+                }
             }
         }
         return new Planning(result);

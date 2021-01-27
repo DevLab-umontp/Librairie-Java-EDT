@@ -126,7 +126,12 @@ public class PlanningFiltreur {
         final int prime = 31;
         int result = 1;
         result = prime * result + Arrays.hashCode(dates);
-        result = prime * result + Arrays.hashCode(groupes);
+        if (groupes != null) {
+            List<Groupe> lGroupes = Arrays.asList(groupes);
+            lGroupes.sort(comparing(Groupe::getIntitule));
+            result = prime * result + lGroupes.hashCode();
+        } else
+            result = prime * result + Arrays.hashCode(professeurs);
         if (professeurs != null) {
             List<Professeur> lProfesseurs = Arrays.asList(professeurs);
             lProfesseurs.sort(comparing(Professeur::hashCode));

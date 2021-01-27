@@ -2,24 +2,36 @@ package fr.umontp.edt;
 
 import java.util.Locale;
 
+/**
+ * <b>Professeur est la classe représentant un professeur au sein de l'emploi du
+ * temps.</b>
+ * Un professeur est caractérisé par les informations suivantes :
+ * <ul>
+ * <li>Une dénomination (dénomination utilisé dans la description d'un
+ * cours).</li>
+ * <li>Un nom.</li>
+ * <li>Un pénom.</li>
+ * </ul>
+ * <p>
+ * Pour pouvoir instancier une Professeur il est conseillé de passé par la class
+ * {@link RepertoireProfesseur}.
+ * </p>
+ * 
+ * @see RepertoireProfesseur
+ * 
+ * @author MathieuSoysal
+ * @version 1.0.0
+ */
 public class Professeur {
     private String denomination;
     private String nom;
     private String prenom;
 
     /**
-     * @param nom
-     * @param prenom
-     */
-    public Professeur(String nom, String prenom) {
-        init(nom, prenom);
-    }
-
-    /**
-     * Ce constructeur est essentiellement utilisé pour récupérer un professeur
-     * depuis un evenement de l'enmploi du temps
+     * Ce constructeur est essentiellement utilisé pour instancier un professeur
+     * depuis un evenement de l'emploi du temps.
      * 
-     * @param nomPrenom {@code String} contenant le prenom et le nom du professeur
+     * @param nomPrenom {@code String} contenant le nom et le prenom du professeur.
      */
     Professeur(String nomPrenom) {
         String[] infosProf = nomPrenom.split("   ");

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  *
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.2.0
  * @see Iterable
  * @see Planifiable
  * @see Cours
@@ -84,18 +84,21 @@ public class Planning implements Iterable<Cours>, Planifiable {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à un groupe
+     * Permet d'obtenir le planning correspondant à un groupe ou plusieurs groupe.
      *
-     * @param groupe groupe dont on veut obtenir le planning
+     * @param groupes groupes dont on veut obtenir le planning
      * @return planning correspondant
      * @see Groupe
      * @see Planning
-     * @since 1.0
+     * @since 1.2.0
      */
     @Override
-    public Planning getPlanningOf(Groupe groupe) {
-        return new Planning(
-                cours.stream().filter(c -> groupe.estContenuDans(c.getGroupes())).collect(Collectors.toList()));
+    public Planning getPlanningOf(Groupe... groupes) {
+        Planning result = new Planning();
+        for (Groupe groupe : groupes)
+            result.cours.addAll(
+                    this.cours.stream().filter(c -> groupe.estContenuDans(c.getGroupes())).collect(Collectors.toSet()));
+        return result;
     }
 
     /**
@@ -113,7 +116,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
     public Planning getPlanningOf(Professeur... professeurs) {
         Planning result = new Planning();
         for (Professeur professeur : professeurs)
-            result.cours.addAll(this.cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toSet()));
+            result.cours
+                    .addAll(this.cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toSet()));
         return result;
     }
 
@@ -152,7 +156,4 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return cours;
     }
 
-	public Planning getPlanningOf(Groupe s3, Groupe s2) {
-		return null;
-	}
 }

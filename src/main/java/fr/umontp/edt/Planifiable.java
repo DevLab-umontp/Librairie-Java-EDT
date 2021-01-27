@@ -45,7 +45,7 @@ interface Planifiable {
      * @see Groupe
      * @see Planning
      */
-    public Planning getPlanningOf(Groupe groupe);
+    public Planning getPlanningOf(Groupe... groupes);
 
     /**
      * Permet d'obtenir le planning correspondant à un professeur

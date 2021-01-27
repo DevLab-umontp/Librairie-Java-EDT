@@ -9,7 +9,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class EmploiDuTempsProxyTest {
-
+    // Attention les tests de cette classe ne peuvent être executé que dans un
+    // environement stable comme le runner Github Actions
     private EmploiDuTempsProxy emploiDuTempsProxy;
 
     @AfterEach
@@ -228,6 +229,48 @@ class EmploiDuTempsProxyTest {
                 RepertoireProfesseur.get("Palleja", "Nathalie"), RepertoireProfesseur.get("Molnar", "Miklos"),
                 RepertoireProfesseur.get("Delebarre", "Justine"), RepertoireProfesseur.get("Nabitz", "Sophie"),
                 RepertoireProfesseur.get("Poupet", "Victor"), RepertoireProfesseur.get("Coletta", "Rémi"));
+        return System.currentTimeMillis() - startTime;
+    }
+
+    @Test
+    void test_getPlanningOf_ProfesseurAvecPlanningFiltreur_plusRapide() {
+        emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
+
+        long tempsExecution1 = rapiditeGetPlanningOfProfesseurAvecPlanningFiltreur();
+        long tempsExecution2 = rapiditeGetPlanningOfProfesseurAvecPlanningFiltreur();
+
+        assertTrue(tempsExecution1 > tempsExecution2);
+    }
+
+    private long rapiditeGetPlanningOfProfesseurAvecPlanningFiltreur() {
+        long startTime = System.currentTimeMillis();
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Marie-Jeanne", "Alain")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Valicov", "Petru")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Bougeret", "Marin")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Garcia", "Francis")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Lazaar", "Nadjib")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("lebreton", "romain")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("messaoui", "anita")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Gouaich", "Abdelkader")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Chollet", "Antoine")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Ouherrou", "Nihal")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Rosenfeld", "Matthieu")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Chirouze", "Anne")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Weber", "Marie-Laure")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Palleja", "Nathalie")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Molnar", "Miklos")));
+        emploiDuTempsProxy
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Delebarre", "Justine")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Nabitz", "Sophie")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Poupet", "Victor")));
+        emploiDuTempsProxy.getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Coletta", "Rémi")));
         return System.currentTimeMillis() - startTime;
     }
 

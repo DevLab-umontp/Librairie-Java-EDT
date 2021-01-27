@@ -150,4 +150,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
     Collection<Cours> getCours() {
         return cours;
     }
+
+	public Planning getPlanningOf(Groupe s3, Groupe s2) {
+		return null;
+	}
 }

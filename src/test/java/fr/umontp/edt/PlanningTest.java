@@ -60,6 +60,12 @@ class PlanningTest {
         }
 
         @Test
+        void test_getPlanningOf_plusieursGroupe_simpleGroupe() {
+                Planning planningS3S2 = planning.getPlanningOf(Groupe.S3, Groupe.S2);
+                assertEquals(2, planningS3S2.getCours().size());
+        }
+
+        @Test
         void test_getPlanningOf_groupe_groupeCompose() {
                 Planning planningA1 = planning.getPlanningOf(Groupe.A1);
                 assertEquals(0, planningA1.getCours().size());

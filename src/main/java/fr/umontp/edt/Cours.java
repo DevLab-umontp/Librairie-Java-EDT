@@ -120,12 +120,16 @@ public class Cours implements Comparable<Cours> {
         result = Integer.compare(duree, o.duree);
         if (result != 0)
             return result;
-        for (Groupe groupe : groupes)
-            for (Groupe autreGroupe : o.groupes) {
-                result = groupe.getIntitule().compareTo(autreGroupe.getIntitule());
+        result = Integer.compare(groupes.length, o.groupes.length);
+        if (result != 0)
+            return result;
+        for (int i = 0; i < groupes.length; i++) {
+            if (groupes[i] != o.groupes[i]) {
+                result = groupes[i].getIntitule().compareTo(o.groupes[i].getIntitule());
                 if (result != 0)
                     return result;
             }
+        }
         return intitule.compareTo(o.intitule);
     }
 

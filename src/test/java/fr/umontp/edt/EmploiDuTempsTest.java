@@ -63,4 +63,20 @@ class EmploiDuTempsTest {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertTrue(emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain")).iterator().hasNext());
     }
+
+    @Test
+    void test_getPlanningOf_PlanningFiltreurParProfesseur_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Marie-jeanne", "Alain")))
+                .iterator().hasNext());
+    }
+
+    @Test
+    void test_getPlanningOf_PlanningFiltreurParProfesseur_verifierRetournePasDeListeVide() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertTrue(emploiDuTemps
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Marie-jeanne", "Alain")))
+                .iterator().hasNext());
+    }
 }

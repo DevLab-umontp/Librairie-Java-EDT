@@ -38,34 +38,6 @@ public class Planning implements Iterable<Cours>, Planifiable {
         this.cours = new TreeSet(cours);
     }
 
-    @Override
-    public Iterator<Cours> iterator() {
-        return cours.iterator();
-    }
-
-    @Override
-    public void forEach(Consumer action) {
-        cours.forEach(action);
-    }
-
-    @Override
-    public Spliterator<Cours> spliterator() {
-        return cours.spliterator();
-    }
-
-    @Override
-    public String toString() {
-        String res = "EDT :\n\n";
-        if (cours.isEmpty()) {
-            res += "Aucun cours";
-        } else {
-            for (Cours c : cours) {
-                res += c.toString() + "\n\n";
-            }
-        }
-        return res;
-    }
-
     /**
      * Permet d'obtenir le planning correspondant à une date
      *
@@ -120,6 +92,34 @@ public class Planning implements Iterable<Cours>, Planifiable {
     public Planning getPlanningOf(Groupe groupe) {
         return new Planning(
                 cours.stream().filter(c -> groupe.estContenuDans(c.getGroupes())).collect(Collectors.toList()));
+    }
+
+    @Override
+    public Iterator<Cours> iterator() {
+        return cours.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer action) {
+        cours.forEach(action);
+    }
+
+    @Override
+    public Spliterator<Cours> spliterator() {
+        return cours.spliterator();
+    }
+
+    @Override
+    public String toString() {
+        String res = "EDT :\n\n";
+        if (cours.isEmpty()) {
+            res += "Aucun cours";
+        } else {
+            for (Cours c : cours) {
+                res += c.toString() + "\n\n";
+            }
+        }
+        return res;
     }
 
     /**

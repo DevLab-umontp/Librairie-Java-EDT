@@ -15,7 +15,7 @@ import java.util.IdentityHashMap;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.3.0
+ * @version 1.4.0
  * @see EmploiDuTemps
  * @see InterfaceEmploiDuTemps
  */
@@ -26,12 +26,27 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private EnumMap<Groupe, Planning> cacheGroupe;
     private IdentityHashMap<Professeur, Planning> cacheProfesseur;
     private HashMap<LocalDate, Planning> cacheDate;
+    private HashMap<PlanningFiltreur, Planning> cachePlanningFiltreur;
     private HashMap<MultiKey<LocalDate, Groupe>, Planning> cacheDateGroupe;
 
     @SuppressWarnings("deprecation")
     private EmploiDuTempsProxy() {
         emploiDuTemps = EmploiDuTemps.getInstance();
         actualiser();
+    }
+
+    /**
+     * Permet d'actualiser l'emploi du temps avec celui de l'ent.
+     */
+    @SuppressWarnings("deprecation")
+    @Override
+    public void actualiser() {
+        cacheDate = new HashMap<>();
+        cacheProfesseur = new IdentityHashMap<>();
+        cacheGroupe = new EnumMap<>(Groupe.class);
+        cacheDateGroupe = new HashMap<>();
+        cachePlanningFiltreur = new HashMap<>();
+        emploiDuTemps.actualiser();
     }
 
     /**
@@ -124,16 +139,20 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'actualiser l'emploi du temps avec celui de l'ent.
+     * Permet d'obtenir le planning correspondant au {@link PlanningFiltreur}
+     *
+     * @param planningFiltreur filtrant le planning
+     * @return planning correspondant au filtre
+     * @since 1.4.0
+     * 
+     * @see PlanningFiltreur
+     * @see Planning
      */
     @SuppressWarnings("deprecation")
     @Override
-    public void actualiser() {
-        cacheDate = new HashMap<>();
-        cacheProfesseur = new IdentityHashMap<>();
-        cacheGroupe = new EnumMap<>(Groupe.class);
-        cacheDateGroupe = new HashMap<>();
-        emploiDuTemps.actualiser();
+    public Planning getPlanningOf(PlanningFiltreur planningFiltreur) {
+        return cachePlanningFiltreur.computeIfAbsent(planningFiltreur,
+                k -> emploiDuTemps.getPlanningOf(planningFiltreur));
     }
 
     /**

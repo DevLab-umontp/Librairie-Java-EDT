@@ -94,6 +94,21 @@ public class Planning implements Iterable<Cours>, Planifiable {
                 cours.stream().filter(c -> groupe.estContenuDans(c.getGroupes())).collect(Collectors.toList()));
     }
 
+    /**
+     * Permet d'obtenir le planning correspondant à un professeur
+     *
+     * @param professeur professeur dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.1
+     * 
+     * @see Groupe
+     * @see Planning
+     */
+    @Override
+    public Planning getPlanningOf(Professeur professeur) {
+        return new Planning(cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toList()));
+    }
+
     @Override
     public Iterator<Cours> iterator() {
         return cours.iterator();
@@ -129,18 +144,4 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return cours;
     }
 
-    /**
-     * Permet d'obtenir le planning correspondant à un professeur
-     *
-     * @param professeur professeur dont on veut obtenir le planning
-     * @return planning correspondant
-     * @since 1.1
-     * 
-     * @see Groupe
-     * @see Planning
-     */
-    @Override
-    public Planning getPlanningOf(Professeur professeur) {
-        return new Planning(cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toList()));
-    }
 }

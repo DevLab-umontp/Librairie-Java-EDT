@@ -2,6 +2,7 @@ package fr.umontp.edt;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <b>PlanningFiltreur est la classe représentant un filtrage pour un
@@ -145,11 +146,16 @@ public class PlanningFiltreur {
         PlanningFiltreur other = (PlanningFiltreur) obj;
         if (!Arrays.equals(dates, other.dates))
             return false;
-        if (!Arrays.equals(groupes, other.groupes))
-            return false;
-        if (!Arrays.equals(professeurs, other.professeurs))
-            return false;
-        return true;
+        if (!Arrays.equals(groupes, other.groupes)) {
+            if (groupes.length == other.groupes.length) {
+                List<Groupe> listGroupes = Arrays.asList(groupes);
+                List<Groupe> listOtherGroupes = Arrays.asList(other.groupes);
+                if (!(listGroupes.containsAll(listOtherGroupes) && listOtherGroupes.containsAll(listGroupes)))
+                    return false;
+            } else
+                return false;
+        }
+        return Arrays.equals(professeurs, other.professeurs);
     }
 
 }

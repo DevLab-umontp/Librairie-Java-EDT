@@ -22,6 +22,12 @@ class EmploiDuTempsTest {
     }
 
     @Test
+    void test_getPlanningOf_plusieursDate_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(LocalDate.now(), LocalDate.now().plusDays(1)));
+    }
+
+    @Test
     void test_getPlanningOf_groupe_verifierRetourneAucuneErreur() {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertAll(() -> emploiDuTemps.getPlanningOf(Groupe.A1));

@@ -179,4 +179,8 @@ public class Planning implements Iterable<Cours>, Planifiable {
         return result;
     }
 
+	public Planning getPlanningOf(PlanningFiltreur par) {
+		return null;
+	}
+
 }

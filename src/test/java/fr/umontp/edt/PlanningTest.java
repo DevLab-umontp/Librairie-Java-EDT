@@ -49,6 +49,12 @@ class PlanningTest {
         }
 
         @Test
+        void test_getPlanningOf_PlanningFiltreur() {
+                assertEquals(cours4, planning.getPlanningOf(PlanningFiltreur.filtrer().par(cours4.getDate())).iterator()
+                                .next());
+        }
+
+        @Test
         void test_getPlanningOf_date() {
                 assertEquals(cours4, planning.getPlanningOf(cours4.getDate()).iterator().next());
         }

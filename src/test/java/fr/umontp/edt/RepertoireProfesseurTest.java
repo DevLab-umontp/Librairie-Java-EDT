@@ -30,4 +30,11 @@ class RepertoireProfesseurTest {
         Professeur excepted = RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description)[0];
         assertSame(excepted, RepertoireProfesseur.get("Dupuis", "JEAN-JEAN"));
     }
+
+    @Test
+    void test_get_avecDescriptionContenantDesCaracteresSpeciaux() {
+        String description = "\n\nA2-Semestre-3\nDUPÛIS   JEAN-JEAN\nA valider\n(Exporté le:18/01/2021 10:51)\n";
+        Professeur excepted = RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description)[0];
+        assertSame(excepted, RepertoireProfesseur.get("Dupûis", "JEAN-JEAN"));
+    }
 }

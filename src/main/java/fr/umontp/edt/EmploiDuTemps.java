@@ -164,18 +164,17 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à un groupe
+     * Permet d'obtenir le planning correspondant à un groupe ou plusieurs groupe.
      *
-     * @param groupe groupe dont on veut obtenir le planning
+     * @param groupes groupes dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.0
-     * 
      * @see Groupe
      * @see Planning
+     * @since 1.2.0
      */
     @Override
-    public Planning getPlanningOf(Groupe groupe) {
-        return planningEmploisDuTemps.getPlanningOf(groupe);
+    public Planning getPlanningOf(Groupe... groupes) {
+        return planningEmploisDuTemps.getPlanningOf(groupes);
     }
 
     /**

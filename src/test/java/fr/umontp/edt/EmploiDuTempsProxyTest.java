@@ -138,8 +138,6 @@ class EmploiDuTempsProxyTest {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
 
         long tempsExecution1 = rapiditeGetPlanningOfProfesseur();
-        emploiDuTempsProxy.actualiser();
-        rapiditeGetPlanningOfDate();
         long tempsExecution2 = rapiditeGetPlanningOfProfesseur();
 
         assertTrue(tempsExecution1 > tempsExecution2);
@@ -174,8 +172,6 @@ class EmploiDuTempsProxyTest {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
 
         long tempsExecution1 = rapiditeGetPlanningOfProfesseur();
-        emploiDuTempsProxy.actualiser();
-        rapiditeGetPlanningOfDate();
         long tempsExecution2 = rapiditeGetPlanningOfProfesseurBrut();
 
         assertTrue(tempsExecution1 > tempsExecution2);

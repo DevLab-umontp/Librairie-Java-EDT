@@ -28,6 +28,12 @@ class EmploiDuTempsTest {
     }
 
     @Test
+    void test_getPlanningOf_plusieursGroupes_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(Groupe.S4, Groupe.S2));
+    }
+
+    @Test
     void test_getPlanningOf_groupe_verifierRetournePasDeListeVide() {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertTrue(emploiDuTemps.getPlanningOf(Groupe.A1).iterator().hasNext());

@@ -88,6 +88,23 @@ class EmploiDuTempsProxyTest {
     }
 
     @Test
+    void test_getPlanningOf_Groupe_plusRapideInteligent() {
+        emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
+
+        long tempsExecution1 = rapiditeGetPlanningOfGroupe();
+        long tempsExecution2 = rapiditeGetPlanningOfGroupeBrut();
+
+        assertTrue(tempsExecution1 > tempsExecution2);
+    }
+
+    private long rapiditeGetPlanningOfGroupeBrut() {
+        long startTime = System.currentTimeMillis();
+        emploiDuTempsProxy.getPlanningOf(Groupe.S1, Groupe.S2, Groupe.S3, Groupe.S4, Groupe.A1, Groupe.Q1, Groupe.Q2,
+                Groupe.Q3, Groupe.Q4, Groupe.G1, Groupe.G2, Groupe.G3, Groupe.G4, Groupe.A2);
+        return System.currentTimeMillis() - startTime;
+    }
+
+    @Test
     void test_getPlanningOf_DateGroupe_plusRapide() {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
 

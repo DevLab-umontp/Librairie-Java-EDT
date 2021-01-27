@@ -134,13 +134,12 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à une date
+     * Permet d'obtenir le planning correspondant à une date ou plusieurs dates.
      *
-     * @param date date pour laquelle on veut obtenir le planning
+     * @param dates dates pour lesquelles on veut obtenir le planning.
      * @return {@code Planning} correspondant
-     * @since 1.0
-     * 
      * @see Planning
+     * @see Planning#getPlanningOf(LocalDate...)
      */
     @Override
     public Planning getPlanningOf(LocalDate... dates) {
@@ -170,7 +169,7 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
      * @return planning correspondant
      * @see Groupe
      * @see Planning
-     * @since 1.2.0
+     * @see Planning#getPlanningOf(Groupe...)
      */
     @Override
     public Planning getPlanningOf(Groupe... groupes) {
@@ -185,8 +184,9 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
      * @return planning correspondant
      * @since 1.1
      * 
-     * @see Groupe
+     * @see Professeur
      * @see Planning
+     * @see Planning#getPlanningOf(Professeur...)
      */
     @Override
     public Planning getPlanningOf(Professeur... professeurs) {

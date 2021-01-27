@@ -109,7 +109,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      * @return planning correspondant
      * @since 1.1
      * 
-     * @see Groupe
+     * @see Professeur
      * @see Planning
      */
     @SuppressWarnings("deprecation")

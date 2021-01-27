@@ -107,7 +107,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @return planning correspondant
      * @since 1.2
      * 
-     * @see Groupe
+     * @see Professeur
      * @see Planning
      */
     @Override

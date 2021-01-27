@@ -8,7 +8,7 @@ import java.time.LocalDate;
  *
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.1
+ * @version 1.2.0
  */
 interface Planifiable {
     /**
@@ -36,14 +36,13 @@ interface Planifiable {
     public Planning getPlanningOf(LocalDate date, Groupe groupe);
 
     /**
-     * Permet d'obtenir le planning correspondant à un groupe
+     * Permet d'obtenir le planning correspondant à un groupe ou plusieurs groupe.
      *
-     * @param groupe groupe dont on veut obtenir le planning
+     * @param groupes groupes dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.0
-     * 
      * @see Groupe
      * @see Planning
+     * @since 1.2.0
      */
     public Planning getPlanningOf(Groupe... groupes);
 
@@ -52,7 +51,7 @@ interface Planifiable {
      *
      * @param professeur professeur dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.1
+     * @since 1.1.0
      * 
      * @see Groupe
      * @see Planning

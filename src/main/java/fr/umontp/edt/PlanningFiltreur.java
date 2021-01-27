@@ -89,4 +89,12 @@ public class PlanningFiltreur {
         return groupes;
     }
 
+    public PlanningFiltreur par(Professeur professeur) {
+        return null;
+    }
+
+    public Object[] getProfesseurs() {
+        return null;
+    }
+
 }

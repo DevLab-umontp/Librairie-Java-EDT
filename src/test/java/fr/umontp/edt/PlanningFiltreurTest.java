@@ -37,4 +37,11 @@ class PlanningFiltreurTest {
         assertArrayEquals(excepted, planningFiltreur.getGroupes());
     }
 
+    @Test
+    void test_PlanningFiltreur_par_Professeur() {
+        Professeur professeur = new Professeur("Duipuis   Jean");
+        PlanningFiltreur planningFiltreur = PlanningFiltreur.filtrer().par(professeur);
+        assertEquals(professeur, planningFiltreur.getProfesseurs()[0]);
+    }
+
 }

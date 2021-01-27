@@ -131,6 +131,6 @@ public class Planning implements Iterable<Cours>, Planifiable {
 
     @Override
     public Planning getPlanningOf(Professeur professeur) {
-        return null;
+        return new Planning(cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toList()));
     }
 }

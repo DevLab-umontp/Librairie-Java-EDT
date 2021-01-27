@@ -95,13 +95,17 @@ public class Cours implements Comparable<Cours> {
      * Permet de vérfier si un professeur est assigné à ce cours.
      * 
      * @param professeur dont on veut vérier s'il est assigné au cour.
-     * @return {@code true} si le professeur est assigne à ce cours, sinon {@code false}.
+     * @return {@code true} si le professeur est assigne à ce cours, sinon
+     *         {@code false}.
      * 
      * @see Cours#professeurs
      * 
      * @since 1.1.0
      */
     public boolean estEnseignePar(Professeur professeur) {
+        for (Professeur professeurAssigne : professeurs)
+            if (professeurAssigne == professeur)
+                return true;
         return false;
     }
 

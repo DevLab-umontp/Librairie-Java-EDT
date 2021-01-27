@@ -4,8 +4,7 @@ import java.util.Locale;
 
 /**
  * <b>Professeur est la classe représentant un professeur au sein de l'emploi du
- * temps.</b>
- * Un professeur est caractérisé par les informations suivantes :
+ * temps.</b> Un professeur est caractérisé par les informations suivantes :
  * <ul>
  * <li>Une dénomination (dénomination utilisé dans la description d'un
  * cours).</li>
@@ -35,12 +34,8 @@ public class Professeur {
      */
     Professeur(String nomPrenom) {
         String[] infosProf = nomPrenom.split("   ");
-        init(infosProf[0], infosProf[1]);
-    }
-
-    private void init(String nom, String prenom) {
-        this.nom = nom;
-        this.prenom = prenom;
+        nom = infosProf[0];
+        prenom = infosProf[1];
         denomination = formater(nom, prenom);
     }
 

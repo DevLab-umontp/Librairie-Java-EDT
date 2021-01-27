@@ -44,4 +44,14 @@ class PlanningFiltreurTest {
         assertEquals(professeur, planningFiltreur.getProfesseurs()[0]);
     }
 
+    @Test
+    void test_PlanningFiltreur_par_plusieursProfesseur() {
+        Professeur professeu1 = new Professeur("Duipuis   Jean");
+        Professeur professeur2 = new Professeur("Dupres   Annie");
+        Professeur professeur3 = new Professeur("Fanfonne   Juan");
+        PlanningFiltreur planningFiltreur = PlanningFiltreur.filtrer().par(professeu1, professeur2, professeur3);
+        Professeur[] excepted = { professeu1, professeur2, professeur3 };
+        assertArrayEquals(excepted, planningFiltreur.getProfesseurs());
+    }
+
 }

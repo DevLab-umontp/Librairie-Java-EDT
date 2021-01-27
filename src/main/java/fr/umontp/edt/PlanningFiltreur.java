@@ -1,5 +1,7 @@
 package fr.umontp.edt;
 
+import static java.util.Comparator.comparing;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -125,7 +127,12 @@ public class PlanningFiltreur {
         int result = 1;
         result = prime * result + Arrays.hashCode(dates);
         result = prime * result + Arrays.hashCode(groupes);
-        result = prime * result + Arrays.hashCode(professeurs);
+        if (professeurs != null) {
+            List<Professeur> lProfesseurs = Arrays.asList(professeurs);
+            lProfesseurs.sort(comparing(Professeur::hashCode));
+            result = prime * result + lProfesseurs.hashCode();
+        } else
+            result = prime * result + Arrays.hashCode(professeurs);
         return result;
     }
 
@@ -152,7 +159,8 @@ public class PlanningFiltreur {
             if (professeurs.length == other.professeurs.length) {
                 List<Professeur> listProfesseurs = Arrays.asList(professeurs);
                 List<Professeur> listOtherProflistProfesseurs = Arrays.asList(other.professeurs);
-                if (!(listProfesseurs.containsAll(listOtherProflistProfesseurs) && listOtherProflistProfesseurs.containsAll(listProfesseurs)))
+                if (!(listProfesseurs.containsAll(listOtherProflistProfesseurs)
+                        && listOtherProflistProfesseurs.containsAll(listProfesseurs)))
                     return false;
             } else
                 return false;

@@ -54,4 +54,11 @@ class PlanningFiltreurTest {
         assertArrayEquals(excepted, planningFiltreur.getProfesseurs());
     }
 
+    @Test
+    void test_Equals_contenueIdentiqueEtOrdreIdentique() {
+        PlanningFiltreur planningFiltreur1 = PlanningFiltreur.filtrer().par(Groupe.A1, Groupe.S2).par(LocalDate.now());
+        PlanningFiltreur planningFiltreur2 = PlanningFiltreur.filtrer().par(Groupe.A1, Groupe.S2).par(LocalDate.now());
+        assertEquals(planningFiltreur1, planningFiltreur2);
+    }
+
 }

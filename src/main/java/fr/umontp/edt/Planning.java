@@ -45,9 +45,9 @@ public class Planning implements Iterable<Cours>, Planifiable {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à une date
+     * Permet d'obtenir le planning correspondant à une date ou plusieurs dates.
      *
-     * @param date date pour laquelle on veut obtenir le planning
+     * @param dates dates pour lesquelles on veut obtenir le planning.
      * @return {@code Planning} correspondant
      * @see Planning
      * @since 1.3.0
@@ -60,14 +60,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
         if (!lastDate.isBefore(sortedDates.first())) {
             Iterator<Cours> iteratorCours = cours.iterator();
             for (LocalDate date : sortedDates) {
-                if (!lastDate.isBefore(date) && iteratorCours.hasNext()) {
-                    Cours c;
-                    do {
-                        c = iteratorCours.next();
-                        if (c.getDate().isEqual(date))
-                            result.add(c);
-                    } while (iteratorCours.hasNext() && !c.getDate().isAfter(date));
-                }
+                result.addAll(getCoursOf(date, iteratorCours));
             }
         }
         return new Planning(result);
@@ -159,6 +152,31 @@ public class Planning implements Iterable<Cours>, Planifiable {
      */
     Collection<Cours> getCours() {
         return cours;
+    }
+
+    /**
+     * Retourne les cours d'{@code iteratorCours} correspondant à la {@code date}
+     * donnée en paramètre.
+     * 
+     * @return {@code Collection<Cours>} correspondant
+     * 
+     * @param date          au quelle les cours doivent corespondre
+     * @param iteratorCours est liste au quelles les cours doivent être cherchés
+     * 
+     * @see Cours
+     */
+    private Collection<Cours> getCoursOf(final LocalDate date, Iterator<Cours> iteratorCours) {
+        final LocalDate lastDate = cours.last().getDate();
+        Collection<Cours> result = new ArrayList<>();
+        if (!lastDate.isBefore(date) && iteratorCours.hasNext()) {
+            Cours c;
+            do {
+                c = iteratorCours.next();
+                if (c.getDate().isEqual(date))
+                    result.add(c);
+            } while (iteratorCours.hasNext() && !c.getDate().isAfter(date));
+        }
+        return result;
     }
 
 }

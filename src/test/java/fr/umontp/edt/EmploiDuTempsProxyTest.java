@@ -59,6 +59,28 @@ class EmploiDuTempsProxyTest {
     }
 
     @Test
+    void test_getPlanningOf_plusieursDates_plusRapideInteligent() {
+        emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
+
+        long tempsExecution1 = rapiditeGetPlanningOfDate();
+        long tempsExecution2 = rapiditeGetPlanningOfDateBrut();
+
+        assertTrue(tempsExecution1 > tempsExecution2);
+    }
+
+    private long rapiditeGetPlanningOfDateBrut() {
+        long startTime = System.currentTimeMillis();
+        emploiDuTempsProxy.getPlanningOf(LocalDate.now(), LocalDate.now().plusDays(1), LocalDate.now().plusDays(2),
+                LocalDate.now().plusDays(3), LocalDate.now().plusDays(4), LocalDate.now().plusDays(5),
+                LocalDate.now().plusDays(6), LocalDate.now().plusDays(7), LocalDate.now().plusDays(8),
+                LocalDate.now().plusDays(9), LocalDate.now().plusDays(10), LocalDate.now().plusDays(11),
+                LocalDate.now().plusDays(12), LocalDate.now().plusDays(13), LocalDate.now().plusDays(14),
+                LocalDate.now().plusDays(15), LocalDate.now().plusDays(16), LocalDate.now().plusDays(17),
+                LocalDate.now().plusDays(18), LocalDate.now().plusDays(19));
+        return System.currentTimeMillis() - startTime;
+    }
+
+    @Test
     void test_getPlanningOf_Groupe_plusRapide() {
         emploiDuTempsProxy = EmploiDuTempsProxy.getInstance();
 

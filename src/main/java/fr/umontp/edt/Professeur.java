@@ -61,6 +61,13 @@ public class Professeur {
         return prenom;
     }
 
+    /**
+     * @return la denomination
+     */
+    String getDenomination() {
+        return denomination;
+    }
+
     /*
      * (non-Javadoc)
      * 

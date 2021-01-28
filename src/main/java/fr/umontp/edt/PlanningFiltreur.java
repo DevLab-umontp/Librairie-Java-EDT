@@ -35,6 +35,7 @@ public class PlanningFiltreur {
     private PlanningFiltreur() {
         dates = null;
         groupes = null;
+        professeurs = null;
     }
 
     /**
@@ -139,10 +140,10 @@ public class PlanningFiltreur {
             lGroupes.sort(comparing(Groupe::getIntitule));
             result = prime * result + lGroupes.hashCode();
         } else
-            result = prime * result + Arrays.hashCode(professeurs);
+            result = prime * result + Arrays.hashCode(groupes);
         if (professeurs != null) {
             List<Professeur> lProfesseurs = Arrays.asList(professeurs);
-            lProfesseurs.sort(comparing(Professeur::hashCode));
+            lProfesseurs.sort(comparing(Professeur::getDenomination));
             result = prime * result + lProfesseurs.hashCode();
         } else
             result = prime * result + Arrays.hashCode(professeurs);

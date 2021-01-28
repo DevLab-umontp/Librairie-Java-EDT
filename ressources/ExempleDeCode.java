@@ -40,7 +40,7 @@ class ExempleDeCode {
         Planning planningProfesseurs = emploiDuTempsProxy.getPlanningOf(prof1, prof2);
 
         // Récupérer un planning via le PlanningFiltreur pour faire des combinaisons entre professeur, groupe et date
-        PlanningFiltreur parPlusieursGroupesEtDates = PlanningFiltreur.filtrer()
+        PlanningFiltreur plusieursGroupesDatesEtProfesseurs = PlanningFiltreur.filtrer()
                 .par(Groupe.S2, Groupe.S3)
                 .par(LocalDate.now(), LocalDate.now().plusDays(1))
                 .par(prof1, prof2);

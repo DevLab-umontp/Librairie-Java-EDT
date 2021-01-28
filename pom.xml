@@ -10,7 +10,7 @@
 
   <name>emploi du temps IUT Montpellier</name>
   <description>Package Java permettant de récupérer l'emploi du temps des cours de l'IUT de Montpellier.</description>
-  <url>https://github.com/DevLab-umontp/API-JAVA-EDT</url>
+  <url>https://github.com/DevLab-umontp/Librairie-Java-EDT</url>
 
   <properties>
     <!-- base -->
@@ -78,13 +78,13 @@
 
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/DevLab-umontp/Librarie-Java-EDT/issues</url>
+    <url>https://github.com/DevLab-umontp/Librairie-Java-EDT/issues</url>
   </issueManagement>
 
   <scm>
-    <connection>scm:git:git://github.com/DevLab-umontp/API-JAVA-EDT.git</connection>
-    <developerConnection>scm:git:ssh://github.com:DevLab-umontp/API-JAVA-EDT.git</developerConnection>
-    <url>http://github.com/DevLab-umontp/API-JAVA-EDT</url>
+    <connection>scm:git:git://github.com/DevLab-umontp/Librairie-Java-EDT.git</connection>
+    <developerConnection>scm:git:ssh://github.com:DevLab-umontp/Librairie-Java-EDT.git</developerConnection>
+    <url>http://github.com/DevLab-umontp/Librairie-Java-EDT</url>
   </scm>
 
 
@@ -182,7 +182,7 @@
         <repository>
           <id>github</id>
           <name>GitHub DevLab-umontp Apache Maven Packages</name>
-          <url>https://maven.pkg.github.com/DevLab-umontp/Librarie-Java-EDT</url>
+          <url>https://maven.pkg.github.com/DevLab-umontp/Librairie-Java-EDT</url>
         </repository>
       </distributionManagement>
     </profile>

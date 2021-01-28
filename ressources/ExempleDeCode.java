@@ -44,6 +44,6 @@ class ExempleDeCode {
                 .par(Groupe.S2, Groupe.S3)
                 .par(LocalDate.now(), LocalDate.now().plusDays(1))
                 .par(prof1, prof2);
-        Planning planningAvecFiltreur = emploiDuTempsProxy.getPlanningOf(parPlusieursGroupesEtDates);
+        Planning planningAvecFiltreur = emploiDuTempsProxy.getPlanningOf(plusieursGroupesDatesEtProfesseurs);
     }
 }

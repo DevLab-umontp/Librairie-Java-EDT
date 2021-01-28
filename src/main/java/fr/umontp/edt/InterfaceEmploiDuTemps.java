@@ -1,7 +1,8 @@
 package fr.umontp.edt;
 
 /**
- * InterfaceEmploisDuTemps est un interface proposant des méthodes pour un emploi du temps
+ * InterfaceEmploisDuTemps est un interface proposant des méthodes pour un
+ * emploi du temps
  *
  * @author emerick-biron
  * @author MathieuSoysal

@@ -1,10 +1,11 @@
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.devlab-umontp/edt-iut-umontp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.devlab-umontp%22%20AND%20a:%22edt-iut-umontp%22)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DevLab-umontp_API-JAVA-EDT&metric=alert_status)](https://sonarcloud.io/dashboard?id=DevLab-umontp_API-JAVA-EDT)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DevLab-umontp_API-JAVA-EDT&metric=coverage)](https://sonarcloud.io/dashboard?id=DevLab-umontp_API-JAVA-EDT)
 ![GitHub Actions](https://github.com/DevLab-umontp/API-JAVA-EDT/workflows/Java%20CI%20with%20Maven/badge.svg)
 [![Javadoc](https://img.shields.io/badge/JavaDoc-Online-green)](https://mathieusoysal.github.io/stats/api-java-edt)
 [![Gitmoji.dev](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
-[![GitHub](https://img.shields.io/github/license/DevLab-umontp/API-JAVA-EDT)](https://github.com/DevLab-umontp/API-JAVA-EDT/blob/master/LICENSE)
-# ![](ressources/devicon.png) Librairie Java : EDT IUT Montpellier
+
+# ![](ressources/devicon.png) Librairie Java : EDT IUT Montpellier [![GitHub](https://img.shields.io/github/license/DevLab-umontp/API-JAVA-EDT)](https://github.com/DevLab-umontp/API-JAVA-EDT/blob/master/LICENSE)
 
 ### IUT Montpellier-Sète – Département Informatique
 * **Colaborateurs:** [étudiants du département informatique](https://iut-montpellier-sete.edu.umontpellier.fr/dut-informatique/)
@@ -64,6 +65,7 @@ class ExempleDeCode {
     }
 }
 ```
+>*Voir plus d'[exemples de code](ressources/ExempleDeCode.java)*
 ## Contribution
 Les suggestions et contributions sont toujours les bienvenues! Veuillez discuter des modifications plus importantes via un [issue](https://github.com/DevLab-umontp/Librarie-Java-EDT/issues) avant de soumettre une demande.
 

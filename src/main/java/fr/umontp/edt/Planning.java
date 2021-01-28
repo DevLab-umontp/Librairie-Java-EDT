@@ -21,7 +21,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
  *
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.4.0
+ * @version 1.4.2
  * @see Iterable
  * @see Planifiable
  * @see Cours
@@ -50,7 +50,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @param dates dates pour lesquelles on veut obtenir le planning.
      * @return {@code Planning} correspondant
      * @see Planning
-     * @since 1.3.1
+     * @since 1.3.0
      */
     @Override
     public Planning getPlanningOf(LocalDate... dates) {
@@ -88,7 +88,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @return planning correspondant
      * @see Groupe
      * @see Planning
-     * @since 1.3.1
+     * @since 1.4.1
      */
     @Override
     public Planning getPlanningOf(Groupe... groupes) {
@@ -106,7 +106,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
      *
      * @param professeurs professeurs dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.2
+     * @since 1.4.2
      * 
      * @see Professeur
      * @see Planning
@@ -114,9 +114,10 @@ public class Planning implements Iterable<Cours>, Planifiable {
     @Override
     public Planning getPlanningOf(Professeur... professeurs) {
         Planning result = new Planning();
-        for (Professeur professeur : professeurs)
-            result.cours
-                    .addAll(this.cours.stream().filter(c -> c.estEnseignePar(professeur)).collect(Collectors.toSet()));
+        for (Cours c : cours)
+            for (Professeur p : professeurs)
+                if (c.estEnseignePar(p))
+                    result.cours.add(c);
         return result;
     }
 

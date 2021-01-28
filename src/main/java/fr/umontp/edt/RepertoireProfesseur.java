@@ -14,10 +14,21 @@ import java.util.regex.Pattern;
  * @see Professeur
  * 
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.0.1
  */
-public class RepertoireProfesseur {
+public final class RepertoireProfesseur {
     private static HashMap<String, Professeur> repertoire = new HashMap<>();
+
+    /**
+     * La class RepertoireProfesseur est une class utilitaire est ne doit pas être instancié.
+     * 
+     * @since 1.0.1
+     * 
+     * @see RepertoireProfesseur#get(String, String)
+     */
+    private RepertoireProfesseur() {
+        throw new IllegalStateException("Class utilitaire");
+    }
 
     /**
      * Permet d'obtenir le(s) professeur(s) d'un VENVENT a partir de la description

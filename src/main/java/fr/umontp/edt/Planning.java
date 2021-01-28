@@ -54,7 +54,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
      */
     @Override
     public Planning getPlanningOf(LocalDate... dates) {
-        SortedSet<LocalDate> sortedDates = new TreeSet<LocalDate>(Arrays.asList(dates));
+        SortedSet<LocalDate> sortedDates = new TreeSet<>(Arrays.asList(dates));
         ArrayList<Cours> result = new ArrayList<>();
         LocalDate lastDate = cours.last().getDate();
         if (!lastDate.isBefore(sortedDates.first())) {

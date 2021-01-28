@@ -27,7 +27,6 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     private IdentityHashMap<Professeur, Planning> cacheProfesseur;
     private HashMap<LocalDate, Planning> cacheDate;
     private HashMap<PlanningFiltreur, Planning> cachePlanningFiltreur;
-    private HashMap<MultiKey<LocalDate, Groupe>, Planning> cacheDateGroupe;
 
     @SuppressWarnings("deprecation")
     private EmploiDuTempsProxy() {
@@ -44,7 +43,6 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
         cacheDate = new HashMap<>();
         cacheProfesseur = new IdentityHashMap<>();
         cacheGroupe = new EnumMap<>(Groupe.class);
-        cacheDateGroupe = new HashMap<>();
         cachePlanningFiltreur = new HashMap<>();
         emploiDuTemps.actualiser();
     }
@@ -96,8 +94,7 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
      */
     @Override
     public Planning getPlanningOf(LocalDate date, Groupe groupe) {
-        MultiKey<LocalDate, Groupe> multiKey = new MultiKey<>(date, groupe);
-        return cacheDateGroupe.computeIfAbsent(multiKey, k -> getPlanningOf(k.key1).getPlanningOf(k.key2));
+        return getPlanningOf(PlanningFiltreur.filtrer().par(date).par(groupe));
     }
 
     /**
@@ -153,48 +150,6 @@ public final class EmploiDuTempsProxy implements InterfaceEmploiDuTemps {
     public Planning getPlanningOf(PlanningFiltreur planningFiltreur) {
         return cachePlanningFiltreur.computeIfAbsent(planningFiltreur,
                 k -> emploiDuTemps.getPlanningOf(planningFiltreur));
-    }
-
-    /**
-     * Cette classe représente une combinaison de clefs
-     */
-    private class MultiKey<K1, K2> {
-        private K1 key1;
-        private K2 key2;
-
-        public MultiKey(K1 key1, K2 key2) {
-            this.key1 = key1;
-            this.key2 = key2;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (o == null || getClass() != o.getClass())
-                return false;
-
-            MultiKey<K1, K2> key = (MultiKey) o;
-
-            if (key1 != null ? !key1.equals(key.key1) : key.key1 != null)
-                return false;
-            if (key2 != null ? !key2.equals(key.key2) : key.key2 != null)
-                return false;
-
-            return true;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = key1 != null ? key1.hashCode() : 0;
-            result = 31 * result + (key2 != null ? key2.hashCode() : 0);
-            return result;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + key1 + ", " + key2 + "]";
-        }
     }
 
 }

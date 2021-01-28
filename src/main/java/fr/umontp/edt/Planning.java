@@ -50,7 +50,7 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @param dates dates pour lesquelles on veut obtenir le planning.
      * @return {@code Planning} correspondant
      * @see Planning
-     * @since 1.3.0
+     * @since 1.3.1
      */
     @Override
     public Planning getPlanningOf(LocalDate... dates) {
@@ -88,14 +88,15 @@ public class Planning implements Iterable<Cours>, Planifiable {
      * @return planning correspondant
      * @see Groupe
      * @see Planning
-     * @since 1.2.0
+     * @since 1.3.1
      */
     @Override
     public Planning getPlanningOf(Groupe... groupes) {
         Planning result = new Planning();
-        for (Groupe groupe : groupes)
-            result.cours.addAll(
-                    this.cours.stream().filter(c -> groupe.estContenuDans(c.getGroupes())).collect(Collectors.toSet()));
+        for (Cours c : cours)
+            for (Groupe g : groupes)
+                if (g.estContenuDans(c.getGroupes()))
+                    result.cours.add(c);
         return result;
     }
 

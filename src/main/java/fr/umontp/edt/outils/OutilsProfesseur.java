@@ -66,7 +66,7 @@ public class OutilsProfesseur {
 	 */
 	public static String formater(String nomPrenom) {
 		nomPrenom = supprimerAccentuation(nomPrenom);
-		return nomPrenom.toUpperCase(Locale.FRANCE).replaceAll("[^A-Z ]", " ");
+		return nomPrenom.toUpperCase(Locale.FRANCE).replaceAll("[^A-Z ]", "");
 	}
 
 }

@@ -1,6 +1,8 @@
 package fr.umontp.edt;
 
+import java.text.Normalizer;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * <b>Professeur est la classe représentant un professeur au sein de l'emploi du
@@ -19,7 +21,7 @@ import java.util.Locale;
  * @see RepertoireProfesseur
  * 
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class Professeur {
     private String denomination;
@@ -39,12 +41,29 @@ public class Professeur {
         denomination = formater(nom, prenom);
     }
 
+    /**
+     * @param nomPrenom 
+     * 
+     * @return la variable {@code nomPrenom} formaté.
+     * 
+     * @see String#toUpperCase(Locale)
+     * @see Professeur#supprimerAccent(String)
+     * 
+     * @since 1.0.1
+     */
+    static String formater(String nomPrenom) {
+        nomPrenom = supprimerAccent(nomPrenom);
+        return nomPrenom.toUpperCase(Locale.FRANCE).replaceAll("[^A-Z ]", " ");
+    }
+
     static String formater(String nom, String prenom) {
         return formater(nom + "   " + prenom);
     }
 
-    static String formater(String nomPrenom) {
-        return nomPrenom.toUpperCase(Locale.FRANCE).replaceAll("[^A-Z ]", " ");
+    private static String supprimerAccent(String str) {
+        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(nfdNormalizedString).replaceAll("");
     }
 
     /**

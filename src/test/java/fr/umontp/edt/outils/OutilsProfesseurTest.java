@@ -43,10 +43,10 @@ class OutilsProfesseurTest {
                 Arguments.of("TeEsT", "TEEST"), //
                 Arguments.of("Téèçà", "TEECA"), //
                 Arguments.of("ÉÈÇÀ", "EECA"), //
-                Arguments.of("test   t@°0245est", "TEST   T      EST"));
+                Arguments.of("test   t@°0245est", "TEST   TEST"));
     }
 
-    @ParameterizedTest(name = "la chiane de caractères {0} une fois formaté doit être égale à {1}")
+    @ParameterizedTest(name = "la chaine de caractères {0} une fois formaté doit être égale à {1}")
     @MethodSource("genererArgumentsPourtest_formater_2parametres")
     void test_formater_2parametres(String input1, String input2, String excepted) {
         assertEquals(excepted, OutilsProfesseur.formater(input1, input2));
@@ -59,6 +59,6 @@ class OutilsProfesseurTest {
                 Arguments.of("TeEsT", "TeEsT", "TEEST   TEEST"), //
                 Arguments.of("Téèçà", "Téèçà", "TEECA   TEECA"), //
                 Arguments.of("ÉÈÇÀ", "ÉÈÇÀ", "EECA   EECA"), //
-                Arguments.of("te93~('st", "t@°0245est", "TE     ST   T      EST"));
+                Arguments.of("te93~('st", "t@°0245est", "TEST   TEST"));
     }
 }

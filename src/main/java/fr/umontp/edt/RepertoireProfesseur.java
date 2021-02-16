@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.umontp.edt.outils.OutilsProfesseur;
+
 /**
  * <b>RepertoireProfesseur est la classe qui repertorie tous les professeurs de
  * l'emploi du temps.</b>
@@ -43,7 +45,7 @@ public final class RepertoireProfesseur {
         Matcher m = Pattern.compile(regex).matcher(description);
         final List<Professeur> matches = new ArrayList<>();
         while (m.find()) {
-            String nomPrenomProf = Professeur.formater(m.group(0));
+            String nomPrenomProf = OutilsProfesseur.formater(m.group(0));
             matches.add(repertoire.computeIfAbsent(nomPrenomProf, k -> new Professeur(nomPrenomProf)));
         }
         return matches.toArray(new Professeur[matches.size()]);
@@ -61,7 +63,7 @@ public final class RepertoireProfesseur {
      * @see java.util.HashMap#get(java.lang.Object)
      */
     public static Professeur get(String nom, String prenom) {
-        return repertoire.get(Professeur.formater(nom, prenom));
+        return repertoire.get(OutilsProfesseur.formater(nom, prenom));
     }
 
 }

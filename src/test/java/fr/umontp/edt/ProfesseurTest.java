@@ -28,9 +28,16 @@ class ProfesseurTest {
     }
 
     @Test
-    void testEquals_deuxProfesseursIdentiqueAvecConstructeurDifferent_avecDifferenceEntreEspaceEtCaractereSpeciaux() {
+    void testEquals_deuxProfesseursIdentiqueAvecConstructeurDifferent_avecSuppressionCaractereSpeciaux() {
         Professeur professeur1 = new Professeur("D'Ôrge   Jean");
         Professeur professeur2 = new Professeur("DÔrge   Jean");
+        assertEquals(professeur1, professeur2);
+    }
+
+    @Test
+    void testEquals_deuxProfesseursIdentiqueAvecConstructeurDifferent_avecEgualiteEntreEspaceEtCaractereSpeciaux() {
+        Professeur professeur1 = new Professeur("D'Ôrge   Jean");
+        Professeur professeur2 = new Professeur("D Ôrge   Jean");
         assertEquals(professeur1, professeur2);
     }
 

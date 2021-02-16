@@ -40,6 +40,8 @@ class OutilsProfesseurTest {
         return Stream.of(//
                 Arguments.of("", ""), //
                 Arguments.of("test", "TEST"), //
+                Arguments.of("D'Orge", "DORGE"), //
+                Arguments.of("D Orge", "DORGE"), //
                 Arguments.of("TeEsT", "TEEST"), //
                 Arguments.of("Téèçà", "TEECA"), //
                 Arguments.of("ÉÈÇÀ", "EECA"), //
@@ -57,6 +59,7 @@ class OutilsProfesseurTest {
                 Arguments.of("", "", "   "), //
                 Arguments.of("test", "TEST", "TEST   TEST"), //
                 Arguments.of("TeEsT", "TeEsT", "TEEST   TEEST"), //
+                Arguments.of("T eEsT", "TeE sT", "TEEST   TEEST"), //
                 Arguments.of("Téèçà", "Téèçà", "TEECA   TEECA"), //
                 Arguments.of("ÉÈÇÀ", "ÉÈÇÀ", "EECA   EECA"), //
                 Arguments.of("te93~('st", "t@°0245est", "TEST   TEST"));

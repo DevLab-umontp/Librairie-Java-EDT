@@ -123,7 +123,7 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     @Override
-    public void actualiser() {
+    public synchronized void actualiser() {
         File fichierIcs = getFichierIcsDepuisLienIcal();
         Calendar calendar = convertieFichierIcsEnCalendar(fichierIcs);
         ArrayList<Cours> coursList = new ArrayList<>();

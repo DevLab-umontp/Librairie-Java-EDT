@@ -39,13 +39,13 @@ public class OutilsProfesseur {
 	 * Concatène les deux variables {@code nom} et {@code prenom}, et renvoie une
 	 * variable formaté pour la class {@link Professeur}.
 	 * 
-	 * @param nom
-	 * @param prenom
+	 * @param nom du professeur
+	 * @param prenom du professeur
 	 * 
 	 * @return {@code String} formaté pour la class {@link Professeur}.
 	 * 
 	 * @see String#toUpperCase(Locale)
-	 * @see supprimerAccent
+	 * @see OutilsProfesseur#supprimerAccentuation(String)
 	 * 
 	 * @since 1.0.0
 	 */
@@ -54,13 +54,13 @@ public class OutilsProfesseur {
 	}
 
 	/**
-	 * @param nomPrenom
+	 * @param nomPrenom non et prénom du professeur séparé par 3 espaces.
 	 * 
 	 * @return la variable {@code nomPrenom} formaté pour la class
 	 *         {@link Professeur}.
 	 * 
 	 * @see String#toUpperCase(Locale)
-	 * @see supprimerAccent
+	 * @see OutilsProfesseur#supprimerAccentuation(String)
 	 * 
 	 * @since 1.0.0
 	 */

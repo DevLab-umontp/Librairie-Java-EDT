@@ -1,6 +1,6 @@
 package fr.umontp.edt;
 
-import java.util.Locale;
+import fr.umontp.edt.outils.OutilsProfesseur;
 
 /**
  * <b>Professeur est la classe représentant un professeur au sein de l'emploi du
@@ -17,9 +17,10 @@ import java.util.Locale;
  * </p>
  * 
  * @see RepertoireProfesseur
+ * @see OutilsProfesseur
  * 
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class Professeur {
     private String denomination;
@@ -36,15 +37,7 @@ public class Professeur {
         String[] infosProf = nomPrenom.split("   ");
         nom = infosProf[0];
         prenom = infosProf[1];
-        denomination = formater(nom, prenom);
-    }
-
-    static String formater(String nom, String prenom) {
-        return formater(nom + "   " + prenom);
-    }
-
-    static String formater(String nomPrenom) {
-        return nomPrenom.toUpperCase(Locale.FRANCE).replaceAll("[^A-Z ]", " ");
+        denomination = OutilsProfesseur.formater(nom, prenom);
     }
 
     /**

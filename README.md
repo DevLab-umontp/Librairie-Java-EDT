@@ -23,7 +23,7 @@ Si vous avez Maven, ajoutez ce qui suit aux dépendances de votre fichier `pom.x
 <dependency>
   <groupId>com.github.devlab-umontp</groupId>
   <artifactId>edt-iut-umontp</artifactId>
-  <version>1.3.0</version>
+  <version>1.3.1</version>
 </dependency>
 ```
 >*Voir un exemple de fichier [pom.xml](https://github.com/DevLab-umontp/Librarie-Java-EDT/blob/main/ressources/pom.xml#L20L24) avec la librairie EDT IUT Montpellier*
@@ -32,7 +32,7 @@ Si vous avez Maven, ajoutez ce qui suit aux dépendances de votre fichier `pom.x
 Si vous utilisez Gradle, ajoutez ce qui suit aux dépendances de votre fichier `build.gradle`:
 
 ```
-    implementation 'com.github.devlab-umontp:edt-iut-umontp:1.3.0'
+    implementation 'com.github.devlab-umontp:edt-iut-umontp:1.3.1'
 ```
 
 ## Exemple de code d'utilisation de la Librairie Java EDT IUT Montpellier

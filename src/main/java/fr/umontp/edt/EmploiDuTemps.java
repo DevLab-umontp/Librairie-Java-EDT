@@ -95,11 +95,11 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
             CalendarBuilder builder = new CalendarBuilder();
             calendar = builder.build(fileICS);
         } catch (FileNotFoundException e) {
-            log.error("Le fichier contenant l'EDT n'a pas pus être trouvé, https://github.com/DevLab-umontp/Librairie-Java-Villes-de-France", e);
+            log.error("Le fichier contenant les communes n'a pas pus être trouvé, https://github.com/DevLab-umontp/Librairie-Java-Villes-de-France", e);
         } catch (IOException e) {
-            log.error("Un problème est survenu lors de la lecture/ecriture du fichier contenant l'EDT, https://github.com/DevLab-umontp/Librairie-Java-Villes-de-France", e);
+            log.error("Un problème est survenu lors de la lecture/ecriture du fichier contenant les communes, https://github.com/DevLab-umontp/Librairie-Java-Villes-de-France", e);
         } catch (ParserException e) {
-            log.error("Un problème est survenu lors de la conversion du fichier contenant l'EDT, https://github.com/DevLab-umontp/Librairie-Java-Villes-de-France", e);
+            log.error("Un problème est survenu lors de la conversion du fichier contenant les communes, https://github.com/DevLab-umontp/Librairie-Java-Villes-de-France", e);
         }
         return calendar;
     }

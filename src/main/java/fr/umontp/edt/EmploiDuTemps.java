@@ -34,7 +34,7 @@ import net.fortuna.ical4j.model.Component;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.2.0
  */
 @Deprecated(forRemoval = false)
 public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
@@ -123,7 +123,7 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     @Override
-    public void actualiser() {
+    public synchronized void actualiser() {
         File fichierIcs = getFichierIcsDepuisLienIcal();
         Calendar calendar = convertieFichierIcsEnCalendar(fichierIcs);
         ArrayList<Cours> coursList = new ArrayList<>();
@@ -134,17 +134,16 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à une date
+     * Permet d'obtenir le planning correspondant à une date ou plusieurs dates.
      *
-     * @param date date pour laquelle on veut obtenir le planning
+     * @param dates dates pour lesquelles on veut obtenir le planning.
      * @return {@code Planning} correspondant
-     * @since 1.0
-     * 
      * @see Planning
+     * @see Planning#getPlanningOf(LocalDate...)
      */
     @Override
-    public Planning getPlanningOf(LocalDate date) {
-        return planningEmploisDuTemps.getPlanningOf(date);
+    public Planning getPlanningOf(LocalDate... dates) {
+        return planningEmploisDuTemps.getPlanningOf(dates);
     }
 
     /**
@@ -164,17 +163,48 @@ public final class EmploiDuTemps implements InterfaceEmploiDuTemps {
     }
 
     /**
-     * Permet d'obtenir le planning correspondant à un groupe
+     * Permet d'obtenir le planning correspondant à un groupe ou plusieurs groupe.
      *
-     * @param groupe groupe dont on veut obtenir le planning
+     * @param groupes groupes dont on veut obtenir le planning
      * @return planning correspondant
-     * @since 1.0
-     * 
      * @see Groupe
+     * @see Planning
+     * @see Planning#getPlanningOf(Groupe...)
+     */
+    @Override
+    public Planning getPlanningOf(Groupe... groupes) {
+        return planningEmploisDuTemps.getPlanningOf(groupes);
+    }
+
+    /**
+     * Permet d'obtenir le planning correspondant à un professeur ou plusieurs
+     * professeurs
+     *
+     * @param professeurs professeurs dont on veut obtenir le planning
+     * @return planning correspondant
+     * @since 1.1
+     * 
+     * @see Professeur
+     * @see Planning
+     * @see Planning#getPlanningOf(Professeur...)
+     */
+    @Override
+    public Planning getPlanningOf(Professeur... professeurs) {
+        return planningEmploisDuTemps.getPlanningOf(professeurs);
+    }
+
+    /**
+     * Permet d'obtenir le planning correspondant au {@link PlanningFiltreur}
+     *
+     * @param planningFiltreur filtrant le planning
+     * @return planning correspondant au filtre
+     * @since 1.2.0
+     * 
+     * @see PlanningFiltreur
      * @see Planning
      */
     @Override
-    public Planning getPlanningOf(Groupe groupe) {
-        return planningEmploisDuTemps.getPlanningOf(groupe);
+    public Planning getPlanningOf(PlanningFiltreur planningFiltreur) {
+        return planningEmploisDuTemps.getPlanningOf(planningFiltreur);
     }
 }

@@ -22,14 +22,61 @@ class EmploiDuTempsTest {
     }
 
     @Test
+    void test_getPlanningOf_plusieursDate_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(LocalDate.now(), LocalDate.now().plusDays(1)));
+    }
+
+    @Test
     void test_getPlanningOf_groupe_verifierRetourneAucuneErreur() {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertAll(() -> emploiDuTemps.getPlanningOf(Groupe.A1));
     }
 
     @Test
+    void test_getPlanningOf_plusieursGroupes_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(Groupe.S4, Groupe.S2));
+    }
+
+    @Test
     void test_getPlanningOf_groupe_verifierRetournePasDeListeVide() {
         EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
         assertTrue(emploiDuTemps.getPlanningOf(Groupe.A1).iterator().hasNext());
+    }
+
+    @Test
+    void test_getPlanningOf_professeur_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain")));
+    }
+
+    @Test
+    void test_getPlanningOf_plusieursProfesseurs_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain"),
+                RepertoireProfesseur.get("messaoui", "anita")));
+    }
+
+    @Test
+    void test_getPlanningOf_professeur_verifierRetournePasDeListeVide() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertTrue(emploiDuTemps.getPlanningOf(RepertoireProfesseur.get("Marie-jeanne", "Alain")).iterator().hasNext());
+    }
+
+    @Test
+    void test_getPlanningOf_PlanningFiltreurParProfesseur_verifierRetourneAucuneErreur() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertAll(() -> emploiDuTemps
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Marie-jeanne", "Alain")))
+                .iterator().hasNext());
+    }
+
+    @Test
+    void test_getPlanningOf_PlanningFiltreurParProfesseur_verifierRetournePasDeListeVide() {
+        EmploiDuTemps emploiDuTemps = EmploiDuTemps.getInstance();
+        assertTrue(emploiDuTemps
+                .getPlanningOf(PlanningFiltreur.filtrer().par(RepertoireProfesseur.get("Marie-jeanne", "Alain")))
+                .iterator().hasNext());
     }
 }

@@ -4,12 +4,8 @@ import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.DateTime;
@@ -33,11 +29,11 @@ import net.fortuna.ical4j.model.Property;
  * 
  * @author emerick-biron
  * @author MathieuSoysal
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class Cours implements Comparable<Cours> {
     private LocalDate date;
-    private String[] prof;
+    private Professeur[] professeurs;
     private LocalTime heureDebut;
     private LocalTime heureFin;
     private String lieu;
@@ -45,10 +41,10 @@ public class Cours implements Comparable<Cours> {
     private Groupe[] groupes;
     private String intitule;
 
-    public Cours(LocalDate date, String[] prof, LocalTime heureDebut, LocalTime heureFin, String lieu, Groupe[] groupe,
-            String intitule) {
+    public Cours(LocalDate date, Professeur[] professeurs, LocalTime heureDebut, LocalTime heureFin, String lieu,
+            Groupe[] groupe, String intitule) {
         this.date = date;
-        this.prof = prof;
+        this.professeurs = professeurs;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.lieu = lieu;
@@ -90,27 +86,27 @@ public class Cours implements Comparable<Cours> {
         heureFin = LocalTime.of(dateFin.getHours(), dateFin.getMinutes());
         lieu = location.getValue();
         intitule = summary.getValue();
-        prof = getProfFromDesc(description.getValue());
+        professeurs = RepertoireProfesseur.getProfesseurDepuisDescriptionEtAjouterSiNonPresent(description.getValue());
         groupes = Groupe.getGroupeDepuisTexte(description.getValue());
         duree = (int) Duration.between(heureDebut, heureFin).toMinutes();
     }
 
     /**
-     * Permet d'obtenir le(s) professeur(s) d'un VENVENT a partir de la description
-     * de ce dernier
-     *
-     * @param desc description du VENVENT
-     * @return {@code String[]} le(s) professeur(s) du present dans la description
-     * @since 1.0
+     * Permet de vérfier si un professeur est assigné à ce cours.
+     * 
+     * @param professeur dont on veut vérier s'il est assigné au cour.
+     * @return {@code true} si le professeur est assigne à ce cours, sinon
+     *         {@code false}.
+     * 
+     * @see Cours#professeurs
+     * 
+     * @since 1.1.0
      */
-    static String[] getProfFromDesc(String desc) {
-        String regex = "(?<=\\n)[- A-Z]*   [- A-Z]*(?=\\n)";
-        Matcher m = Pattern.compile(regex).matcher(desc);
-        final List<String> matches = new ArrayList<>();
-        while (m.find()) {
-            matches.add(m.group(0));
-        }
-        return matches.toArray(new String[matches.size()]);
+    public boolean estEnseignePar(Professeur professeur) {
+        for (Professeur professeurAssigne : professeurs)
+            if (professeurAssigne == professeur)
+                return true;
+        return false;
     }
 
     @Override
@@ -124,12 +120,16 @@ public class Cours implements Comparable<Cours> {
         result = Integer.compare(duree, o.duree);
         if (result != 0)
             return result;
-        for (Groupe groupe : groupes)
-            for (Groupe autreGroupe : o.groupes) {
-                result = groupe.getIntitule().compareTo(autreGroupe.getIntitule());
+        result = Integer.compare(groupes.length, o.groupes.length);
+        if (result != 0)
+            return result;
+        for (int i = 0; i < groupes.length; i++) {
+            if (groupes[i] != o.groupes[i]) {
+                result = groupes[i].getIntitule().compareTo(o.groupes[i].getIntitule());
                 if (result != 0)
                     return result;
             }
+        }
         return intitule.compareTo(o.intitule);
     }
 
@@ -143,8 +143,8 @@ public class Cours implements Comparable<Cours> {
     /**
      * @return {@code String[]} les professeurs organisant le cours
      */
-    public String[] getProf() {
-        return prof;
+    public Professeur[] getProfesseurs() {
+        return professeurs;
     }
 
     /**
@@ -194,8 +194,8 @@ public class Cours implements Comparable<Cours> {
     @Override
     public String toString() {
         return intitule.toUpperCase(Locale.ROOT) + " :\n Date : " + date + "\n Commence à " + heureDebut + ", finit à "
-                + heureFin + "\n Enseignant :" + Arrays.toString(prof) + " \n Localisation : " + lieu + " \n Groupe : "
-                + Arrays.toString(groupes);
+                + heureFin + "\n Enseignant :" + Arrays.toString(professeurs) + " \n Localisation : " + lieu
+                + " \n Groupe : " + Arrays.toString(groupes);
     }
 
     /*
